@@ -27,9 +27,9 @@ def make_specs(maps, diffs, bots, per, seed0):
     return specs
 
 
-def evaluate(agent, specs, envs=12, max_steps=1500, device=None, agent_params=""):
+def evaluate(agent, specs, envs=12, max_steps=1500, device=None, agent_params="", sample=False, torch_seed=0):
     import torch
-    device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+    device = device or ("cuda" if torch.cuda.is_available() else "cpu"); torch.manual_seed(torch_seed)
     from ofsi.rl2.model import PolicyV2, collate
     from ofsi.rl2 import ckpt
     queue = list(specs); lock = [0]; filler = {"map": "Onion", "difficulty": "Easy", "bots": 4, "_filler": True, "_seed": "f00000000", "_id": -1}
@@ -47,7 +47,7 @@ def evaluate(agent, specs, envs=12, max_steps=1500, device=None, agent_params=""
         acts = [None] * envs
         if model is not None:
             idx = [i for i in range(envs) if env.obs[i] is not None]
-            with torch.no_grad(), torch.autocast(device_type="cuda", dtype=torch.bfloat16, enabled=(device == "cuda")): out = model.act(collate([env.obs[i] for i in idx], device), greedy=True)
+            with torch.no_grad(), torch.autocast(device_type="cuda", dtype=torch.bfloat16, enabled=(device == "cuda")): out = model.act(collate([env.obs[i] for i in idx], device), greedy=not sample)
             for r, i in enumerate(idx):
                 A = []
                 for k in range(S.M_SUB):
@@ -91,10 +91,10 @@ def summarize(res):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(); ap.add_argument("--agent", required=True); ap.add_argument("--per", type=int, default=2, help="parties par (carte, difficulte)")
     ap.add_argument("--difficulties", default="Easy,Medium"); ap.add_argument("--maps", default="train+heldout"); ap.add_argument("--bots", default="8,12"); ap.add_argument("--envs", type=int, default=12)
-    ap.add_argument("--seed0", type=int, default=1000000); ap.add_argument("--out", default=""); ap.add_argument("--max-steps", type=int, default=1500); ap.add_argument("--agent-params", default=""); ap.add_argument("--only", default="", help="ne jouer que cette difficulte, EN CONSERVANT les memes identifiants/seeds de parties")
+    ap.add_argument("--seed0", type=int, default=1000000); ap.add_argument("--out", default=""); ap.add_argument("--max-steps", type=int, default=1500); ap.add_argument("--agent-params", default=""); ap.add_argument("--sample", action="store_true", help="politique ECHANTILLONNEE (graine torch fixe) au lieu de gloutonne"); ap.add_argument("--only", default="", help="ne jouer que cette difficulte, EN CONSERVANT les memes identifiants/seeds de parties")
     a = ap.parse_args(); maps = (TRAIN_MAPS if "train" in a.maps else []) + (HELDOUT_MAPS if "heldout" in a.maps else []); specs = make_specs(maps, a.difficulties.split(","), [int(x) for x in a.bots.split(",")], a.per, a.seed0)
     if a.only: specs = [x for x in specs if x["difficulty"] == a.only]
-    res, usage, secs = evaluate(a.agent, specs, a.envs, a.max_steps, agent_params=a.agent_params); summ = summarize(res)
+    res, usage, secs = evaluate(a.agent, specs, a.envs, a.max_steps, agent_params=a.agent_params, sample=a.sample); summ = summarize(res)
     rep = {"agent": a.agent, "specs": len(specs), "secondes": secs, "resume": summ, "usage_types": dict(usage.most_common()), "parties": res}
     out = a.out or f"benchmarks/eval2_{pathlib.Path(a.agent).parent.name if a.agent not in ('teacher', 'random') else a.agent}.json"; pathlib.Path(out).write_text(json.dumps(rep, indent=1), encoding="utf-8")
     for grp, g in summ.items():
