@@ -1,6 +1,7 @@
 """Tableau de bord local (loopback uniquement). Affiche UNIQUEMENT des donnees reelles lues dans runs/ et benchmarks/.
 Controles : fichiers STOP/PAUSE dans runs/<nom>/ (noms valides par liste blanche, aucune commande arbitraire)."""
 import json, re, sys, shutil, pathlib, argparse, time, os
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -24,7 +25,7 @@ button:hover{background:#38506a} canvas{width:100%;height:150px;background:#1016
 <label>Run <select id="run"></select></label>
 <button onclick="ctl('pause')">Suspendre</button><button onclick="ctl('resume')">Reprendre</button>
 <button onclick="if(confirm('Arreter proprement (checkpoint sauvegarde) ?'))ctl('stop')">Arreter proprement</button>
-<span id="status" class="na"></span></header>
+<span id="status" class="na"></span><span id="banner" style="margin-left:auto;font-weight:600"></span></header>
 <main>
 <div class="card"><h2>Etat</h2><div class="kv" id="state"></div></div>
 <div class="card"><h2>Taux de victoire (200 derniers episodes) - entrainement</h2><canvas id="c_wr"></canvas></div>
@@ -35,6 +36,7 @@ button:hover{background:#38506a} canvas{width:100%;height:150px;background:#1016
 <div class="card"><h2>Curriculum (etape courante)</h2><canvas id="c_stage"></canvas><div id="cur" class="na"></div></div>
 <div class="card"><h2>Distribution des actions (derniere mise a jour)</h2><div id="acts"></div></div>
 <div class="card"><h2>Benchmarks mesures</h2><div id="bench" class="na">aucun</div></div>
+<div class="card"><h2>Notifications</h2><div id="notifs" class="na">aucune</div></div>
 <div class="card"><h2>Materiel</h2><div class="kv" id="hw"></div></div>
 </main>
 <script>
@@ -57,6 +59,8 @@ async function refresh(){
    const H=last.type_hist||last.action_hist, L=last.type_hist?ACT2:ACT; $('acts').innerHTML='<table>'+H.map((p,i)=>`<tr><td>${L[i]||i}</td><td>${(p*100).toFixed(1)} %</td></tr>`).join('')+'</table>';
   } else $('state').innerHTML='<b>Etat</b><span class="na">aucune mesure encore</span>'}
  const b=await (await fetch('/api/benchmarks')).json(); $('bench').innerHTML=b.length?b.map(x=>`<div><b>${x.file}</b><br><span class="na">${x.summary}</span></div>`).join(''):'aucun';
+ const st=await (await fetch('/api/status')).json(); const bn=$('banner'); bn.textContent=st.banner; bn.style.color=st.level==='success'?'#4ade80':st.level==='warning'?'#f0b429':'#60a5fa';
+ const nt=await (await fetch('/api/notifications')).json(); $('notifs').innerHTML=nt.length?nt.map(n=>`<div class="${n.level==='error'||n.level==='warning'?'warn':''}"><b>${n.t}</b> ${n.title}<br><span class="na">${n.detail}</span></div>`).join(''):'aucune';
  const h=await (await fetch('/api/hardware')).json(); $('hw').innerHTML=Object.entries(h).map(([k,v])=>`<b>${k}</b><span class="${String(v).startsWith('non')?'warn':''}">${v}</span>`).join('');}
 refresh();setInterval(refresh,3000);$('run').onchange=e=>{run=e.target.value;refresh()};
 </script></html>"""
@@ -111,6 +115,10 @@ class H(BaseHTTPRequestHandler):
                     out.append({"file": f.name, "summary": s})
                 except Exception: out.append({"file": f.name, "summary": "illisible"})
             return self._send(200, json.dumps(out))
+        if u.path == "/api/status":
+            from ofsi import notify; notify.scan(); return self._send(200, json.dumps(notify.status(), ensure_ascii=False))
+        if u.path == "/api/notifications":
+            from ofsi import notify; return self._send(200, json.dumps(notify.read(30), ensure_ascii=False))
         if u.path == "/api/hardware":
             du = shutil.disk_usage(ROOT)
             return self._send(200, json.dumps({"CPU logiques": os.cpu_count(), "Disque libre": f"{du.free / 2**30:.1f} Go", "GPU CUDA": "non disponible (cuInit=100, aucun peripherique)",

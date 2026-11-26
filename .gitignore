@@ -19,3 +19,4 @@ runs/**/*.tmp
 runs/**/STOP
 runs/**/PAUSE
 .venv/
+runs/_notifications.jsonl

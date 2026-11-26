@@ -40,7 +40,7 @@ Règle : un statut ne monte que sur une MESURE reproductible citée ; « le code
 | 42 | Champion, plateaux | PARTIEL | `stagnation.py`, règle de promotion testée | aucun champion entraîné qui dépasse le professeur |
 | 43 | Orchestration autonome | PARTIEL | scripts `run_pipeline_v3*.sh` | séquencement manuel, pas d'orchestrateur autonome |
 | 44 | Critères de maturité | voir ci-dessous | — | — |
-| 45 | Notifications, rapport | PARTIEL | `report.py` | **aucune notification locale**, bannière finale non implémentée |
+| 45 | Notifications, rapport | PARTIEL | `ofsi/notify.py` + `ofsi/test_notify.py` (15/15 PASS : plateau, régression, record de débit, divergence, disque, dédup, bannière jamais « VALIDÉE » sans `docs/validation.json` all_pass) ; intégré au tableau de bord (`/api/status`, `/api/notifications`), testé sur données réelles ; `report.py` | « nouveau champion » et toast Windows non testés (Linux) ; rapport automatique complet non vérifié |
 | 46 | Livrables | PARTIEL | README, DEVELOPER, JOURNAL | voir lignes ci-dessus |
 
 ## Jalons §44 (niveau atteint, sans embellissement)
@@ -53,5 +53,5 @@ Règle : un statut ne monte que sur une MESURE reproductible citée ; « le code
 1. Jalon 6 : obtenir un apprentissage RL qui AMÉLIORE un agent (PPO ancré en cours, protocole au journal).
 2. §24/§25 (adversaires, planification) : aucun code → implémenter et mesurer.
 3. §34/§35/§43 : autotune, ordonnanceur, orchestrateur autonome.
-4. §45 : notifications et bannière d'état dans le tableau de bord.
+4. §45 : (fait en partie) ajouter la détection de nouveau champion et tester le toast Windows.
 5. §7 : audit de performance du plan.
