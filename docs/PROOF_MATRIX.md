@@ -19,7 +19,7 @@ Règle : un statut ne monte que sur une MESURE reproductible citée ; « le code
 | 21 | Architecture multi-compétences | PARTIEL | `PolicyV2` 1,41 M param. (entités + grille + transformer + décodeur) | pas de modules spécialisés comparés ; ablations d'architecture NON faites |
 | 22 | Préentraînement | PARTIEL | bc/ssl/both implémentés ; SSL en surapprentissage mesuré | aucune méthode ne dépasse l'imitation du professeur |
 | 23 | Modèle du monde, contrefactuels | PARTIEL | `WorldHead` (SSL), `counterfactual.py` | pas utilisé pour la planification |
-| 24 | Modèle individuel des adversaires | **NON FAIT** | — | aucun code |
+| 24 | Modèle individuel des adversaires | PARTIEL | `ofsi/rl2/oppmodel.py`, `test_oppmodel.py` 7/7, `benchmarks/oppmodel*.json` : AUC 0,81-0,95, gain +22-42 % vs persistance à h=20, ablation anti-fuite réfutée | démonstrations d'UN seul professeur ; NON branché sur la politique → aucun gain de jeu démontré |
 | 25 | Planification hiérarchique / recherche | **NON FAIT** | — | aucun code (MCTS/recherche absents) |
 | 26 | Agents de référence, professeurs | PASS | teacher v2+alliance : Easy 23/24, Medium 9/24 ; aléatoire 0/48 | teacher v3 : résultat négatif documenté |
 | 27 | Curriculum adaptatif | PARTIEL | `Curriculum` (7 étapes) dans `ppo2.py` | jamais démontré comme utile (aucun run n'a passé Easy) |
@@ -51,7 +51,7 @@ Règle : un statut ne monte que sur une MESURE reproductible citée ; « le code
 
 ## Priorités déduites de la matrice (ordre de travail)
 1. Jalon 6 : obtenir un apprentissage RL qui AMÉLIORE un agent (PPO ancré en cours, protocole au journal).
-2. §24/§25 (adversaires, planification) : aucun code → implémenter et mesurer.
+2. §24 : brancher le modèle d'adversaires sur la politique et mesurer le gain de jeu ; §25 (planification/recherche) : aucun code.
 3. §34/§35/§43 : autotune, ordonnanceur, orchestrateur autonome.
 4. §45 : (fait en partie) ajouter la détection de nouveau champion et tester le toast Windows.
 5. §7 : audit de performance du plan.
