@@ -24,7 +24,7 @@ Règle : un statut ne monte que sur une MESURE reproductible citée ; « le code
 | 26 | Agents de référence, professeurs | PASS | teacher v2+alliance : Easy 23/24, Medium 9/24 ; aléatoire 0/48 | teacher v3 : résultat négatif documenté |
 | 27 | Curriculum adaptatif | PARTIEL | `Curriculum` (7 étapes) dans `ppo2.py` | jamais démontré comme utile (aucun run n'a passé Easy) |
 | 28 | Arène, self-play massif | PARTIEL | `league.py` (Bradley-Terry, promotion) exécutée une fois (random vs teacher) | pas de self-play réel à l'échelle |
-| 29 | Apprentissage par renforcement | PARTIEL | PPO ancré (`arm_B_anchor`, échantillonné, 48 parties appariées) : 31/48 = parité avec le professeur (32/48, p=1,0) ; vs imitation seule 26/48 (p=0,27, non significatif) ; glouton catastrophique (6/48) ; PPO v2 sans ancrage 13/48 (p<0,001 vs ancré) | aucun agent entraîné ne DÉPASSE son professeur ; amélioration vs imitation non démontrée ; 1 graine |
+| 29 | Apprentissage par renforcement | PARTIEL | PPO ancré (`arm_B_anchor`, échantillonné, 48 parties appariées) : 31/48 ; puis `arm_C_medium` 33/48 = parité avec le professeur (32/48, p=1,0) ; vs imitation seule 26/48 (p=0,27, non significatif) ; glouton catastrophique (6/48) ; PPO v2 sans ancrage 13/48 (p<0,001 vs ancré) | aucun agent entraîné ne DÉPASSE son professeur ; amélioration vs imitation non démontrée ; 1 graine |
 | 30 | Apprentissage en temps réel | NON FAIT | — | — |
 | 31 | Mémoire et données | PARTIEL | démonstrations `data/demos_v3` (60 056 décisions) | pas de mémoire de parties/replay buffer prioritaire |
 | 32 | Analyse des défaites | PARTIEL | 1 analyse contrefactuelle, ablation du professeur v3 | échantillon minuscule |
@@ -45,9 +45,9 @@ Règle : un statut ne monte que sur une MESURE reproductible citée ; « le code
 
 ## Jalons §44 (niveau atteint, sans embellissement)
 0 PASS · 1 PASS · 2 PASS · 3 PASS (fidélité + débit mesurés, audit complet non fait) · 4 PARTIEL (arène/références oui, ligue peu exécutée) · 5 PASS (réseaux fonctionnels, 0 action illégale) ·
-**6 NON DÉMONTRÉ** (le PPO ancré atteint la parité avec le professeur mais l'amélioration vs imitation n'est pas significative : p=0,27) · 7 PARTIEL · 8 PARTIEL (mécaniques exécutables, maîtrise non mesurée) · 9 NON · 10 NON.
+**6 NON DÉMONTRÉ** (le PPO ancré atteint la parité avec le professeur ; `arm_C_medium` 33/48 vs imitation 26/48, p=0,12 : amélioration non significative) · 7 PARTIEL · 8 PARTIEL (mécaniques exécutables, maîtrise non mesurée) · 9 NON · 10 NON.
 
-**Bannière honnête : VALIDATION PARTIELLE — LIMITATIONS IDENTIFIÉES.** Cibles §44 (>99 % Easy, >98 % Medium, >95 % Hard) : NON atteintes (professeur Easy 96 %, Medium 38 %, Hard ~6 % ; meilleur réseau, échantillonné : PPO ancré Easy 96 %, Medium 33 %).
+**Bannière honnête : VALIDATION PARTIELLE — LIMITATIONS IDENTIFIÉES.** Cibles §44 (>99 % Easy, >98 % Medium, >95 % Hard) : NON atteintes (professeur Easy 96 %, Medium 38 %, Hard ~6 % ; meilleur réseau, échantillonné : `arm_C_medium` Easy 96 %, Medium 42 %).
 
 ## Priorités déduites de la matrice (ordre de travail)
 1. Jalon 6 : obtenir un apprentissage RL qui DÉPASSE le professeur (PPO ancré = parité ; prochaine étape : entraînement sur Medium depuis `arm_B_anchor`).
