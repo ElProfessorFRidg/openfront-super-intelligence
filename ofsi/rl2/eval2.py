@@ -27,8 +27,9 @@ def make_specs(maps, diffs, bots, per, seed0):
     return specs
 
 
-def evaluate(agent, specs, envs=12, max_steps=1500, device="cuda", agent_params=""):
+def evaluate(agent, specs, envs=12, max_steps=1500, device=None, agent_params=""):
     import torch
+    device = device or ("cuda" if torch.cuda.is_available() else "cpu")
     from ofsi.rl2.model import PolicyV2, collate
     from ofsi.rl2 import ckpt
     queue = list(specs); lock = [0]; filler = {"map": "Onion", "difficulty": "Easy", "bots": 4, "_filler": True, "_seed": "f00000000", "_id": -1}

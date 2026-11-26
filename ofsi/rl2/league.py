@@ -30,8 +30,9 @@ class TeacherAgent:
 
 class NeuralAgent:
     _cache = {}
-    def __init__(self, ckpt, device="cuda"):
+    def __init__(self, ckpt, device=None):
         import torch
+        device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         from ofsi.rl2.model import PolicyV2, collate
         from ofsi.rl2 import ckpt as C
         self.torch, self.collate, self.dev = torch, collate, device
