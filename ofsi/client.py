@@ -2,7 +2,14 @@
 import json, os, subprocess, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-NODE = ROOT / "tools/node24/node-v24.22.3-win-x64/node.exe"
+def _find_node():
+    """Node 24 : OFSI_NODE, sinon copie portable de tools/ (Windows ou npm 'node@24' sous Linux), sinon `node` du PATH."""
+    if os.environ.get("OFSI_NODE"): return pathlib.Path(os.environ["OFSI_NODE"])
+    for c in (ROOT / "tools/node24/node-v24.22.3-win-x64/node.exe", ROOT / "tools/node24/node_modules/node/bin/node"):
+        if c.exists(): return c
+    import shutil
+    return pathlib.Path(shutil.which("node") or "node")
+NODE = _find_node()
 ENGINE = ROOT / "vendor/openfront-engine"
 TSX = ENGINE / "node_modules/tsx/dist/cli.mjs"
 

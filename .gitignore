@@ -18,3 +18,4 @@ runs/**/*.tmp
 # Marqueurs de controle d'entrainement
 runs/**/STOP
 runs/**/PAUSE
+.venv/
