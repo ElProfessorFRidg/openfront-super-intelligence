@@ -24,7 +24,7 @@ Règle : un statut ne monte que sur une MESURE reproductible citée ; « le code
 | 26 | Agents de référence, professeurs | PASS | teacher v2+alliance : Easy 23/24, Medium 9/24 ; aléatoire 0/48 | teacher v3 : résultat négatif documenté |
 | 27 | Curriculum adaptatif | PARTIEL | `Curriculum` (7 étapes) dans `ppo2.py` | jamais démontré comme utile (aucun run n'a passé Easy) |
 | 28 | Arène, self-play massif | PARTIEL | `league.py` (Bradley-Terry, promotion) exécutée une fois (random vs teacher) | pas de self-play réel à l'échelle |
-| 29 | Apprentissage par renforcement | PARTIEL | PPO ancré (`arm_B_anchor`, échantillonné, 48 parties appariées) : 31/48 = parité avec le professeur (32/48, p=1,0) ; vs imitation seule 26/48 (p=0,27, non significatif) ; glouton catastrophique (6/48) | aucun agent entraîné ne DÉPASSE son professeur ; amélioration vs imitation non démontrée ; 1 graine |
+| 29 | Apprentissage par renforcement | PARTIEL | PPO ancré (`arm_B_anchor`, échantillonné, 48 parties appariées) : 31/48 = parité avec le professeur (32/48, p=1,0) ; vs imitation seule 26/48 (p=0,27, non significatif) ; glouton catastrophique (6/48) ; PPO v2 sans ancrage 13/48 (p<0,001 vs ancré) | aucun agent entraîné ne DÉPASSE son professeur ; amélioration vs imitation non démontrée ; 1 graine |
 | 30 | Apprentissage en temps réel | NON FAIT | — | — |
 | 31 | Mémoire et données | PARTIEL | démonstrations `data/demos_v3` (60 056 décisions) | pas de mémoire de parties/replay buffer prioritaire |
 | 32 | Analyse des défaites | PARTIEL | 1 analyse contrefactuelle, ablation du professeur v3 | échantillon minuscule |

@@ -292,3 +292,12 @@ Chronologie : PPO du bras B termine a 00:49 ; ma question a l'utilisateur (AskUs
 - Bras `arm_C_medium` : init = `runs/arm_B_anchor/ckpt_latest.pt` (KL de référence = CE checkpoint, donc région de confiance autour de la politique à parité), `--stage0 2` (Medium 6-10 bots, 25 % de consolidation sur les étapes antérieures), `--lr 3e-5 --ent 0.005 --value-warmup 8 --kl-ref 1.0 --bc-coef 0.5`, 6 moteurs, T=64, 120 000 décisions, seed 1 (graine d'entraînement distincte).
 - Évaluation : échantillonnée, mêmes 48 parties (`--sample`, torch seed 0), comparée par McNemar apparié à `arm_B_anchor` (31/48) et au professeur (32/48). CRITÈRE : « dépasse » seulement si victoires Medium > 8/24 ET p<0,05 sur le total apparié ; sinon, résultat rapporté comme non démontré. Pas de sélection a posteriori du meilleur checkpoint intermédiaire sur ces 48 parties (sur-ajustement du banc de test).
 - Limites d'avance : 1 graine, 24 parties Medium (puissance faible : passer de 8 à 15 victoires est à peine détectable), CPU sans GPU (~20 déc/s → ≈ 1,7 h de collecte).
+
+## 2026-11-26 (nuit) — Bras PPO v2 échantillonné ; effet de l'ancrage MESURÉ (mêmes 48 parties, appariées)
+Victoires /48 (échantillonné, torch seed 0) : professeur `threats` 32 · PPO ancré 31 · imitation seule (init_bc) 26 · **PPO v2 sans ancrage 13**.
+- PPO v2 vs PPO ancré : 2 gagnées / 20 perdues pour v2, **p<0,001** (Easy 11 vs 23, p=0,002 ; Medium 2 vs 8, p=0,07).
+- PPO v2 vs imitation de départ : 3 gagnées / 16 perdues, p=0,004 → la recette v2 DÉGRADE réellement la politique imitée (confirmé en échantillonné, pas seulement en glouton). Glouton → échantillonné pour v2 : 9 → 13 (p=0,22, NS) : le décodage n'explique donc qu'une PETITE part de la dégradation de v2, contrairement au bras ancré (6 → 31).
+- PPO v2 vs professeur : 0 gagnée / 19 perdues, p<0,001.
+- CONCLUSION (limitée) : ancrage KL + imitation auxiliaire + lr plus bas ÉVITENT la dégradation (31 vs 13) et maintiennent la politique à la parité du professeur ; ils ne démontrent PAS d'amélioration au-delà de l'imitation (31 vs 26, p=0,27).
+- LIMITE MÉTHODOLOGIQUE : le bras « ancré » diffère du bras v2 par 4 facteurs à la fois (lr 3e-5 vs 1e-4, 60 k vs 120 k décisions, KL vers l'init, imitation auxiliaire) → ce n'est PAS une ablation d'un seul facteur : on ne sait pas lequel porte l'effet. Ablations à faire (1 facteur à la fois) si l'on veut l'attribuer.
+- `arm_C_medium` (protocole ci-dessus) lancé, 120 000 décisions.
