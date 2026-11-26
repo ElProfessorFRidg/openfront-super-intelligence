@@ -1,0 +1,57 @@
+# Matrice de preuves — MISSION.txt (état au 2026-11-26)
+
+Légende : **PASS** = exigence satisfaite ET mesurée ; **PARTIEL** = une partie existe/est mesurée ; **NON FAIT** = aucun code ; **BLOQUÉ** = impossible avec les ressources actuelles (raison donnée).
+Règle : un statut ne monte que sur une MESURE reproductible citée ; « le code existe » ne vaut jamais PASS pour une capacité d'intelligence. Fichier maintenu à la main : toute ligne cite sa preuve ou dit qu'il n'y en a pas.
+
+| § | Exigence | Statut | Preuve / commande | Limites |
+|---|---|---|---|---|
+| 3 | Installation et matériel | PARTIEL | Windows : `OpenFront-SI.ps1 doctor/repair` testés. Linux : Node 24.22.3 local + venv CPU reconstruits, `docs/JOURNAL.md` 2026-11-26 | `setup` non testé de bout en bout ; Linux sans GPU |
+| 4 | Produit et structure | PARTIEL | arborescence du README | pas d'installateur testé |
+| 5 | Sources et recherche | PARTIEL | moteur officiel épinglé `db8bf7c4` ; djmango/openfront-ai étudié non exécuté (licence absente) ; OpenFront_Agents non exécutable (LLM/compte) | pas de comparaison exécutée avec un agent public |
+| 6 | Moteur headless | PASS | `selftest_snapshot.mts` : hash identique ; 30/30 scénarios sur Windows ET Linux | — |
+| 7 | Haute performance | PARTIEL | 147,5 déc/s (Linux, professeur, 4 cœurs) ; 532 ticks/s World/100 bots (Windows) | audit `docs/PERF_AUDIT_PLAN.md` NON exécuté |
+| 8 | Snapshots, futurs alternatifs | PASS | snapshot/restore identiques ; `counterfactual.py` : 1 défaite analysée | 1 seule défaite analysée |
+| 9 | Benchmarks reproductibles | PARTIEL | `benchmarks/*.json`, 48 parties à seeds fixes | pas de protocole d'environnement figé automatique |
+| 10 | Fidélité, tests différentiels | PARTIEL | moteur officiel non modifié ; déterminisme 3 exécutions + rejeu de défaite | pas de test différentiel contre un second moteur |
+| 11 | Inventaire des mécaniques | PASS | `registry/mechanics.json`, `registry/engine_audit.json` | généré, à régénérer si le moteur change |
+| 12–19 | Géographie, combat, économie, constructions, marine, commerce, diplomatie, défenses | PARTIEL | `registry/coverage_v2.md` : 19/19 intents valides par scénario à effet vérifié | PASS = l'action s'exécute, PAS que l'agent la maîtrise ; scénarios sur Onion seulement |
+| 20 | Observations et actions | PASS | `space.py` 32 types + pointeurs, masques exacts ; 0 action illégale / 1 070 | information interne des nations non exposée (voulu) |
+| 21 | Architecture multi-compétences | PARTIEL | `PolicyV2` 1,41 M param. (entités + grille + transformer + décodeur) | pas de modules spécialisés comparés ; ablations d'architecture NON faites |
+| 22 | Préentraînement | PARTIEL | bc/ssl/both implémentés ; SSL en surapprentissage mesuré | aucune méthode ne dépasse l'imitation du professeur |
+| 23 | Modèle du monde, contrefactuels | PARTIEL | `WorldHead` (SSL), `counterfactual.py` | pas utilisé pour la planification |
+| 24 | Modèle individuel des adversaires | **NON FAIT** | — | aucun code |
+| 25 | Planification hiérarchique / recherche | **NON FAIT** | — | aucun code (MCTS/recherche absents) |
+| 26 | Agents de référence, professeurs | PASS | teacher v2+alliance : Easy 23/24, Medium 9/24 ; aléatoire 0/48 | teacher v3 : résultat négatif documenté |
+| 27 | Curriculum adaptatif | PARTIEL | `Curriculum` (7 étapes) dans `ppo2.py` | jamais démontré comme utile (aucun run n'a passé Easy) |
+| 28 | Arène, self-play massif | PARTIEL | `league.py` (Bradley-Terry, promotion) exécutée une fois (random vs teacher) | pas de self-play réel à l'échelle |
+| 29 | Apprentissage par renforcement | **FAIL partiel** | PPO v2 : Easy 29 % vs 79 % pour son init (dégradation) ; PPO ancré : voir journal | aucun agent entraîné ne dépasse son professeur |
+| 30 | Apprentissage en temps réel | NON FAIT | — | — |
+| 31 | Mémoire et données | PARTIEL | démonstrations `data/demos_v3` (60 056 décisions) | pas de mémoire de parties/replay buffer prioritaire |
+| 32 | Analyse des défaites | PARTIEL | 1 analyse contrefactuelle, ablation du professeur v3 | échantillon minuscule |
+| 33 | Découverte stratégique, évolution | NON FAIT | — | — |
+| 34 | Optimisation automatique des modèles | NON FAIT | — | `autotune` seulement planifié |
+| 35 | Ordonnanceur de ressources | PARTIEL | `memguard.py` (garde-fou RAM) | pas d'ordonnanceur CPU/GPU |
+| 36 | GPT facultatif | PASS (absent par choix) | aucune dépendance LLM | — |
+| 37 | Tableau de bord, données réelles | PARTIEL | `dashboard.py`, testé Windows | non testé ici ; pas de test UI automatisé |
+| 38 | Observer, rejouer | PARTIEL | rejeu déterministe (`test_client.py`, contrefactuel) | pas de visualiseur |
+| 39 | Arène manuelle, UX un clic | PARTIEL | `play.py` (32 lignes), `OpenFront-SI.ps1` | `train/stop/setup/benchmark/evaluate/skills` non validés de bout en bout |
+| 40 | Persistance, robustesse, diagnostic | PARTIEL | checkpoints SHA-256, STOP/PAUSE, reprise `--resume`, bruit stdout toléré | pas de test de reprise après crash prouvé |
+| 41 | Protocole scientifique | PARTIEL | IC de Wilson, McNemar, protocole écrit avant résultat | 1 graine par bras ; 24 parties/difficulté |
+| 42 | Champion, plateaux | PARTIEL | `stagnation.py`, règle de promotion testée | aucun champion entraîné qui dépasse le professeur |
+| 43 | Orchestration autonome | PARTIEL | scripts `run_pipeline_v3*.sh` | séquencement manuel, pas d'orchestrateur autonome |
+| 44 | Critères de maturité | voir ci-dessous | — | — |
+| 45 | Notifications, rapport | PARTIEL | `report.py` | **aucune notification locale**, bannière finale non implémentée |
+| 46 | Livrables | PARTIEL | README, DEVELOPER, JOURNAL | voir lignes ci-dessus |
+
+## Jalons §44 (niveau atteint, sans embellissement)
+0 PASS · 1 PASS · 2 PASS · 3 PASS (fidélité + débit mesurés, audit complet non fait) · 4 PARTIEL (arène/références oui, ligue peu exécutée) · 5 PASS (réseaux fonctionnels, 0 action illégale) ·
+**6 NON DÉMONTRÉ** (aucun apprentissage RL n'a amélioré un agent ; PPO v2 l'a dégradé) · 7 PARTIEL · 8 PARTIEL (mécaniques exécutables, maîtrise non mesurée) · 9 NON · 10 NON.
+
+**Bannière honnête : VALIDATION PARTIELLE — LIMITATIONS IDENTIFIÉES.** Cibles §44 (>99 % Easy, >98 % Medium, >95 % Hard) : NON atteintes (professeur Easy 96 %, Medium 38 %, Hard ~6 % ; meilleur réseau : init imitation Easy 79 %, Medium 12,5 %).
+
+## Priorités déduites de la matrice (ordre de travail)
+1. Jalon 6 : obtenir un apprentissage RL qui AMÉLIORE un agent (PPO ancré en cours, protocole au journal).
+2. §24/§25 (adversaires, planification) : aucun code → implémenter et mesurer.
+3. §34/§35/§43 : autotune, ordonnanceur, orchestrateur autonome.
+4. §45 : notifications et bannière d'état dans le tableau de bord.
+5. §7 : audit de performance du plan.
