@@ -1,0 +1,20 @@
+# Environnements et dependances re-telechargeables (voir scripts/fetch_dependencies.ps1)
+.venv-gpu/
+tools/
+vendor/
+node_modules/
+__pycache__/
+*.pyc
+# Logs et fichiers temporaires de session
+*.log
+*.err
+nohup.out
+cf_args.txt
+perf/out/
+# Checkpoints intermediaires (on garde ckpt_latest.pt + .sha256 de chaque run)
+runs/**/ckpt_u*.pt
+runs/**/ckpt_u*.pt.sha256
+runs/**/*.tmp
+# Marqueurs de controle d'entrainement
+runs/**/STOP
+runs/**/PAUSE

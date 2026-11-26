@@ -1,0 +1,56 @@
+[
+ {
+  "skill": "nuke_hydrogen",
+  "passed": false,
+  "evidence": "EXCEPTION KeyError('nuke_hydrogen') | Traceback (most recent call last):   File \"C:\\Users\\aubin\\Documents\\OpenFront claude\\ofsi\\skills.py\", line 177, in run_one     try: r = TESTS[name]()              ~~~~~^^^^^^ KeyError: 'nuke_hydrogen' ",
+  "seconds": 0.0
+ },
+ {
+  "skill": "nuke_mirv",
+  "passed": false,
+  "evidence": "EXCEPTION KeyError('nuke_mirv') | Traceback (most recent call last):   File \"C:\\Users\\aubin\\Documents\\OpenFront claude\\ofsi\\skills.py\", line 177, in run_one     try: r = TESTS[name]()              ~~~~~^^^^^^ KeyError: 'nuke_mirv' ",
+  "seconds": 0.0
+ },
+ {
+  "skill": "sam_intercept",
+  "passed": false,
+  "evidence": "EXCEPTION KeyError('sam_intercept') | Traceback (most recent call last):   File \"C:\\Users\\aubin\\Documents\\OpenFront claude\\ofsi\\skills.py\", line 177, in run_one     try: r = TESTS[name]()              ~~~~~^^^^^^ KeyError: 'sam_intercept' ",
+  "seconds": 0.0
+ },
+ {
+  "skill": "warship",
+  "passed": false,
+  "evidence": "EXCEPTION KeyError('warship') | Traceback (most recent call last):   File \"C:\\Users\\aubin\\Documents\\OpenFront claude\\ofsi\\skills.py\", line 177, in run_one     try: r = TESTS[name]()              ~~~~~^^^^^^ KeyError: 'warship' ",
+  "seconds": 0.0
+ },
+ {
+  "skill": "cancel_boat",
+  "passed": false,
+  "evidence": "EXCEPTION KeyError('cancel_boat') | Traceback (most recent call last):   File \"C:\\Users\\aubin\\Documents\\OpenFront claude\\ofsi\\skills.py\", line 177, in run_one     try: r = TESTS[name]()              ~~~~~^^^^^^ KeyError: 'cancel_boat' ",
+  "seconds": 0.0
+ },
+ {
+  "skill": "alliance_reject",
+  "passed": false,
+  "evidence": "EXCEPTION KeyError('alliance_reject') | Traceback (most recent call last):   File \"C:\\Users\\aubin\\Documents\\OpenFront claude\\ofsi\\skills.py\", line 177, in run_one     try: r = TESTS[name]()              ~~~~~^^^^^^ KeyError: 'alliance_reject' ",
+  "seconds": 0.0
+ },
+ {
+  "skill": "embargo_all",
+  "passed": false,
+  "evidence": "EXCEPTION KeyError('embargo_all') | Traceback (most recent call last):   File \"C:\\Users\\aubin\\Documents\\OpenFront claude\\ofsi\\skills.py\", line 177, in run_one     try: r = TESTS[name]()              ~~~~~^^^^^^ KeyError: 'embargo_all' ",
+  "seconds": 0.0
+ },
+ {
+  "skill": "trade",
+  "passed": false,
+  "evidence": "EXCEPTION KeyError('trade') | Traceback (most recent call last):   File \"C:\\Users\\aubin\\Documents\\OpenFront claude\\ofsi\\skills.py\", line 177, in run_one     try: r = TESTS[name]()              ~~~~~^^^^^^ KeyError: 'trade' ",
+  "seconds": 0.0
+ },
+ {
+  "skill": "trains",
+  "passed": false,
+  "evidence": "EXCEPTION KeyError('trains') | Traceback (most recent call last):   File \"C:\\Users\\aubin\\Documents\\OpenFront claude\\ofsi\\skills.py\", line 177, in run_one     try: r = TESTS[name]()              ~~~~~^^^^^^ KeyError: 'trains' ",
+  "seconds": 0.0
+ }
+]

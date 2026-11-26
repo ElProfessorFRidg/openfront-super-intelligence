@@ -1,0 +1,14 @@
+[
+ {
+  "skill": "tribes_accept_alliance",
+  "passed": true,
+  "evidence": "demandes envoyees=5 ; alliances obtenues=5 (5/5)",
+  "seconds": 1.3
+ },
+ {
+  "skill": "nations_accept_alliance_par_difficulte",
+  "passed": true,
+  "evidence": "Easy: 3/3; Medium: 3/3; Hard: 1/3 (mesure descriptive, pas un test PASS/FAIL)",
+  "seconds": 3.2
+ }
+]

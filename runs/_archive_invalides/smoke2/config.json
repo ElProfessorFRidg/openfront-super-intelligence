@@ -1,0 +1,26 @@
+{
+ "args": {
+  "name": "smoke2",
+  "envs": 4,
+  "T": 16,
+  "updates": 2,
+  "max_decisions": 0,
+  "lr": 0.00025,
+  "ent": 0.01,
+  "clip": 0.2,
+  "epochs": 3,
+  "mb": 32,
+  "gamma": 0.997,
+  "lam": 0.95,
+  "init": "random",
+  "seed": 0,
+  "resume": false,
+  "ckpt_every": 1,
+  "device": "cuda",
+  "max_steps": 1500,
+  "stage0": 0
+ },
+ "init": "random",
+ "torch": "2.14.1+cu126",
+ "device": "cuda"
+}

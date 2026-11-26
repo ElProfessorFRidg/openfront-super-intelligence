@@ -1,0 +1,477 @@
+{
+ "cfg": {
+  "map": "BosphorusStraits",
+  "bots": 12,
+  "difficulty": "Medium"
+ },
+ "seed": "e01000015",
+ "essais": [
+  {
+   "graine_professeur": 1,
+   "fin": "victoire",
+   "decisions": 468
+  },
+  {
+   "graine_professeur": 2,
+   "fin": "mort",
+   "decisions": 339
+  },
+  {
+   "graine_professeur": 2,
+   "fin": "mort",
+   "decisions": 339,
+   "rejeu_snapshots_depuis": 139,
+   "identique_a_la_premiere_passe": true
+  }
+ ],
+ "fin": "mort",
+ "decisions": 339,
+ "graine_professeur": 2,
+ "snapshots": [
+  {
+   "step": 139,
+   "tick": 2962,
+   "progress_avant": 0.046,
+   "troupes/max": 0.37,
+   "attaque_entrante": 157112,
+   "base": {
+    "progress": 0.078,
+    "vivant": true,
+    "victoire": false
+   },
+   "alternatives": {
+    "noop": {
+     "progress": 0.079,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.001
+    },
+    "expand_30%": {
+     "progress": 0.079,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.001
+    },
+    "attaque_plus_faible_50%": {
+     "progress": 0.06,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.017
+    },
+    "alliance_avec_le_plus_fort": {
+     "progress": 0.05,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.028
+    },
+    "bateau_50%": {
+     "progress": 0.038,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.04
+    }
+   }
+  },
+  {
+   "step": 159,
+   "tick": 3362,
+   "progress_avant": 0.052,
+   "troupes/max": 0.21,
+   "attaque_entrante": 0,
+   "base": {
+    "progress": 0.013,
+    "vivant": true,
+    "victoire": false
+   },
+   "alternatives": {
+    "noop": {
+     "progress": 0.013,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.0
+    },
+    "expand_30%": {
+     "progress": 0.013,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.0
+    },
+    "attaque_plus_faible_50%": {
+     "progress": 0.058,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.045
+    },
+    "defense_post": {
+     "progress": 0.025,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.011
+    },
+    "alliance_avec_le_plus_fort": {
+     "progress": 0.0,
+     "vivant": false,
+     "victoire": false,
+     "delta_vs_base": -0.013
+    },
+    "rappel_attaque": {
+     "progress": 0.047,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.033
+    },
+    "bateau_50%": {
+     "progress": 0.007,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.006
+    }
+   }
+  },
+  {
+   "step": 179,
+   "tick": 3762,
+   "progress_avant": 0.017,
+   "troupes/max": 0.1,
+   "attaque_entrante": 586,
+   "base": {
+    "progress": 0.037,
+    "vivant": true,
+    "victoire": false
+   },
+   "alternatives": {
+    "noop": {
+     "progress": 0.037,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.0
+    },
+    "expand_30%": {
+     "progress": 0.037,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.0
+    },
+    "attaque_plus_faible_50%": {
+     "progress": 0.023,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.015
+    },
+    "alliance_avec_le_plus_fort": {
+     "progress": 0.014,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.024
+    },
+    "bateau_50%": {
+     "progress": 0.037,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.0
+    }
+   }
+  },
+  {
+   "step": 199,
+   "tick": 4162,
+   "progress_avant": 0.016,
+   "troupes/max": 0.33,
+   "attaque_entrante": 48523,
+   "base": {
+    "progress": 0.037,
+    "vivant": true,
+    "victoire": false
+   },
+   "alternatives": {
+    "noop": {
+     "progress": 0.037,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.0
+    },
+    "expand_30%": {
+     "progress": 0.037,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.0
+    },
+    "attaque_plus_faible_50%": {
+     "progress": 0.035,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.001
+    },
+    "defense_post": {
+     "progress": 0.04,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.003
+    },
+    "alliance_avec_le_plus_fort": {
+     "progress": 0.047,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.01
+    }
+   }
+  },
+  {
+   "step": 219,
+   "tick": 4562,
+   "progress_avant": 0.031,
+   "troupes/max": 0.24,
+   "attaque_entrante": 0,
+   "base": {
+    "progress": 0.046,
+    "vivant": true,
+    "victoire": false
+   },
+   "alternatives": {
+    "noop": {
+     "progress": 0.046,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.0
+    },
+    "expand_30%": {
+     "progress": 0.046,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.0
+    },
+    "attaque_plus_faible_50%": {
+     "progress": 0.074,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.028
+    },
+    "alliance_avec_le_plus_fort": {
+     "progress": 0.009,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.037
+    },
+    "rappel_attaque": {
+     "progress": 0.072,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.026
+    },
+    "bateau_50%": {
+     "progress": 0.069,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.024
+    }
+   }
+  },
+  {
+   "step": 239,
+   "tick": 4962,
+   "progress_avant": 0.044,
+   "troupes/max": 0.44,
+   "attaque_entrante": 112998,
+   "base": {
+    "progress": 0.09,
+    "vivant": true,
+    "victoire": false
+   },
+   "alternatives": {
+    "noop": {
+     "progress": 0.072,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.018
+    },
+    "expand_30%": {
+     "progress": 0.072,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.018
+    },
+    "attaque_plus_faible_50%": {
+     "progress": 0.09,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.0
+    },
+    "alliance_avec_le_plus_fort": {
+     "progress": 0.028,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.062
+    },
+    "rappel_attaque": {
+     "progress": 0.081,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.008
+    },
+    "bateau_50%": {
+     "progress": 0.016,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.074
+    }
+   }
+  },
+  {
+   "step": 259,
+   "tick": 5362,
+   "progress_avant": 0.044,
+   "troupes/max": 0.22,
+   "attaque_entrante": 17175,
+   "base": {
+    "progress": 0.093,
+    "vivant": true,
+    "victoire": false
+   },
+   "alternatives": {
+    "noop": {
+     "progress": 0.093,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.0
+    },
+    "expand_30%": {
+     "progress": 0.093,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.0
+    },
+    "attaque_plus_faible_50%": {
+     "progress": 0.067,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.025
+    },
+    "alliance_avec_le_plus_fort": {
+     "progress": 0.086,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.007
+    },
+    "rappel_attaque": {
+     "progress": 0.093,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.0
+    },
+    "bateau_50%": {
+     "progress": 0.061,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.031
+    }
+   }
+  },
+  {
+   "step": 279,
+   "tick": 5762,
+   "progress_avant": 0.037,
+   "troupes/max": 0.18,
+   "attaque_entrante": 0,
+   "base": {
+    "progress": 0.043,
+    "vivant": true,
+    "victoire": false
+   },
+   "alternatives": {
+    "noop": {
+     "progress": 0.043,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.0
+    },
+    "expand_30%": {
+     "progress": 0.043,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.0
+    },
+    "attaque_plus_faible_50%": {
+     "progress": 0.042,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.001
+    },
+    "alliance_avec_le_plus_fort": {
+     "progress": 0.079,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.036
+    },
+    "rappel_attaque": {
+     "progress": 0.035,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.008
+    },
+    "bateau_50%": {
+     "progress": 0.037,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": -0.006
+    }
+   }
+  },
+  {
+   "step": 299,
+   "tick": 6162,
+   "progress_avant": 0.081,
+   "troupes/max": 0.3,
+   "attaque_entrante": 18073,
+   "base": {
+    "progress": 0.0,
+    "vivant": false,
+    "victoire": false
+   },
+   "alternatives": {
+    "noop": {
+     "progress": 0.0,
+     "vivant": false,
+     "victoire": false,
+     "delta_vs_base": 0.0
+    },
+    "expand_30%": {
+     "progress": 0.034,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.034
+    },
+    "attaque_plus_faible_50%": {
+     "progress": 0.016,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.016
+    },
+    "defense_post": {
+     "progress": 0.0,
+     "vivant": false,
+     "victoire": false,
+     "delta_vs_base": 0.0
+    },
+    "alliance_avec_le_plus_fort": {
+     "progress": 0.077,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.077
+    },
+    "rappel_attaque": {
+     "progress": 0.001,
+     "vivant": true,
+     "victoire": false,
+     "delta_vs_base": 0.001
+    },
+    "bateau_50%": {
+     "progress": 0.0,
+     "vivant": false,
+     "victoire": false,
+     "delta_vs_base": 0.0
+    }
+   }
+  }
+ ],
+ "secondes": 302
+}

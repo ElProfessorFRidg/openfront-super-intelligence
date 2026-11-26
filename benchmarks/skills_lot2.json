@@ -1,0 +1,56 @@
+[
+ {
+  "skill": "nuke_hydrogen",
+  "passed": false,
+  "evidence": "EXCEPTION KeyError('self') | c.me(1)[\"units\"].get(\"City\", 0), sc.me(1)[\"tiles\"]              ^^^^^^^^   File \"C:\\Users\\aubin\\Documents\\OpenFront claude\\ofsi\\skills.py\", line 28, in me     def me(self, i=0): return self.e.state2(i)[\"state\"][\"self\"]                               ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^ KeyError: 'self' ",
+  "seconds": 1.9
+ },
+ {
+  "skill": "nuke_mirv",
+  "passed": true,
+  "evidence": "villes 1->0; tuiles ennemies 6330->3444 (perte 2886)",
+  "seconds": 1.9
+ },
+ {
+  "skill": "sam_intercept",
+  "passed": true,
+  "evidence": "sans SAM: villes 1->0; avec SAM(1): villes 1->1",
+  "seconds": 3.1
+ },
+ {
+  "skill": "warship_build_move",
+  "passed": true,
+  "evidence": "warship id=2 (320,195) -> (342, 214)",
+  "seconds": 1.9
+ },
+ {
+  "skill": "cancel_boat",
+  "passed": true,
+  "evidence": "bateau 1 annule ; restants=0 ; tuiles 26078->26078 (un debarquement aurait donne > +1000)",
+  "seconds": 2.0
+ },
+ {
+  "skill": "alliance_reject",
+  "passed": true,
+  "evidence": "demande recue=True; apres rejet: encore presente=False; allies=False",
+  "seconds": 1.8
+ },
+ {
+  "skill": "embargo_all",
+  "passed": true,
+  "evidence": "canEmbargoAll avant=True, apres=False ; tous embargos=True",
+  "seconds": 1.8
+ },
+ {
+  "skill": "trade_maritime",
+  "passed": false,
+  "evidence": "ports=[1, 0] navires=[0, 0] tradeGold=[0, 0] partenaires=[1, 1]",
+  "seconds": 2.0
+ },
+ {
+  "skill": "trade_trains",
+  "passed": true,
+  "evidence": "unites={'City': 3, 'Factory': 2, 'Port': 1} trainGold=510000 tradeGold=0",
+  "seconds": 1.2
+ }
+]

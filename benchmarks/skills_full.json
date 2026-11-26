@@ -1,0 +1,182 @@
+[
+ {
+  "skill": "attack_neutral",
+  "passed": true,
+  "evidence": "tuiles 52 -> 6218",
+  "seconds": 1.5
+ },
+ {
+  "skill": "attack_player",
+  "passed": true,
+  "evidence": "frontiere=True; agent0 17799->18791; agent1 17787->16795",
+  "seconds": 1.7
+ },
+ {
+  "skill": "boat",
+  "passed": true,
+  "evidence": "bateaux apres envoi=1; tuiles 26078->27483; cible masse 0 (taille 74214)",
+  "seconds": 1.7
+ },
+ {
+  "skill": "build_City",
+  "passed": true,
+  "evidence": "City: 0 -> 1",
+  "seconds": 1.4
+ },
+ {
+  "skill": "build_Port",
+  "passed": true,
+  "evidence": "Port: 0 -> 1",
+  "seconds": 1.5
+ },
+ {
+  "skill": "build_Defense Post",
+  "passed": true,
+  "evidence": "Defense Post: 0 -> 1",
+  "seconds": 1.4
+ },
+ {
+  "skill": "build_Factory",
+  "passed": true,
+  "evidence": "Factory: 0 -> 1",
+  "seconds": 1.4
+ },
+ {
+  "skill": "build_SAM Launcher",
+  "passed": true,
+  "evidence": "SAM Launcher: 0 -> 1",
+  "seconds": 1.4
+ },
+ {
+  "skill": "build_Missile Silo",
+  "passed": true,
+  "evidence": "Missile Silo: 0 -> 1",
+  "seconds": 1.3
+ },
+ {
+  "skill": "upgrade_structure",
+  "passed": true,
+  "evidence": "niveau 1 -> 2",
+  "seconds": 1.4
+ },
+ {
+  "skill": "delete_unit",
+  "passed": true,
+  "evidence": "City 1 -> (apres 5 ticks) 1 -> (apres 800 ticks) 0 ; suppression differee par le moteur (deletionMarkDuration)",
+  "seconds": 1.4
+ },
+ {
+  "skill": "cancel_attack",
+  "passed": true,
+  "evidence": "attaque 4pdcr78f: retreating=True; encore active apres 100 ticks=False",
+  "seconds": 1.4
+ },
+ {
+  "skill": "alliance_request_accept_break",
+  "passed": true,
+  "evidence": "demande recue=True; allies=True; rupture=True; traitre=True",
+  "seconds": 1.4
+ },
+ {
+  "skill": "donate_gold_troops",
+  "passed": true,
+  "evidence": "canDonateGold=True; or receveur 49000->99200; troupes 72332->80304 (or infini : l'or du receveur peut ne pas varier)",
+  "seconds": 1.4
+ },
+ {
+  "skill": "embargo",
+  "passed": true,
+  "evidence": "avant: embargoedByMe=False canEmbargo=True; apres: embargoedByMe=True canTrade=False; retire: embargoedByMe=False",
+  "seconds": 1.3
+ },
+ {
+  "skill": "nuke_atom",
+  "passed": true,
+  "evidence": "cible=City; villes ennemies 1->0; tuiles ennemies 6330->4106",
+  "seconds": 1.5
+ },
+ {
+  "skill": "nuke_hydrogen",
+  "passed": true,
+  "evidence": "villes 1->0; tuiles ennemies 6330->0 (perte 6330); ennemi elimine=True",
+  "seconds": 1.5
+ },
+ {
+  "skill": "nuke_mirv",
+  "passed": true,
+  "evidence": "villes 1->0; tuiles ennemies 6330->3444 (perte 2886)",
+  "seconds": 1.6
+ },
+ {
+  "skill": "sam_intercept",
+  "passed": true,
+  "evidence": "sans SAM: villes 1->0; avec SAM(1): villes 1->1",
+  "seconds": 2.8
+ },
+ {
+  "skill": "warship_build_move",
+  "passed": true,
+  "evidence": "warship id=2 (320,195) -> (342, 214)",
+  "seconds": 1.5
+ },
+ {
+  "skill": "cancel_boat",
+  "passed": true,
+  "evidence": "bateau 1 annule ; restants=0 ; tuiles 26078->26078 (un debarquement aurait donne > +1000)",
+  "seconds": 1.7
+ },
+ {
+  "skill": "alliance_reject",
+  "passed": true,
+  "evidence": "demande recue=True; apres rejet: encore presente=False; allies=False",
+  "seconds": 1.4
+ },
+ {
+  "skill": "embargo_all",
+  "passed": true,
+  "evidence": "canEmbargoAll avant=True, apres=False ; tous embargos=True",
+  "seconds": 1.5
+ },
+ {
+  "skill": "trade_maritime",
+  "passed": true,
+  "evidence": "ports=[1, 1] navires=[3, 3] tradeGold=[5083868, 5083868] partenaires=[1, 1]",
+  "seconds": 2.0
+ },
+ {
+  "skill": "trade_trains",
+  "passed": true,
+  "evidence": "unites={'City': 3, 'Factory': 2, 'Port': 1} trainGold=510000 tradeGold=0",
+  "seconds": 1.4
+ },
+ {
+  "skill": "tribes_accept_alliance",
+  "passed": true,
+  "evidence": "demandes envoyees=5 ; alliances obtenues=5 (5/5)",
+  "seconds": 1.3
+ },
+ {
+  "skill": "nations_accept_alliance_par_difficulte",
+  "passed": true,
+  "evidence": "Easy: 3/3; Medium: 3/3; Hard: 1/3 (mesure descriptive, pas un test PASS/FAIL)",
+  "seconds": 3.5
+ },
+ {
+  "skill": "emoji_effet_relation",
+  "passed": true,
+  "evidence": "relation de la nation envers moi (0=Hostile..3=Friendly) : insultee 2->0 ; paix (Easy) 2->2",
+  "seconds": 1.4
+ },
+ {
+  "skill": "target_player",
+  "passed": true,
+  "evidence": "dans targets()=True ; relation de la cible envers moi 2->1",
+  "seconds": 1.3
+ },
+ {
+  "skill": "spawn",
+  "passed": true,
+  "evidence": "tuiles apres spawn=52",
+  "seconds": 1.1
+ }
+]

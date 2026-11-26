@@ -1,0 +1,27 @@
+{
+ "args": {
+  "name": "arm_A_random",
+  "envs": 8,
+  "T": 64,
+  "updates": 100000,
+  "max_decisions": 120000,
+  "lr": 0.0001,
+  "ent": 0.005,
+  "clip": 0.2,
+  "epochs": 3,
+  "mb": 192,
+  "gamma": 0.997,
+  "lam": 0.95,
+  "init": "random",
+  "value_warmup": 0,
+  "seed": 0,
+  "resume": false,
+  "ckpt_every": 10,
+  "device": "cuda",
+  "max_steps": 1500,
+  "stage0": 0
+ },
+ "init": "random",
+ "torch": "2.14.1+cu126",
+ "device": "cuda"
+}

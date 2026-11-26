@@ -1,0 +1,8 @@
+[
+ {
+  "skill": "trade_maritime",
+  "passed": true,
+  "evidence": "ports=[1, 1] navires=[3, 3] tradeGold=[5083868, 5083868] partenaires=[1, 1]",
+  "seconds": 2.2
+ }
+]

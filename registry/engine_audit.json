@@ -1,0 +1,339 @@
+{
+ "engine_commit": "db8bf7c4195bd3e2e4fb7936889dc406b42fe44a",
+ "executions": {
+  "AttackExecution": {
+   "created_by": [
+    "AiAttackBehavior",
+    "ExecutionManager",
+    "NationAttackBehavior",
+    "TransportShipExecution"
+   ],
+   "kind": "intent"
+  },
+  "BoatRetreatExecution": {
+   "created_by": [
+    "ExecutionManager"
+   ],
+   "kind": "intent"
+  },
+  "CityExecution": {
+   "created_by": [
+    "ConstructionExecution"
+   ],
+   "kind": "emergent"
+  },
+  "ConstructionExecution": {
+   "created_by": [
+    "ExecutionManager",
+    "NationStructureBehavior",
+    "NationWarshipBehavior"
+   ],
+   "kind": "intent"
+  },
+  "DefensePostExecution": {
+   "created_by": [
+    "ConstructionExecution"
+   ],
+   "kind": "emergent"
+  },
+  "DeleteUnitExecution": {
+   "created_by": [
+    "ExecutionManager",
+    "TribeExecution"
+   ],
+   "kind": "intent"
+  },
+  "DonateGoldExecution": {
+   "created_by": [
+    "ExecutionManager"
+   ],
+   "kind": "intent"
+  },
+  "DonateTroopExecution": {
+   "created_by": [],
+   "kind": "interne/aucune creation detectee"
+  },
+  "DoomsdayClockExecution": {
+   "created_by": [
+    "GameRunner"
+   ],
+   "kind": "emergent"
+  },
+  "EmbargoAllExecution": {
+   "created_by": [
+    "ExecutionManager"
+   ],
+   "kind": "intent"
+  },
+  "EmbargoExecution": {
+   "created_by": [
+    "ExecutionManager"
+   ],
+   "kind": "intent"
+  },
+  "EmojiExecution": {
+   "created_by": [
+    "DonateGoldExecution",
+    "DonateTroopExecution",
+    "ExecutionManager",
+    "NationEmojiBehavior"
+   ],
+   "kind": "intent"
+  },
+  "FactoryExecution": {
+   "created_by": [
+    "ConstructionExecution"
+   ],
+   "kind": "emergent"
+  },
+  "MIRVExecution": {
+   "created_by": [],
+   "kind": "interne/aucune creation detectee"
+  },
+  "MarkDisconnectedExecution": {
+   "created_by": [
+    "ExecutionManager"
+   ],
+   "kind": "intent"
+  },
+  "MissileSiloExecution": {
+   "created_by": [
+    "ConstructionExecution",
+    "TutorialSilo"
+   ],
+   "kind": "emergent"
+  },
+  "MoveWarshipExecution": {
+   "created_by": [
+    "ExecutionManager"
+   ],
+   "kind": "intent"
+  },
+  "NationExecution": {
+   "created_by": [
+    "ExecutionManager",
+    "GameImpl"
+   ],
+   "kind": "intent"
+  },
+  "NoOpExecution": {
+   "created_by": [
+    "ExecutionManager"
+   ],
+   "kind": "intent"
+  },
+  "NukeExecution": {
+   "created_by": [
+    "ConstructionExecution",
+    "MIRVExecution",
+    "NationNukeBehavior",
+    "TutorialSilo"
+   ],
+   "kind": "emergent"
+  },
+  "PauseExecution": {
+   "created_by": [
+    "ExecutionManager"
+   ],
+   "kind": "intent"
+  },
+  "PlayerExecution": {
+   "created_by": [
+    "GameRunner",
+    "SpawnExecution"
+   ],
+   "kind": "emergent"
+  },
+  "PortExecution": {
+   "created_by": [
+    "ConstructionExecution"
+   ],
+   "kind": "emergent"
+  },
+  "QuickChatExecution": {
+   "created_by": [
+    "ExecutionManager"
+   ],
+   "kind": "intent"
+  },
+  "RecomputeRailClusterExecution": {
+   "created_by": [
+    "GameRunner"
+   ],
+   "kind": "emergent"
+  },
+  "RetreatExecution": {
+   "created_by": [
+    "ExecutionManager"
+   ],
+   "kind": "intent"
+  },
+  "SAMLauncherExecution": {
+   "created_by": [
+    "ConstructionExecution"
+   ],
+   "kind": "emergent"
+  },
+  "SAMMissileExecution": {
+   "created_by": [
+    "SAMLauncherExecution"
+   ],
+   "kind": "emergent"
+  },
+  "ShellExecution": {
+   "created_by": [
+    "DefensePostExecution",
+    "WarshipExecution"
+   ],
+   "kind": "emergent"
+  },
+  "SpawnExecution": {
+   "created_by": [
+    "ExecutionManager",
+    "NationExecution",
+    "PlayerSpawner",
+    "SnapshotExtractor",
+    "TribeSpawner"
+   ],
+   "kind": "intent"
+  },
+  "SpawnTimerExecution": {
+   "created_by": [
+    "GameRunner"
+   ],
+   "kind": "emergent"
+  },
+  "TargetPlayerExecution": {
+   "created_by": [
+    "ExecutionManager"
+   ],
+   "kind": "intent"
+  },
+  "TradeShipExecution": {
+   "created_by": [
+    "PortExecution"
+   ],
+   "kind": "emergent"
+  },
+  "TrainExecution": {
+   "created_by": [
+    "TrainStationExecution"
+   ],
+   "kind": "emergent"
+  },
+  "TrainStationExecution": {
+   "created_by": [
+    "CityExecution",
+    "FactoryExecution",
+    "PortExecution"
+   ],
+   "kind": "emergent"
+  },
+  "TransportShipExecution": {
+   "created_by": [
+    "AiAttackBehavior",
+    "ExecutionManager",
+    "NationAttackBehavior"
+   ],
+   "kind": "intent"
+  },
+  "TribeExecution": {
+   "created_by": [
+    "SpawnExecution"
+   ],
+   "kind": "emergent"
+  },
+  "UpgradeStructureExecution": {
+   "created_by": [
+    "ExecutionManager",
+    "NationNukeBehavior",
+    "NationStructureBehavior"
+   ],
+   "kind": "intent"
+  },
+  "WarshipExecution": {
+   "created_by": [
+    "ConstructionExecution",
+    "GameRunner"
+   ],
+   "kind": "emergent"
+  },
+  "WinCheckExecution": {
+   "created_by": [
+    "GameRunner"
+   ],
+   "kind": "emergent"
+  }
+ },
+ "intent_dispatch": {
+  "attack": "AttackExecution",
+  "cancel_attack": "RetreatExecution",
+  "cancel_boat": "BoatRetreatExecution",
+  "move_warship": "MoveWarshipExecution",
+  "boat": "TransportShipExecution",
+  "allianceRequest": "AllianceRequestExecution",
+  "allianceReject": "AllianceRejectExecution",
+  "breakAlliance": "BreakAllianceExecution",
+  "targetPlayer": "TargetPlayerExecution",
+  "emoji": "EmojiExecution",
+  "donate_troops": "DonateTroopsExecution",
+  "donate_gold": "DonateGoldExecution",
+  "embargo": "EmbargoExecution",
+  "embargo_all": "EmbargoAllExecution",
+  "build_unit": "ConstructionExecution",
+  "allianceExtension": "AllianceExtensionExecution",
+  "upgrade_structure": "UpgradeStructureExecution",
+  "delete_unit": "DeleteUnitExecution",
+  "quick_chat": "QuickChatExecution",
+  "mark_disconnected": "MarkDisconnectedExecution",
+  "toggle_pause": "PauseExecution"
+ },
+ "player_predicates": [
+  "canAttack",
+  "canAttackPlayer",
+  "canBuild",
+  "canDeleteUnit",
+  "canDonateGold",
+  "canDonateTroops",
+  "canEmbargoAll",
+  "canSendAllianceRequest",
+  "canSendEmoji",
+  "canSendQuickChat",
+  "canTarget",
+  "canTrade",
+  "canUpgradeUnit",
+  "hasEmbargoAgainst",
+  "hasManualEmbargoAgainst",
+  "hasSpawned",
+  "isAlive",
+  "isAlliedWith",
+  "isDecaying",
+  "isDisconnected",
+  "isFriendly",
+  "isImmune",
+  "isLobbyCreator",
+  "isOnSameTeam",
+  "isPlayer",
+  "isTraitor"
+ ],
+ "rule_constants": {
+  "DEFAULT_SPAWN_IMMUNITY_TICKS": "5 * 10",
+  "PERCENT_TILES_OWNED_TO_WIN": "80"
+ },
+ "rule_functions": [
+  "allianceDuration",
+  "allianceRequestDuration",
+  "armyLimitWarningThreshold",
+  "defensePostRange",
+  "deleteUnitCooldown",
+  "deletionMarkDuration",
+  "maxSamRange",
+  "nationSpawnImmunityDuration",
+  "nukeAllianceBreakThreshold",
+  "samRange",
+  "spawnImmunityDuration",
+  "trainStationMaxRange",
+  "traitorDuration",
+  "troopIncreaseRate"
+ ]
+}

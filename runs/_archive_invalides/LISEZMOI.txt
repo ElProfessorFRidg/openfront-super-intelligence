@@ -1,0 +1,4 @@
+CHECKPOINTS INVALIDES — NE PAS UTILISER COMME CHAMPION OU POINT DE DEPART
+Conserves uniquement comme preuves (rien n'est supprime).
+- bc_v1, ppo_v1 : espace d'actions v1 sans attaque navale => victoire structurellement impossible (cf. docs/JOURNAL.md, diagnostic du 2026-11-25).
+- init_bc, init_ssl, init_both_INVALIDE_*, arm_A_random, pt_test_*, smoke2 : entraines sur des observations ou le type de joueur etait faux (tous encodes "Bot", defaut de casse corrige le 2026-11-26) et/ou sur un espace a 31 types (maintenant 32 avec EMOJI).

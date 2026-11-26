@@ -1,0 +1,8 @@
+{
+  "_note": "Profil materiel MESURE le 2026-11-25 (benchmarks/gpu_vs_cpu.json, gpu_opt.json, parallel_World_100bots.json). Ne pas extrapoler.",
+  "machine": "MSI Prestige 14 AI Studio C1UDXG, Core Ultra 7 155H (16c/22t), 31.7 Go RAM",
+  "gpu": {"name": "NVIDIA GeForce RTX 3050 6GB Laptop", "vram_gb": 6, "torch": "2.14.1+cu126", "venv": ".venv-gpu"},
+  "training": {"device": "cuda", "autocast": "bfloat16", "tf32": true, "measured_speedup_vs_fp32": 2.05},
+  "engine_workers": {"default": 16, "note": "debit agrege sature a 16 envs (532 ticks/s sur World/100 bots)"},
+  "fallback": {"device": "cpu", "note": "MLP petit viable ; encodeurs a attention inutilisables sur CPU (2.6 s/pas)"}
+}

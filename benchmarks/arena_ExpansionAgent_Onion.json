@@ -1,0 +1,330 @@
+{
+ "report": {
+  "agent": "ExpansionAgent",
+  "map": "Onion",
+  "bots": 10,
+  "wall_s": 57.4,
+  "games_total": 16,
+  "games_per_hour": 1004,
+  "summary": {
+   "Easy": {
+    "games": 8,
+    "valid": 8,
+    "invalid": 0,
+    "wins": 0,
+    "win_rate": 0.0,
+    "ci95": [
+     0.0,
+     0.3244156195108769
+    ],
+    "survived": 2,
+    "mean_ticks": 13614.5,
+    "mean_peak_tiles": 5002.375
+   },
+   "Medium": {
+    "games": 8,
+    "valid": 8,
+    "invalid": 0,
+    "wins": 0,
+    "win_rate": 0.0,
+    "ci95": [
+     0.0,
+     0.3244156195108769
+    ],
+    "survived": 0,
+    "mean_ticks": 12069.5,
+    "mean_peak_tiles": 4623.875
+   }
+  }
+ },
+ "games": [
+  {
+   "ok": true,
+   "end": "winner",
+   "ticks": 10612,
+   "win": false,
+   "survived": false,
+   "peak_tiles": 2237,
+   "wall_s": 37.82,
+   "spec": {
+    "map": "Onion",
+    "seed": "ar000000",
+    "bots": 10,
+    "difficulty": "Easy",
+    "agent": "ExpansionAgent",
+    "n_agents": 1
+   },
+   "error": null
+  },
+  {
+   "ok": true,
+   "end": "winner",
+   "ticks": 8482,
+   "win": false,
+   "survived": false,
+   "peak_tiles": 2262,
+   "wall_s": 34.87,
+   "spec": {
+    "map": "Onion",
+    "seed": "ar000001",
+    "bots": 10,
+    "difficulty": "Easy",
+    "agent": "ExpansionAgent",
+    "n_agents": 1
+   },
+   "error": null
+  },
+  {
+   "ok": true,
+   "end": "winner",
+   "ticks": 23302,
+   "win": false,
+   "survived": false,
+   "peak_tiles": 7890,
+   "wall_s": 56.0,
+   "spec": {
+    "map": "Onion",
+    "seed": "ar000002",
+    "bots": 10,
+    "difficulty": "Easy",
+    "agent": "ExpansionAgent",
+    "n_agents": 1
+   },
+   "error": null
+  },
+  {
+   "ok": true,
+   "end": "winner",
+   "ticks": 7392,
+   "win": false,
+   "survived": true,
+   "peak_tiles": 7281,
+   "wall_s": 33.31,
+   "spec": {
+    "map": "Onion",
+    "seed": "ar000003",
+    "bots": 10,
+    "difficulty": "Easy",
+    "agent": "ExpansionAgent",
+    "n_agents": 1
+   },
+   "error": null
+  },
+  {
+   "ok": true,
+   "end": "winner",
+   "ticks": 9732,
+   "win": false,
+   "survived": false,
+   "peak_tiles": 3971,
+   "wall_s": 37.28,
+   "spec": {
+    "map": "Onion",
+    "seed": "ar000004",
+    "bots": 10,
+    "difficulty": "Easy",
+    "agent": "ExpansionAgent",
+    "n_agents": 1
+   },
+   "error": null
+  },
+  {
+   "ok": true,
+   "end": "winner",
+   "ticks": 20982,
+   "win": false,
+   "survived": false,
+   "peak_tiles": 6400,
+   "wall_s": 54.78,
+   "spec": {
+    "map": "Onion",
+    "seed": "ar000005",
+    "bots": 10,
+    "difficulty": "Easy",
+    "agent": "ExpansionAgent",
+    "n_agents": 1
+   },
+   "error": null
+  },
+  {
+   "ok": true,
+   "end": "winner",
+   "ticks": 19792,
+   "win": false,
+   "survived": true,
+   "peak_tiles": 6169,
+   "wall_s": 52.98,
+   "spec": {
+    "map": "Onion",
+    "seed": "ar000006",
+    "bots": 10,
+    "difficulty": "Easy",
+    "agent": "ExpansionAgent",
+    "n_agents": 1
+   },
+   "error": null
+  },
+  {
+   "ok": true,
+   "end": "winner",
+   "ticks": 8622,
+   "win": false,
+   "survived": false,
+   "peak_tiles": 3809,
+   "wall_s": 35.03,
+   "spec": {
+    "map": "Onion",
+    "seed": "ar000007",
+    "bots": 10,
+    "difficulty": "Easy",
+    "agent": "ExpansionAgent",
+    "n_agents": 1
+   },
+   "error": null
+  },
+  {
+   "ok": true,
+   "end": "winner",
+   "ticks": 20682,
+   "win": false,
+   "survived": false,
+   "peak_tiles": 2466,
+   "wall_s": 54.42,
+   "spec": {
+    "map": "Onion",
+    "seed": "ar000000",
+    "bots": 10,
+    "difficulty": "Medium",
+    "agent": "ExpansionAgent",
+    "n_agents": 1
+   },
+   "error": null
+  },
+  {
+   "ok": true,
+   "end": "winner",
+   "ticks": 6242,
+   "win": false,
+   "survived": false,
+   "peak_tiles": 5092,
+   "wall_s": 32.38,
+   "spec": {
+    "map": "Onion",
+    "seed": "ar000001",
+    "bots": 10,
+    "difficulty": "Medium",
+    "agent": "ExpansionAgent",
+    "n_agents": 1
+   },
+   "error": null
+  },
+  {
+   "ok": true,
+   "end": "winner",
+   "ticks": 4972,
+   "win": false,
+   "survived": false,
+   "peak_tiles": 5121,
+   "wall_s": 28.14,
+   "spec": {
+    "map": "Onion",
+    "seed": "ar000002",
+    "bots": 10,
+    "difficulty": "Medium",
+    "agent": "ExpansionAgent",
+    "n_agents": 1
+   },
+   "error": null
+  },
+  {
+   "ok": true,
+   "end": "winner",
+   "ticks": 19332,
+   "win": false,
+   "survived": false,
+   "peak_tiles": 2681,
+   "wall_s": 50.51,
+   "spec": {
+    "map": "Onion",
+    "seed": "ar000003",
+    "bots": 10,
+    "difficulty": "Medium",
+    "agent": "ExpansionAgent",
+    "n_agents": 1
+   },
+   "error": null
+  },
+  {
+   "ok": true,
+   "end": "winner",
+   "ticks": 4482,
+   "win": false,
+   "survived": false,
+   "peak_tiles": 5181,
+   "wall_s": 26.81,
+   "spec": {
+    "map": "Onion",
+    "seed": "ar000004",
+    "bots": 10,
+    "difficulty": "Medium",
+    "agent": "ExpansionAgent",
+    "n_agents": 1
+   },
+   "error": null
+  },
+  {
+   "ok": true,
+   "end": "max_ticks",
+   "ticks": 30002,
+   "win": false,
+   "survived": false,
+   "peak_tiles": 6338,
+   "wall_s": 55.01,
+   "spec": {
+    "map": "Onion",
+    "seed": "ar000005",
+    "bots": 10,
+    "difficulty": "Medium",
+    "agent": "ExpansionAgent",
+    "n_agents": 1
+   },
+   "error": null
+  },
+  {
+   "ok": true,
+   "end": "winner",
+   "ticks": 4942,
+   "win": false,
+   "survived": false,
+   "peak_tiles": 3458,
+   "wall_s": 27.73,
+   "spec": {
+    "map": "Onion",
+    "seed": "ar000006",
+    "bots": 10,
+    "difficulty": "Medium",
+    "agent": "ExpansionAgent",
+    "n_agents": 1
+   },
+   "error": null
+  },
+  {
+   "ok": true,
+   "end": "winner",
+   "ticks": 5902,
+   "win": false,
+   "survived": false,
+   "peak_tiles": 6654,
+   "wall_s": 30.06,
+   "spec": {
+    "map": "Onion",
+    "seed": "ar000007",
+    "bots": 10,
+    "difficulty": "Medium",
+    "agent": "ExpansionAgent",
+    "n_agents": 1
+   },
+   "error": null
+  }
+ ]
+}

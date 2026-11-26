@@ -1,0 +1,285 @@
+[
+ {
+  "spec": {
+   "map": "Onion",
+   "seed": "t2000000",
+   "bots": 8,
+   "difficulty": "Easy",
+   "max_ticks": 40000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 5682,
+  "final_share": 80.4,
+  "peak_share": 79.2,
+  "land": 210555,
+  "stagnation_flag_counts": {
+   "territorial_stall": 0,
+   "troops_idle": 0,
+   "gold_hoard": 53,
+   "no_land_frontier": 48,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 50,
+   "attack_player": 32,
+   "build_Port": 2,
+   "build_City": 5,
+   "boat": 11,
+   "build_Factory": 1
+  },
+  "track": [
+   [
+    2002,
+    31.2,
+    120750,
+    1027660
+   ],
+   [
+    4002,
+    45.7,
+    477895,
+    965208
+   ]
+  ],
+  "wall_s": 22.5
+ },
+ {
+  "spec": {
+   "map": "Onion",
+   "seed": "t2000010",
+   "bots": 8,
+   "difficulty": "Easy",
+   "max_ticks": 40000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 5022,
+  "final_share": 80.0,
+  "peak_share": 79.9,
+  "land": 210555,
+  "stagnation_flag_counts": {
+   "territorial_stall": 0,
+   "troops_idle": 0,
+   "gold_hoard": 0,
+   "no_land_frontier": 10,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 40,
+   "attack_player": 29,
+   "build_Port": 2,
+   "build_City": 2,
+   "boat": 9
+  },
+  "track": [
+   [
+    2002,
+    33.3,
+    155350,
+    511953
+   ],
+   [
+    4002,
+    44.6,
+    198050,
+    1596543
+   ]
+  ],
+  "wall_s": 20.3
+ },
+ {
+  "spec": {
+   "map": "Onion",
+   "seed": "t2000020",
+   "bots": 8,
+   "difficulty": "Easy",
+   "max_ticks": 40000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 5682,
+  "final_share": 81.7,
+  "peak_share": 79.9,
+  "land": 210555,
+  "stagnation_flag_counts": {
+   "territorial_stall": 0,
+   "troops_idle": 0,
+   "gold_hoard": 0,
+   "no_land_frontier": 0,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 50,
+   "attack_player": 30,
+   "build_Port": 1,
+   "boat": 13,
+   "build_City": 2
+  },
+  "track": [
+   [
+    2002,
+    36.4,
+    112300,
+    864867
+   ],
+   [
+    4002,
+    46.7,
+    187300,
+    1107044
+   ]
+  ],
+  "wall_s": 22.0
+ },
+ {
+  "spec": {
+   "map": "Onion",
+   "seed": "t2000030",
+   "bots": 8,
+   "difficulty": "Easy",
+   "max_ticks": 40000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 7402,
+  "final_share": 81.0,
+  "peak_share": 79.9,
+  "land": 210555,
+  "stagnation_flag_counts": {
+   "territorial_stall": 77,
+   "troops_idle": 75,
+   "gold_hoard": 0,
+   "no_land_frontier": 0,
+   "blocked": 75
+  },
+  "actions": {
+   "attack_neutral": 69,
+   "attack_player": 33,
+   "build_Port": 2,
+   "build_City": 11,
+   "boat": 10,
+   "build_Defense Post": 1,
+   "ally_accept": 1,
+   "build_Factory": 1
+  },
+  "track": [
+   [
+    2002,
+    34.3,
+    127200,
+    626766
+   ],
+   [
+    4002,
+    50.2,
+    27200,
+    29943
+   ],
+   [
+    6002,
+    59.3,
+    624312,
+    4677861
+   ]
+  ],
+  "wall_s": 23.7
+ },
+ {
+  "spec": {
+   "map": "Onion",
+   "seed": "t2000040",
+   "bots": 8,
+   "difficulty": "Easy",
+   "max_ticks": 40000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 5502,
+  "final_share": 79.8,
+  "peak_share": 78.7,
+  "land": 210555,
+  "stagnation_flag_counts": {
+   "territorial_stall": 0,
+   "troops_idle": 0,
+   "gold_hoard": 0,
+   "no_land_frontier": 0,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 35,
+   "attack_player": 40,
+   "build_Port": 2,
+   "build_City": 5,
+   "boat": 12,
+   "build_Factory": 1,
+   "build_Defense Post": 3
+  },
+  "track": [
+   [
+    2002,
+    35.2,
+    118150,
+    595595
+   ],
+   [
+    4002,
+    44.1,
+    311324,
+    540458
+   ]
+  ],
+  "wall_s": 21.7
+ },
+ {
+  "spec": {
+   "map": "Onion",
+   "seed": "t2000050",
+   "bots": 8,
+   "difficulty": "Easy",
+   "max_ticks": 40000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 5262,
+  "final_share": 80.2,
+  "peak_share": 78.9,
+  "land": 210555,
+  "stagnation_flag_counts": {
+   "territorial_stall": 0,
+   "troops_idle": 0,
+   "gold_hoard": 0,
+   "no_land_frontier": 0,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 51,
+   "attack_player": 30,
+   "build_Port": 1,
+   "build_City": 2,
+   "boat": 13,
+   "build_Factory": 1
+  },
+  "track": [
+   [
+    2002,
+    36.4,
+    72400,
+    1083633
+   ],
+   [
+    4002,
+    45.2,
+    22400,
+    1036521
+   ]
+  ],
+  "wall_s": 20.2
+ }
+]

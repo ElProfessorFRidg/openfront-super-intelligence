@@ -1,0 +1,26 @@
+{
+ "fp32": {
+  "train_step_ms": 160.1,
+  "train_samples_per_s": 1599,
+  "inference_ms_b16": 3.88,
+  "smi_temp_C_power_W_clock_util": "55, 42.87, 1695, 100"
+ },
+ "tf32": {
+  "train_step_ms": 139.7,
+  "train_samples_per_s": 1832,
+  "inference_ms_b16": 3.28,
+  "smi_temp_C_power_W_clock_util": "55, 42.13, 1695, 100"
+ },
+ "fp16": {
+  "train_step_ms": 78.2,
+  "train_samples_per_s": 3272,
+  "inference_ms_b16": 2.99,
+  "smi_temp_C_power_W_clock_util": "56, 43.51, 1695, 99"
+ },
+ "bf16": {
+  "train_step_ms": 77.9,
+  "train_samples_per_s": 3285,
+  "inference_ms_b16": 4.2,
+  "smi_temp_C_power_W_clock_util": "57, 41.24, 1695, 95"
+ }
+}

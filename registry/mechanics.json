@@ -1,0 +1,381 @@
+{
+  "engine_commit": "db8bf7c4195bd3e2e4fb7936889dc406b42fe44a",
+  "intents": {
+    "AllianceExtensionIntentSchema": {
+      "type": "literal:allianceExtension",
+      "recipient": "string"
+    },
+    "AllianceRejectIntentSchema": {
+      "type": "literal:allianceReject",
+      "requestor": "string"
+    },
+    "AllianceRequestIntentSchema": {
+      "type": "literal:allianceRequest",
+      "recipient": "string"
+    },
+    "AttackIntentSchema": {
+      "type": "literal:attack",
+      "targetID": "nullable",
+      "troops": "nullable"
+    },
+    "BoatAttackIntentSchema": {
+      "type": "literal:boat",
+      "troops": "number",
+      "dst": "number"
+    },
+    "BreakAllianceIntentSchema": {
+      "type": "literal:breakAlliance",
+      "recipient": "string"
+    },
+    "BuildUnitIntentSchema": {
+      "type": "literal:build_unit",
+      "unit": "enum",
+      "tile": "number",
+      "rocketDirectionUp": "optional",
+      "amount": "optional"
+    },
+    "CancelAttackIntentSchema": {
+      "type": "literal:cancel_attack",
+      "attackID": "string"
+    },
+    "CancelBoatIntentSchema": {
+      "type": "literal:cancel_boat",
+      "unitID": "number"
+    },
+    "DeleteUnitIntentSchema": {
+      "type": "literal:delete_unit",
+      "unitId": "number"
+    },
+    "DonateGoldIntentSchema": {
+      "type": "literal:donate_gold",
+      "recipient": "string",
+      "gold": "nullable"
+    },
+    "DonateTroopIntentSchema": {
+      "type": "literal:donate_troops",
+      "recipient": "string",
+      "troops": "nullable"
+    },
+    "EmbargoAllIntentSchema": {
+      "type": "literal:embargo_all",
+      "action": "union"
+    },
+    "EmbargoIntentSchema": {
+      "type": "literal:embargo",
+      "targetID": "string",
+      "action": "union"
+    },
+    "EmojiIntentSchema": {
+      "type": "literal:emoji",
+      "recipient": "union",
+      "emoji": "number"
+    },
+    "KickPlayerIntentSchema": {
+      "type": "literal:kick_player",
+      "targetClientID": "optional",
+      "targetPublicID": "optional"
+    },
+    "MarkDisconnectedIntentSchema": {
+      "type": "literal:mark_disconnected",
+      "isDisconnected": "boolean"
+    },
+    "MoveWarshipIntentSchema": {
+      "type": "literal:move_warship",
+      "unitIds": "array",
+      "tile": "number"
+    },
+    "QuickChatIntentSchema": {
+      "type": "literal:quick_chat",
+      "recipient": "string",
+      "quickChatKey": "enum",
+      "target": "optional"
+    },
+    "SpawnIntentSchema": {
+      "type": "literal:spawn",
+      "tile": "number"
+    },
+    "TargetPlayerIntentSchema": {
+      "type": "literal:targetPlayer",
+      "target": "string"
+    },
+    "ToggleGameStartTimerIntentSchema": {
+      "type": "literal:toggle_game_start_timer"
+    },
+    "TogglePauseIntentSchema": {
+      "type": "literal:toggle_pause",
+      "paused": "default"
+    },
+    "UpdateGameConfigIntentSchema": {
+      "type": "literal:update_game_config",
+      "config": "object"
+    },
+    "UpgradeStructureIntentSchema": {
+      "type": "literal:upgrade_structure",
+      "unit": "enum",
+      "unitId": "number",
+      "amount": "optional"
+    }
+  },
+  "enums": {
+    "ColoredTeams": [
+      "Red",
+      "Blue",
+      "Teal",
+      "Purple",
+      "Yellow",
+      "Orange",
+      "Green",
+      "Bot",
+      "Humans",
+      "Nations"
+    ],
+    "Difficulty": [
+      "Easy",
+      "Medium",
+      "Hard",
+      "Impossible"
+    ],
+    "GameMapSize": [
+      "Compact",
+      "Normal"
+    ],
+    "GameMapType": [
+      "Achiran",
+      "Aegean",
+      "Africa",
+      "Alps",
+      "AmazonRiver",
+      "Antarctica",
+      "ArchipelagoSea",
+      "Arctic",
+      "Asia",
+      "Australia",
+      "BabelMandebStrait",
+      "Baikal",
+      "BaikalNukeWars",
+      "BajaCalifornia",
+      "Balkans",
+      "Balkhash",
+      "Baltics",
+      "Benelux",
+      "BeringSea",
+      "BeringStrait",
+      "BetweenTwoSeas",
+      "BlackSea",
+      "BosphorusStraits",
+      "Brahmaputra",
+      "BrainRot",
+      "BranchingPaths",
+      "Britannia",
+      "BritanniaClassic",
+      "Canada",
+      "CanaryIslands",
+      "CapeCod",
+      "CapeOfGoodHope",
+      "Caribbean",
+      "CaspianSea",
+      "Caucasus",
+      "CentralAmerica",
+      "ChannelIslands",
+      "China",
+      "ChoppingBlock",
+      "ClearwaterLakes",
+      "Conakry",
+      "Crimea",
+      "DanishStraits",
+      "DeglaciatedAntarctica",
+      "Didier",
+      "DidierFrance",
+      "Dyslexdria",
+      "EastAsia",
+      "Europe",
+      "EuropeClassic",
+      "FalklandIslands",
+      "FaroeIslands",
+      "FingerLakes",
+      "FourIslands",
+      "France",
+      "GatewayToTheAtlantic",
+      "Germany",
+      "GiantWorldMap",
+      "GreatLakes",
+      "GulfOfGuinea",
+      "GulfOfMexico",
+      "GulfOfStLawrence",
+      "Halkidiki",
+      "Hawaii",
+      "Hecatestrait",
+      "HongKong",
+      "HornOfAfrica",
+      "Iceland",
+      "IndianSubcontinent",
+      "IrishSea",
+      "Italia",
+      "Japan",
+      "JuanDeFucaStrait",
+      "Korea",
+      "Labyrinth",
+      "LasVegasStrip",
+      "Lemnos",
+      "Levant",
+      "Lisbon",
+      "London",
+      "LosAngeles",
+      "Luna",
+      "Madagascar",
+      "Manicouagan",
+      "MareNostrum",
+      "Mars",
+      "Mena",
+      "Mexico",
+      "MiddleEast",
+      "MilkyWay",
+      "MississippiRiver",
+      "Montreal",
+      "MoreThanLuck",
+      "NewYorkCity",
+      "NewZealand",
+      "NileDelta",
+      "NorthAmerica",
+      "NorthwestPassage",
+      "Oceania",
+      "Ommatrypta",
+      "Onion",
+      "OttomanEmpire",
+      "Pangaea",
+      "Paris",
+      "Passage",
+      "Pluto",
+      "PulicatLake",
+      "QingChina",
+      "RioDeJaneiro",
+      "Russia",
+      "SanFrancisco",
+      "Scandinavia",
+      "Sierpinski",
+      "Sol",
+      "SouthAmerica",
+      "SoutheastAsia",
+      "StraitOfGibraltar",
+      "StraitOfHormuz",
+      "StraitOfMalacca",
+      "Surrounded",
+      "Svalmel",
+      "TaiwanStrait",
+      "TheBox",
+      "TierraDelFuego",
+      "Titan",
+      "Tourney1",
+      "Tourney2",
+      "Tourney3",
+      "Tourney4",
+      "TradersDream",
+      "Turkiye",
+      "Tutorial",
+      "TwoLakes",
+      "Ukraine",
+      "UnitedStates",
+      "VancouverIsland",
+      "Venice",
+      "Vietnam",
+      "WarshipWarship",
+      "WhiteSea",
+      "World",
+      "World10000",
+      "World4000",
+      "WorldInverted",
+      "YangtzeRiver",
+      "YellowSea",
+      "Yenisei",
+      "Zealandia"
+    ],
+    "GameMode": [
+      "FFA",
+      "Team"
+    ],
+    "GameType": [
+      "Singleplayer",
+      "Public",
+      "Private"
+    ],
+    "MESSAGE_TYPE_CATEGORIES": [],
+    "MessageCategory": [
+      "ATTACK",
+      "NUKE",
+      "ALLIANCE",
+      "TRADE",
+      "CHAT"
+    ],
+    "MessageType": [
+      "ATTACK_FAILED",
+      "ATTACK_CANCELLED",
+      "ATTACK_REQUEST",
+      "CONQUERED_PLAYER",
+      "MIRV_INBOUND",
+      "NUKE_INBOUND",
+      "NUKE_DETONATED",
+      "HYDROGEN_BOMB_INBOUND",
+      "NAVAL_INVASION_INBOUND",
+      "SAM_MISS",
+      "SAM_HIT",
+      "CAPTURED_ENEMY_UNIT",
+      "UNIT_DESTROYED",
+      "ALLIANCE_ACCEPTED",
+      "ALLIANCE_REJECTED",
+      "ALLIANCE_REQUEST",
+      "ALLIANCE_BROKEN",
+      "ALLIANCE_EXPIRED",
+      "DONATION_SENT",
+      "DONATION_RECEIVED",
+      "CHAT",
+      "RENEW_ALLIANCE"
+    ],
+    "PlayerType": [
+      "Bot",
+      "Human",
+      "Nation"
+    ],
+    "RankedType": [
+      "OneVOne",
+      "TwoVTwo",
+      "FreeForAll",
+      "ClanWars"
+    ],
+    "Relation": [
+      "Hostile",
+      "Distrustful",
+      "Neutral",
+      "Friendly"
+    ],
+    "TerrainType": [
+      "Plains",
+      "Highland",
+      "Mountain",
+      "Ocean",
+      "Impassable"
+    ],
+    "TrainType": [
+      "Engine",
+      "TailEngine",
+      "Carriage"
+    ],
+    "UnitType": [
+      "TransportShip",
+      "Warship",
+      "Shell",
+      "SAMMissile",
+      "Port",
+      "AtomBomb",
+      "HydrogenBomb",
+      "TradeShip",
+      "MissileSilo",
+      "DefensePost",
+      "SAMLauncher",
+      "City",
+      "MIRV",
+      "MIRVWarhead",
+      "Train",
+      "Factory"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+[
+ {
+  "skill": "emoji_effet_relation",
+  "passed": true,
+  "evidence": "relation de la nation envers moi (0=Hostile..3=Friendly) : insultee 2->0 ; paix (Easy) 2->2",
+  "seconds": 1.4
+ }
+]

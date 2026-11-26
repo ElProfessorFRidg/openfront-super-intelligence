@@ -1,0 +1,13 @@
+{
+ "method": "bc",
+ "hist": [
+  {
+   "epoch": 0,
+   "train_bc": 2.47045921427863,
+   "val_bc": 1.1780679651669093
+  }
+ ],
+ "seconds": 14,
+ "data": "data/demos_v2/shard_1_000[0-8].npz",
+ "n_train_decisions": 6970
+}

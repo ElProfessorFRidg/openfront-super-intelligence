@@ -1,0 +1,57 @@
+{
+ "machine": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
+ "map": "World",
+ "bots": 100,
+ "ticks": 600,
+ "runs": [
+  {
+   "envs": 1,
+   "ticks_each": 600,
+   "agg_ticks_per_s": 114,
+   "per_env_ticks_per_s": 114,
+   "all_ok": true
+  },
+  {
+   "envs": 2,
+   "ticks_each": 600,
+   "agg_ticks_per_s": 218,
+   "per_env_ticks_per_s": 109,
+   "all_ok": true
+  },
+  {
+   "envs": 4,
+   "ticks_each": 600,
+   "agg_ticks_per_s": 346,
+   "per_env_ticks_per_s": 86,
+   "all_ok": true
+  },
+  {
+   "envs": 8,
+   "ticks_each": 600,
+   "agg_ticks_per_s": 430,
+   "per_env_ticks_per_s": 54,
+   "all_ok": true
+  },
+  {
+   "envs": 12,
+   "ticks_each": 600,
+   "agg_ticks_per_s": 512,
+   "per_env_ticks_per_s": 43,
+   "all_ok": true
+  },
+  {
+   "envs": 16,
+   "ticks_each": 600,
+   "agg_ticks_per_s": 532,
+   "per_env_ticks_per_s": 33,
+   "all_ok": true
+  },
+  {
+   "envs": 22,
+   "ticks_each": 600,
+   "agg_ticks_per_s": 503,
+   "per_env_ticks_per_s": 23,
+   "all_ok": true
+  }
+ ]
+}

@@ -1,0 +1,17 @@
+=== sauvegarde plan d'alimentation avant optimisation (11/25/2026 17:56:36) ===
+--- PROCTHROTTLEMIN
+Alias de GUID : SCHEME_BALANCED
+Alias de GUID : SUB_PROCESSOR
+Alias de GUID : PROCTHROTTLEMIN
+Index actuel du paramètre de courant alternatif : 0x00000005
+Index actuel du paramètre de courant continu : 0x00000005
+--- PROCTHROTTLEMAX
+Alias de GUID : SCHEME_BALANCED
+Alias de GUID : SUB_PROCESSOR
+Alias de GUID : PROCTHROTTLEMAX
+Index actuel du paramètre de courant alternatif : 0x00000064
+Index actuel du paramètre de courant continu : 0x00000064
+--- SYSCOOLPOL
+Alias de GUID : SCHEME_BALANCED
+--- PERFEPP
+Alias de GUID : SCHEME_BALANCED

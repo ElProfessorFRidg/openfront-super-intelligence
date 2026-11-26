@@ -1,0 +1,45 @@
+{
+ "torch": "2.14.1+cu126",
+ "cuda": true,
+ "device": "NVIDIA GeForce RTX 3050 6GB Laptop GPU",
+ "cpu_threads": 16,
+ "results": {
+  "mlp256/cpu": {
+   "inference_ms": 0.47,
+   "train_step_ms": 5.04,
+   "inf_samples_per_s": 34332,
+   "train_samples_per_s": 50814
+  },
+  "mlp256/cuda": {
+   "inference_ms": 0.12,
+   "train_step_ms": 1.39,
+   "inf_samples_per_s": 128373,
+   "train_samples_per_s": 184587
+  },
+  "mlp1024/cpu": {
+   "inference_ms": 1.27,
+   "train_step_ms": 20.81,
+   "inf_samples_per_s": 12590,
+   "train_samples_per_s": 12302
+  },
+  "mlp1024/cuda": {
+   "inference_ms": 0.25,
+   "train_step_ms": 3.37,
+   "inf_samples_per_s": 63218,
+   "train_samples_per_s": 75904
+  },
+  "attn/cpu": {
+   "inference_ms": 137.08,
+   "train_step_ms": 2619.48,
+   "inf_samples_per_s": 117,
+   "train_samples_per_s": 98
+  },
+  "attn/cuda": {
+   "inference_ms": 4.99,
+   "train_step_ms": 165.43,
+   "inf_samples_per_s": 3208,
+   "train_samples_per_s": 1547
+  }
+ },
+ "vram_peak_mb": 1190
+}

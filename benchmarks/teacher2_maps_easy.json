@@ -1,0 +1,1245 @@
+[
+ {
+  "spec": {
+   "map": "Pangaea",
+   "seed": "t2000000",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 5982,
+  "final_share": 81.0,
+  "peak_share": 76.8,
+  "land": 420335,
+  "stagnation_flag_counts": {
+   "territorial_stall": 19,
+   "troops_idle": 0,
+   "gold_hoard": 0,
+   "no_land_frontier": 2,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 18,
+   "attack_player": 46,
+   "build_Port": 2,
+   "build_Defense Post": 2,
+   "build_City": 21,
+   "build_Factory": 1,
+   "boat": 5
+  },
+  "track": [
+   [
+    2002,
+    9.9,
+    60650,
+    335095
+   ],
+   [
+    4002,
+    47.6,
+    795632,
+    2103106
+   ]
+  ],
+  "wall_s": 149.0
+ },
+ {
+  "spec": {
+   "map": "Pangaea",
+   "seed": "t2000010",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 10002,
+  "final_share": 80.4,
+  "peak_share": 77.5,
+  "land": 420335,
+  "stagnation_flag_counts": {
+   "territorial_stall": 62,
+   "troops_idle": 0,
+   "gold_hoard": 0,
+   "no_land_frontier": 0,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 45,
+   "attack_player": 76,
+   "build_Port": 2,
+   "ally_accept": 2,
+   "build_City": 55,
+   "build_Defense Post": 7,
+   "build_Factory": 5,
+   "boat": 29,
+   "nuke": 1
+  },
+  "track": [
+   [
+    2002,
+    9.6,
+    79450,
+    507992
+   ],
+   [
+    4002,
+    33.8,
+    64380,
+    1982838
+   ],
+   [
+    6002,
+    62.2,
+    244837,
+    3569763
+   ],
+   [
+    8002,
+    69.4,
+    1377068,
+    21649770
+   ]
+  ],
+  "wall_s": 240.0
+ },
+ {
+  "spec": {
+   "map": "Caucasus",
+   "seed": "t2000001",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 5002,
+  "final_share": 80.5,
+  "peak_share": 79.1,
+  "land": 846140,
+  "stagnation_flag_counts": {
+   "territorial_stall": 0,
+   "troops_idle": 0,
+   "gold_hoard": 3,
+   "no_land_frontier": 0,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 7,
+   "attack_player": 50,
+   "build_Port": 1,
+   "build_City": 7,
+   "build_Factory": 2
+  },
+  "track": [
+   [
+    2002,
+    9.7,
+    116600,
+    566900
+   ],
+   [
+    4002,
+    44.4,
+    156839,
+    1503574
+   ]
+  ],
+  "wall_s": 149.4
+ },
+ {
+  "spec": {
+   "map": "Caucasus",
+   "seed": "t2000011",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 5282,
+  "final_share": 82.1,
+  "peak_share": 79.3,
+  "land": 846140,
+  "stagnation_flag_counts": {
+   "territorial_stall": 0,
+   "troops_idle": 0,
+   "gold_hoard": 0,
+   "no_land_frontier": 0,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 7,
+   "attack_player": 45,
+   "build_Port": 1,
+   "ally_accept": 1,
+   "build_City": 3,
+   "build_Factory": 2
+  },
+  "track": [
+   [
+    2002,
+    8.0,
+    108100,
+    580914
+   ],
+   [
+    4002,
+    36.4,
+    233400,
+    1959711
+   ]
+  ],
+  "wall_s": 159.8
+ },
+ {
+  "spec": {
+   "map": "BosphorusStraits",
+   "seed": "t2000002",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 4822,
+  "final_share": 72.2,
+  "peak_share": 71.3,
+  "land": 426385,
+  "stagnation_flag_counts": {
+   "territorial_stall": 0,
+   "troops_idle": 0,
+   "gold_hoard": 11,
+   "no_land_frontier": 0,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 12,
+   "attack_player": 51,
+   "build_Port": 2,
+   "build_City": 7,
+   "build_Factory": 1,
+   "boat": 2
+  },
+  "track": [
+   [
+    2002,
+    16.0,
+    151000,
+    374673
+   ],
+   [
+    4002,
+    48.5,
+    464806,
+    2692862
+   ]
+  ],
+  "wall_s": 99.0
+ },
+ {
+  "spec": {
+   "map": "BosphorusStraits",
+   "seed": "t2000012",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 6442,
+  "final_share": 75.4,
+  "peak_share": 71.5,
+  "land": 426385,
+  "stagnation_flag_counts": {
+   "territorial_stall": 0,
+   "troops_idle": 0,
+   "gold_hoard": 0,
+   "no_land_frontier": 0,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 17,
+   "attack_player": 57,
+   "build_Port": 2,
+   "build_Defense Post": 2,
+   "ally_accept": 1,
+   "build_City": 20,
+   "build_Factory": 1,
+   "boat": 3
+  },
+  "track": [
+   [
+    2002,
+    6.2,
+    107000,
+    229169
+   ],
+   [
+    4002,
+    22.5,
+    523539,
+    2363422
+   ],
+   [
+    6002,
+    57.9,
+    953482,
+    10619937
+   ]
+  ],
+  "wall_s": 129.2
+ },
+ {
+  "spec": {
+   "map": "DanishStraits",
+   "seed": "t2000003",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 8802,
+  "final_share": 77.4,
+  "peak_share": 77.4,
+  "land": 587312,
+  "stagnation_flag_counts": {
+   "territorial_stall": 42,
+   "troops_idle": 0,
+   "gold_hoard": 0,
+   "no_land_frontier": 0,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 60,
+   "attack_player": 66,
+   "build_Port": 2,
+   "build_City": 32,
+   "build_Factory": 2,
+   "boat": 30,
+   "ally_accept": 2,
+   "build_Defense Post": 3
+  },
+  "track": [
+   [
+    2002,
+    13.4,
+    93700,
+    689912
+   ],
+   [
+    4002,
+    31.3,
+    971026,
+    1638200
+   ],
+   [
+    6002,
+    46.9,
+    48326,
+    6718011
+   ],
+   [
+    8002,
+    77.4,
+    224373,
+    12312519
+   ]
+  ],
+  "wall_s": 342.1
+ },
+ {
+  "spec": {
+   "map": "DanishStraits",
+   "seed": "t2000013",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 8142,
+  "final_share": 80.4,
+  "peak_share": 77.8,
+  "land": 587312,
+  "stagnation_flag_counts": {
+   "territorial_stall": 1,
+   "troops_idle": 0,
+   "gold_hoard": 2,
+   "no_land_frontier": 0,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 37,
+   "attack_player": 74,
+   "build_Port": 1,
+   "ally_accept": 1,
+   "build_City": 31,
+   "boat": 17,
+   "build_Factory": 2,
+   "build_Defense Post": 2
+  },
+  "track": [
+   [
+    2002,
+    11.9,
+    146450,
+    689183
+   ],
+   [
+    4002,
+    32.8,
+    96450,
+    1108043
+   ],
+   [
+    6002,
+    65.3,
+    396105,
+    5273656
+   ],
+   [
+    8002,
+    71.9,
+    778093,
+    3406727
+   ]
+  ],
+  "wall_s": 331.8
+ },
+ {
+  "spec": {
+   "map": "BeringStrait",
+   "seed": "t2000004",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 5742,
+  "final_share": 83.2,
+  "peak_share": 78.1,
+  "land": 596037,
+  "stagnation_flag_counts": {
+   "territorial_stall": 0,
+   "troops_idle": 0,
+   "gold_hoard": 0,
+   "no_land_frontier": 101,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 52,
+   "attack_player": 18,
+   "build_Port": 1,
+   "build_City": 3,
+   "boat": 15,
+   "build_Factory": 1
+  },
+  "track": [
+   [
+    2002,
+    19.0,
+    95250,
+    592390
+   ],
+   [
+    4002,
+    51.7,
+    87900,
+    4780762
+   ]
+  ],
+  "wall_s": 104.4
+ },
+ {
+  "spec": {
+   "map": "BeringStrait",
+   "seed": "t2000014",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 4882,
+  "final_share": 82.3,
+  "peak_share": 77.4,
+  "land": 596037,
+  "stagnation_flag_counts": {
+   "territorial_stall": 0,
+   "troops_idle": 0,
+   "gold_hoard": 21,
+   "no_land_frontier": 0,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 24,
+   "attack_player": 49,
+   "build_Port": 1,
+   "build_City": 3,
+   "build_Factory": 1,
+   "boat": 9
+  },
+  "track": [
+   [
+    2002,
+    17.5,
+    98900,
+    626975
+   ],
+   [
+    4002,
+    50.8,
+    285550,
+    2674634
+   ]
+  ],
+  "wall_s": 91.2
+ },
+ {
+  "spec": {
+   "map": "Oceania",
+   "seed": "t2000005",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 7662,
+  "final_share": 57.2,
+  "peak_share": 57.6,
+  "land": 272709,
+  "stagnation_flag_counts": {
+   "territorial_stall": 63,
+   "troops_idle": 0,
+   "gold_hoard": 0,
+   "no_land_frontier": 22,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 70,
+   "attack_player": 45,
+   "build_Port": 1,
+   "build_City": 25,
+   "boat": 38,
+   "build_Factory": 4,
+   "ally_accept": 1
+  },
+  "track": [
+   [
+    2002,
+    32.4,
+    218350,
+    1158050
+   ],
+   [
+    4002,
+    41.5,
+    268600,
+    3000312
+   ],
+   [
+    6002,
+    57.4,
+    421093,
+    8563149
+   ]
+  ],
+  "wall_s": 129.2
+ },
+ {
+  "spec": {
+   "map": "Oceania",
+   "seed": "t2000015",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 5642,
+  "final_share": 57.6,
+  "peak_share": 55.6,
+  "land": 272709,
+  "stagnation_flag_counts": {
+   "territorial_stall": 0,
+   "troops_idle": 0,
+   "gold_hoard": 0,
+   "no_land_frontier": 0,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 27,
+   "attack_player": 48,
+   "build_Port": 1,
+   "build_City": 10,
+   "boat": 17,
+   "build_Factory": 2
+  },
+  "track": [
+   [
+    2002,
+    33.2,
+    8750,
+    558973
+   ],
+   [
+    4002,
+    48.4,
+    919359,
+    1125475
+   ]
+  ],
+  "wall_s": 100.8
+ },
+ {
+  "spec": {
+   "map": "ArchipelagoSea",
+   "seed": "t2000006",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "exception",
+  "error": "RuntimeError('d\u00e9mon termin\u00e9')",
+  "win": false
+ },
+ {
+  "spec": {
+   "map": "ArchipelagoSea",
+   "seed": "t2000016",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "exception",
+  "error": "RuntimeError('d\u00e9mon termin\u00e9')",
+  "win": false
+ },
+ {
+  "spec": {
+   "map": "MississippiRiver",
+   "seed": "t2000007",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 10702,
+  "final_share": 84.2,
+  "peak_share": 79.0,
+  "land": 1500944,
+  "stagnation_flag_counts": {
+   "territorial_stall": 119,
+   "troops_idle": 33,
+   "gold_hoard": 0,
+   "no_land_frontier": 97,
+   "blocked": 33
+  },
+  "actions": {
+   "attack_neutral": 75,
+   "attack_player": 56,
+   "build_Port": 2,
+   "build_City": 20,
+   "boat": 27,
+   "build_Factory": 1,
+   "ally_accept": 1,
+   "build_Defense Post": 3
+  },
+  "track": [
+   [
+    2002,
+    8.3,
+    108150,
+    465079
+   ],
+   [
+    4002,
+    21.1,
+    33700,
+    1938906
+   ],
+   [
+    6002,
+    21.1,
+    514834,
+    6014185
+   ],
+   [
+    8002,
+    44.7,
+    956124,
+    5813689
+   ],
+   [
+    10002,
+    65.6,
+    53303,
+    16933069
+   ]
+  ],
+  "wall_s": 527.0
+ },
+ {
+  "spec": {
+   "map": "MississippiRiver",
+   "seed": "t2000017",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 12002,
+  "final_share": 80.3,
+  "peak_share": 79.4,
+  "land": 1500944,
+  "stagnation_flag_counts": {
+   "territorial_stall": 206,
+   "troops_idle": 13,
+   "gold_hoard": 0,
+   "no_land_frontier": 74,
+   "blocked": 13
+  },
+  "actions": {
+   "attack_neutral": 109,
+   "attack_player": 61,
+   "build_Port": 2,
+   "build_City": 48,
+   "boat": 44,
+   "build_Factory": 1,
+   "build_Defense Post": 2
+  },
+  "track": [
+   [
+    2002,
+    8.9,
+    113200,
+    750667
+   ],
+   [
+    4002,
+    21.1,
+    179000,
+    3163799
+   ],
+   [
+    6002,
+    28.6,
+    303471,
+    1432286
+   ],
+   [
+    8002,
+    75.7,
+    161875,
+    15197170
+   ],
+   [
+    10002,
+    76.2,
+    972569,
+    18467433
+   ]
+  ],
+  "wall_s": 544.9
+ },
+ {
+  "spec": {
+   "map": "AmazonRiver",
+   "seed": "t2000008",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 8962,
+  "final_share": 79.8,
+  "peak_share": 79.8,
+  "land": 1150819,
+  "stagnation_flag_counts": {
+   "territorial_stall": 0,
+   "troops_idle": 0,
+   "gold_hoard": 0,
+   "no_land_frontier": 0,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 43,
+   "attack_player": 82,
+   "build_Port": 1,
+   "build_City": 6,
+   "build_Factory": 2,
+   "boat": 24,
+   "build_Defense Post": 2
+  },
+  "track": [
+   [
+    2002,
+    6.6,
+    173900,
+    596538
+   ],
+   [
+    4002,
+    28.4,
+    36900,
+    2100254
+   ],
+   [
+    6002,
+    58.8,
+    803482,
+    5608554
+   ],
+   [
+    8002,
+    73.3,
+    16544,
+    19739128
+   ]
+  ],
+  "wall_s": 362.4
+ },
+ {
+  "spec": {
+   "map": "AmazonRiver",
+   "seed": "t2000018",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": false,
+  "tick": 21322,
+  "final_share": 17.3,
+  "peak_share": 47.3,
+  "land": 1150819,
+  "stagnation_flag_counts": {
+   "territorial_stall": 459,
+   "troops_idle": 0,
+   "gold_hoard": 86,
+   "no_land_frontier": 43,
+   "blocked": 82
+  },
+  "actions": {
+   "attack_neutral": 147,
+   "attack_player": 80,
+   "build_Port": 1,
+   "build_City": 93,
+   "build_Factory": 3,
+   "boat": 49,
+   "build_Defense Post": 6
+  },
+  "track": [
+   [
+    2002,
+    8.9,
+    103150,
+    716593
+   ],
+   [
+    4002,
+    20.7,
+    10750,
+    1533158
+   ],
+   [
+    6002,
+    34.3,
+    640811,
+    1977308
+   ],
+   [
+    8002,
+    45.2,
+    783845,
+    4705921
+   ],
+   [
+    10002,
+    42.6,
+    1243994,
+    3247320
+   ],
+   [
+    12002,
+    46.2,
+    1276832,
+    8674150
+   ],
+   [
+    14002,
+    47.3,
+    647288,
+    11947739
+   ],
+   [
+    16002,
+    46.8,
+    156392,
+    7093220
+   ],
+   [
+    18002,
+    46.8,
+    476392,
+    7069251
+   ],
+   [
+    20002,
+    33.4,
+    716392,
+    8177763
+   ]
+  ],
+  "wall_s": 654.3
+ },
+ {
+  "spec": {
+   "map": "BlackSea",
+   "seed": "t2000009",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 9962,
+  "final_share": 80.0,
+  "peak_share": 79.5,
+  "land": 1165868,
+  "stagnation_flag_counts": {
+   "territorial_stall": 68,
+   "troops_idle": 0,
+   "gold_hoard": 0,
+   "no_land_frontier": 29,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 70,
+   "attack_player": 76,
+   "build_Port": 2,
+   "build_City": 7,
+   "build_Factory": 2,
+   "boat": 32,
+   "build_Defense Post": 1
+  },
+  "track": [
+   [
+    2002,
+    7.5,
+    63900,
+    488875
+   ],
+   [
+    4002,
+    33.0,
+    71650,
+    1528258
+   ],
+   [
+    6002,
+    49.2,
+    195068,
+    3158911
+   ],
+   [
+    8002,
+    57.2,
+    228890,
+    5479352
+   ]
+  ],
+  "wall_s": 409.7
+ },
+ {
+  "spec": {
+   "map": "BlackSea",
+   "seed": "t2000019",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 11442,
+  "final_share": 81.1,
+  "peak_share": 80.0,
+  "land": 1165868,
+  "stagnation_flag_counts": {
+   "territorial_stall": 134,
+   "troops_idle": 0,
+   "gold_hoard": 6,
+   "no_land_frontier": 4,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 78,
+   "attack_player": 50,
+   "build_Port": 2,
+   "build_City": 19,
+   "build_Defense Post": 1,
+   "build_Factory": 1,
+   "boat": 27,
+   "ally_accept": 1
+  },
+  "track": [
+   [
+    2002,
+    10.0,
+    105650,
+    848358
+   ],
+   [
+    4002,
+    29.5,
+    17000,
+    1205032
+   ],
+   [
+    6002,
+    49.3,
+    53950,
+    5323049
+   ],
+   [
+    8002,
+    63.4,
+    416344,
+    5545938
+   ],
+   [
+    10002,
+    66.8,
+    505709,
+    3263964
+   ]
+  ],
+  "wall_s": 411.7
+ },
+ {
+  "spec": {
+   "map": "Iceland",
+   "seed": "t20000010",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 5802,
+  "final_share": 67.4,
+  "peak_share": 60.8,
+  "land": 1323823,
+  "stagnation_flag_counts": {
+   "territorial_stall": 16,
+   "troops_idle": 0,
+   "gold_hoard": 1,
+   "no_land_frontier": 16,
+   "blocked": 1
+  },
+  "actions": {
+   "attack_neutral": 27,
+   "attack_player": 37,
+   "build_Port": 1,
+   "build_City": 3,
+   "boat": 10,
+   "ally_accept": 1,
+   "build_Defense Post": 1,
+   "build_Factory": 2
+  },
+  "track": [
+   [
+    2002,
+    7.9,
+    99900,
+    580856
+   ],
+   [
+    4002,
+    38.0,
+    51300,
+    1461855
+   ]
+  ],
+  "wall_s": 199.3
+ },
+ {
+  "spec": {
+   "map": "Iceland",
+   "seed": "t20000110",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 4442,
+  "final_share": 65.3,
+  "peak_share": 62.1,
+  "land": 1323823,
+  "stagnation_flag_counts": {
+   "territorial_stall": 0,
+   "troops_idle": 0,
+   "gold_hoard": 0,
+   "no_land_frontier": 0,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 14,
+   "attack_player": 26,
+   "build_Port": 1,
+   "build_City": 3,
+   "build_Factory": 1
+  },
+  "track": [
+   [
+    2002,
+    8.4,
+    118950,
+    801084
+   ],
+   [
+    4002,
+    43.6,
+    356850,
+    1495923
+   ]
+  ],
+  "wall_s": 153.9
+ },
+ {
+  "spec": {
+   "map": "Africa",
+   "seed": "t20000011",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 7762,
+  "final_share": 83.1,
+  "peak_share": 79.8,
+  "land": 2183462,
+  "stagnation_flag_counts": {
+   "territorial_stall": 0,
+   "troops_idle": 0,
+   "gold_hoard": 0,
+   "no_land_frontier": 0,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 17,
+   "attack_player": 108,
+   "build_Port": 1,
+   "build_City": 31,
+   "build_Factory": 2,
+   "ally_accept": 1,
+   "boat": 4
+  },
+  "track": [
+   [
+    2002,
+    3.4,
+    19000,
+    449172
+   ],
+   [
+    4002,
+    12.2,
+    634929,
+    1543332
+   ],
+   [
+    6002,
+    48.4,
+    631720,
+    4168198
+   ]
+  ],
+  "wall_s": 623.8
+ },
+ {
+  "spec": {
+   "map": "Africa",
+   "seed": "t20000111",
+   "bots": 10,
+   "difficulty": "Easy",
+   "max_ticks": 60000,
+   "params": {}
+  },
+  "end": "winner",
+  "win": true,
+  "tick": 7342,
+  "final_share": 81.6,
+  "peak_share": 79.5,
+  "land": 2183462,
+  "stagnation_flag_counts": {
+   "territorial_stall": 0,
+   "troops_idle": 0,
+   "gold_hoard": 26,
+   "no_land_frontier": 0,
+   "blocked": 0
+  },
+  "actions": {
+   "attack_neutral": 8,
+   "attack_player": 79,
+   "build_Port": 2,
+   "build_City": 20,
+   "build_Factory": 1
+  },
+  "track": [
+   [
+    2002,
+    2.3,
+    55000,
+    418132
+   ],
+   [
+    4002,
+    8.1,
+    134350,
+    1430601
+   ],
+   [
+    6002,
+    28.6,
+    625063,
+    5219522
+   ]
+  ],
+  "wall_s": 545.4
+ }
+]

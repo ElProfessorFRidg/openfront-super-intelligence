@@ -1,0 +1,103 @@
+{
+ "agents": [
+  "random",
+  "teacher2"
+ ],
+ "matches": [
+  {
+   "specs": [
+    "random",
+    "teacher2"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 4,
+    "difficulty": "Easy"
+   },
+   "seed": "lg00000001",
+   "tick": 6302,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 169782,
+     "progress": 1.007943292726366
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "teacher2",
+    "random"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 4,
+    "difficulty": "Easy"
+   },
+   "seed": "lg00000002",
+   "tick": 4982,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 170109,
+     "progress": 1.0098845907245138
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 40446,
+     "progress": 0.24011540927548622
+    }
+   ],
+   "spawn_failed": false
+  }
+ ],
+ "table": [
+  {
+   "agent": "random",
+   "force_BT": -3600.0,
+   "ic95": [
+    -3600.0,
+    -3600.0
+   ]
+  },
+  {
+   "agent": "teacher2",
+   "force_BT": 3600.0,
+   "ic95": [
+    3600.0,
+    3600.0
+   ]
+  }
+ ],
+ "matrice": [
+  [
+   null,
+   0.0
+  ],
+  [
+   1.0,
+   null
+  ]
+ ],
+ "secondes": 13
+}

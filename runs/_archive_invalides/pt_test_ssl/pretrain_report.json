@@ -1,0 +1,17 @@
+{
+ "method": "ssl",
+ "hist": [
+  {
+   "epoch": 0,
+   "train_wm_fut": 0.011230957493858619,
+   "train_wm_win": 0.487477557733655,
+   "train_wm_ret": 0.8441172995501094,
+   "val_wm_fut": 0.00905585041203137,
+   "val_wm_win": 0.45506056850509985,
+   "val_wm_ret": 0.7448009299114347
+  }
+ ],
+ "seconds": 23,
+ "data": "data/demos_v2/shard_1_000[0-8].npz",
+ "n_train_decisions": 18218
+}
