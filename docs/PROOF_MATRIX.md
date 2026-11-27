@@ -30,7 +30,7 @@ Règle : un statut ne monte que sur une MESURE reproductible citée ; « le code
 | 32 | Analyse des défaites | PARTIEL | 1 analyse contrefactuelle, ablation du professeur v3 | échantillon minuscule |
 | 33 | Découverte stratégique, évolution | NON FAIT | — | — |
 | 34 | Optimisation automatique des modèles | PARTIEL | `ofsi/autotune.py` + `./ofsi.sh autotune` : mesure le débit pour N moteurs, empreinte matérielle, `config/autotune.json` (4 cœurs : 2→21, 4→36, 8→55, 12→62, 16→68 déc/s, professeur scripté) | optimise seulement le NOMBRE DE MOTEURS (pas l'architecture, lr, batch) ; mesuré avec professeur scripté, pas avec réseau ; optimum à la borne testée (16) |
-| 35 | Ordonnanceur de ressources | PARTIEL | `memguard.py` (garde-fou RAM) | pas d'ordonnanceur CPU/GPU |
+| 35 | Ordonnanceur de ressources | PARTIEL | `ofsi/scheduler.py` + `test_scheduler.py` 8/8 (vrais sous-processus : budget de cœurs jamais dépassé, priorités, blocage RAM, STOP, échec isolé) ; `memguard.py` | NON câblé dans l'orchestrateur ni dans `ofsi.sh` ; pas de gestion GPU/VRAM ; pas d'ajustement dynamique à la charge d'autres applications ; sur 4 cœurs il ne fait que sérialiser |
 | 36 | GPT facultatif | PASS (absent par choix) | aucune dépendance LLM | — |
 | 37 | Tableau de bord, données réelles | PARTIEL | `dashboard.py` ; test UI automatisé Chromium headless `ofsi/test_dashboard_ui.js` 8/8 (bannière jamais « validée » sans preuve, rejeu, canvas, 0 erreur JS) ; capture visuelle relue | pas de tests des boutons stop/pause en UI ; températures/GPU non mesurés ici |
 | 38 | Observer, rejouer | PARTIEL | `ofsi/replay.py` (enregistrement décision par décision depuis le moteur) + visualiseur du tableau de bord (liste, lecture/pause, curseur, tuiles/troupes/or/actions par image) ; rejeu déterministe | rendu grossier (grille 40×40, 5 classes), pas de rejeu tick par tick ni de vue des unités ; un seul rejeu de démonstration enregistré |
@@ -52,6 +52,6 @@ Règle : un statut ne monte que sur une MESURE reproductible citée ; « le code
 ## Priorités déduites de la matrice (ordre de travail)
 1. Jalon 6 : obtenir un apprentissage RL qui DÉPASSE le professeur (PPO ancré = parité ; prochaine étape : entraînement sur Medium depuis `arm_B_anchor`).
 2. §24 : brancher le modèle d'adversaires sur la politique et mesurer le gain de jeu ; §25 : gain de la recherche non démontré (essai à faible puissance).
-3. §35 : ordonnanceur de ressources (CPU/GPU/RAM) ; §43 : exécuter de vrais cycles d'orchestration ; §33 : évolution/découverte stratégique (aucun code).
+3. §35 : câbler l'ordonnanceur (utile surtout avec plus de cœurs/GPU) ; §43 : exécuter de vrais cycles d'orchestration ; §33 : évolution/découverte stratégique (aucun code).
 4. §45 : (fait en partie) ajouter la détection de nouveau champion et tester le toast Windows.
 5. §7 : audit de performance du plan.
