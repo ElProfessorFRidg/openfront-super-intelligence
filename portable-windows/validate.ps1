@@ -22,7 +22,10 @@ try {
     New-Item -ItemType Directory -Path $root, $distribution | Out-Null
     & $sevenZip x -y -bso0 "-o$distribution" $zipFile
     $user = New-LocalUser -Name $name -Password (ConvertTo-SecureString $password -AsPlainText -Force)
-    Add-LocalGroupMember -SID "S-1-5-32-545" -Member $user
+    $usersSid = "S-1-5-32-545"
+    if (-not (Get-LocalGroupMember -SID $usersSid | Where-Object SID -eq $user.SID)) {
+        Add-LocalGroupMember -SID $usersSid -Member $user
+    }
     icacls $root /grant "${account}:(OI)(CI)M" /Q
     foreach ($program in @("python/python.exe", "node/node.exe")) {
         New-NetFirewallRule -DisplayName "$task-$program" -Group $task -Direction Outbound -Action Block `
