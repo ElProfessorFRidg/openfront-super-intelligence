@@ -1,0 +1,41 @@
+name: Portable validation preflight
+on:
+  push:
+    branches: [windows-portable-preflight]
+permissions:
+  contents: read
+jobs:
+  preflight:
+    runs-on: windows-2025
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+          sparse-checkout: portable-windows
+      - shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $testDir = Join-Path $env:RUNNER_TEMP "probe"
+          New-Item -ItemType Directory -Force -Path $testDir | Out-Null
+          $zip = Join-Path $testDir "probe.zip"
+          Set-Content -Path "$testDir/tracer.txt" -Value "probe"
+          & "$env:ProgramFiles/7-Zip/7z.exe" a -tzip $zip "$testDir/tracer.txt"
+          (Get-FileHash -LiteralPath $zip).Hash | Set-Content "$zip.sha256"
+          @'
+          param([switch]$RequireCuda)
+          $ErrorActionPreference = "Stop"
+          $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
+          $principal = [Security.Principal.WindowsPrincipal]::new($identity)
+          "Identity: $($identity.Name); admin = $($principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator))" | Set-Content "$PSScriptRoot/validation.log"
+          if ($principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) { throw "Unexpected elevation" }
+          "PASS" | Set-Content "$PSScriptRoot/status.txt"
+          '@ | Set-Content -LiteralPath portable-windows/validation-user.ps1
+          $parent = Get-Content -Raw -LiteralPath portable-windows/validate.ps1
+          $parent = $parent.Replace('    & $sevenZip x', '    Write-Host "Extracting"; & $sevenZip x')
+          $parent = $parent.Replace('    $user = New-LocalUser', '    Write-Host "Creating user"; $user = New-LocalUser')
+          $parent = $parent.Replace('    $child = Join-Path', '    Write-Host "Firewall ready"; $child = Join-Path')
+          $parent = $parent.Replace('    Start-ScheduledTask', '    Write-Host "Starting task"; Start-ScheduledTask')
+          $parent = $parent.Replace('AddMinutes(18)', 'AddSeconds(90)')
+          $parent | Set-Content -LiteralPath portable-windows/validate.ps1
+          ./portable-windows/validate.ps1 -Zip $zip
