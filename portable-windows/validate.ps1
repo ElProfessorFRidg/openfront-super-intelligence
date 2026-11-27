@@ -14,14 +14,18 @@ $account = "$env:COMPUTERNAME\$name"
 $task = "OpenFrontPortable-$identity"
 $systemPs = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
 $sevenZip = Join-Path $env:ProgramFiles "7-Zip/7z.exe"
-$password = "OFSI-aA1-" + [Guid]::NewGuid().ToString("N")
+$password = ConvertTo-SecureString ("OFSI-aA1-" + [Guid]::NewGuid().ToString("N")) -AsPlainText -Force
+$stdout = Join-Path $root "child.stdout"
+$stderr = Join-Path $root "child.stderr"
+$worker = $null
 
 $expected = (Get-Content -Raw -LiteralPath "$zipFile.sha256").Trim()
 if ((Get-FileHash -LiteralPath $zipFile).Hash -ne $expected) { throw "ZIP corrompu" }
 try {
     New-Item -ItemType Directory -Path $root, $distribution | Out-Null
+    Write-Host "Extracting ZIP for relocated Windows test"
     & $sevenZip x -y -bso0 "-o$distribution" $zipFile
-    $user = New-LocalUser -Name $name -Password (ConvertTo-SecureString $password -AsPlainText -Force)
+    $user = New-LocalUser -Name $name -Password $password
     $usersSid = "S-1-5-32-545"
     if (-not (Get-LocalGroupMember -SID $usersSid | Where-Object SID -eq $user.SID)) {
         Add-LocalGroupMember -SID $usersSid -Member $user
@@ -38,22 +42,26 @@ try {
     Copy-Item -LiteralPath "$PSScriptRoot/validation-user.ps1" -Destination $child
     $args = "-NoProfile -NonInteractive -ExecutionPolicy Bypass -File `"$child`""
     if ($RequireCuda) { $args += " -RequireCuda" }
-    $action = New-ScheduledTaskAction -Execute $systemPs -Argument $args -WorkingDirectory $root
-    $settings = New-ScheduledTaskSettingsSet -ExecutionTimeLimit (New-TimeSpan -Minutes 18)
-    Register-ScheduledTask -TaskName $task -Action $action -Settings $settings -User $account `
-        -Password $password -RunLevel Limited | Out-Null
-    Start-ScheduledTask -TaskName $task
-    $deadline = (Get-Date).AddMinutes(18)
+    $service = Get-Service -Name seclogon
+    if ($service.Status -ne "Running") { Start-Service -Name seclogon }
+    $credential = [PSCredential]::new($account, $password)
+    Write-Host "Starting validation as $account"
+    $worker = Start-Process -FilePath $systemPs -ArgumentList $args -WorkingDirectory $root `
+        -Credential $credential -LoadUserProfile -RedirectStandardOutput $stdout `
+        -RedirectStandardError $stderr -PassThru
+    if (-not $worker.WaitForExit(600000)) { throw "Validation Windows expirée (10 minutes)" }
     $done = Join-Path $root "status.txt"
-    while (-not (Test-Path -LiteralPath $done) -and (Get-Date) -lt $deadline) {
-        Start-Sleep -Seconds 5
-    }
-    if (-not (Test-Path -LiteralPath $done)) {
-        $info = Get-ScheduledTaskInfo -TaskName $task
-        throw "Validation expirée, dernier résultat du Planificateur : $($info.LastTaskResult)"
+    if ($worker.ExitCode -ne 0 -or -not (Test-Path -LiteralPath $done)) {
+        throw "Processus de validation interrompu, code $($worker.ExitCode)"
     }
     if ((Get-Content -Raw -LiteralPath $done).Trim() -ne "PASS") { throw "Validation Windows échouée" }
 } finally {
+    if ($worker -and -not $worker.HasExited) {
+        & "$env:SystemRoot/System32/taskkill.exe" /T /F /PID $worker.Id | Out-Null
+    }
+    foreach ($file in @($stdout, $stderr)) {
+        if (Test-Path -LiteralPath $file) { Get-Content -LiteralPath $file }
+    }
     $log = Join-Path $root "validation.log"
     if (Test-Path -LiteralPath $log) {
         Get-Content -LiteralPath $log
@@ -62,10 +70,6 @@ try {
     $reports = Join-Path $distribution "reports"
     if (Test-Path -LiteralPath $reports) {
         Copy-Item -LiteralPath $reports -Destination (Join-Path $output "validation-reports") -Recurse -Force
-    }
-    if (Get-ScheduledTask -TaskName $task -ErrorAction SilentlyContinue) {
-        Stop-ScheduledTask -TaskName $task -ErrorAction SilentlyContinue
-        Unregister-ScheduledTask -TaskName $task -Confirm:$false
     }
     Get-NetFirewallRule -Group $task -ErrorAction SilentlyContinue | Remove-NetFirewallRule
     if (Get-LocalUser -Name $name -ErrorAction SilentlyContinue) { Remove-LocalUser -Name $name }
