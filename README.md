@@ -19,6 +19,17 @@ mesure leur niveau de facon reproductible et entraine un reseau neuronal par app
 Valide de bout en bout : `doctor`, `repair`, `dashboard`. **Non valides de bout en bout** : `setup`, `train`, `stop`, `benchmark`, `evaluate`, `skills` (voir `docs/JOURNAL.md`).
 Fermer le navigateur ou le terminal n'interrompt pas un entrainement lance ; il s'arrete par `stop` (fichier `runs/<nom>/STOP`) ou se met en pause (`PAUSE`).
 
+## Demarrage Linux / macOS
+
+```bash
+./ofsi.sh setup      # idempotent : Node 24 local, moteur epingle, venv Python (torch CPU), smoke test
+./ofsi.sh doctor     # diagnostic en lecture seule (SHA-256 des checkpoints inclus)
+./ofsi.sh dashboard  # http://127.0.0.1:8765
+./ofsi.sh train mon_run runs/arm_B_anchor/ckpt_latest.pt   # PPO ancre (recette validee : voir docs/JOURNAL.md)
+./ofsi.sh evaluate runs/arm_C_medium/ckpt_latest.pt        # eval 48 parties ; ajouter OFSI_ENVS=N pour le parallelisme
+```
+Important : evaluer une politique PPO en mode **echantillonne** (`eval2.py --sample`) ; le decodage glouton la fausse (voir journal 2026-11-26). Matrice de preuves par exigence : `docs/PROOF_MATRIX.md`.
+
 ## Materiel
 
 Teste sur MSI Prestige 14 (Core Ultra 7 155H, 32 Go, **RTX 3050 6 Go**). Le GPU n'est visible que **sur secteur** et en mode graphique discret.
