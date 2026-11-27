@@ -1,0 +1,1464 @@
+{
+ "agent": "runs/arm_C_medium/ckpt_latest.pt",
+ "specs": 96,
+ "secondes": 2051,
+ "resume": {
+  "TOUT": {
+   "Medium": {
+    "parties": 96,
+    "victoires": 36,
+    "taux": 0.375,
+    "ic95": [
+     0.285,
+     0.475
+    ],
+    "progression_moy": 0.44,
+    "morts": 24,
+    "timeouts": 1
+   },
+   "ALL": {
+    "parties": 96,
+    "victoires": 36,
+    "taux": 0.375,
+    "ic95": [
+     0.285,
+     0.475
+    ],
+    "progression_moy": 0.44,
+    "morts": 24,
+    "timeouts": 1
+   }
+  },
+  "cartes_entrainement": {
+   "Medium": {
+    "parties": 64,
+    "victoires": 30,
+    "taux": 0.469,
+    "ic95": [
+     0.352,
+     0.589
+    ],
+    "progression_moy": 0.546,
+    "morts": 11,
+    "timeouts": 1
+   },
+   "ALL": {
+    "parties": 64,
+    "victoires": 30,
+    "taux": 0.469,
+    "ic95": [
+     0.352,
+     0.589
+    ],
+    "progression_moy": 0.546,
+    "morts": 11,
+    "timeouts": 1
+   }
+  },
+  "cartes_jamais_vues": {
+   "Medium": {
+    "parties": 32,
+    "victoires": 6,
+    "taux": 0.188,
+    "ic95": [
+     0.089,
+     0.353
+    ],
+    "progression_moy": 0.229,
+    "morts": 13,
+    "timeouts": 0
+   },
+   "ALL": {
+    "parties": 32,
+    "victoires": 6,
+    "taux": 0.188,
+    "ic95": [
+     0.089,
+     0.353
+    ],
+    "progression_moy": 0.229,
+    "morts": 13,
+    "timeouts": 0
+   }
+  }
+ },
+ "usage_types": {
+  "ATTACK_NEUTRAL": 8136,
+  "ATTACK_PLAYER": 5118,
+  "ALLY_REQUEST": 4189,
+  "BUILD_City": 2381,
+  "BOAT": 2234,
+  "BUILD_Defense Post": 616,
+  "BUILD_Factory": 242,
+  "BUILD_Port": 211,
+  "SPAWN": 113,
+  "UPGRADE": 76,
+  "EMOJI": 20,
+  "NUKE_Atom Bomb": 17,
+  "BUILD_Missile Silo": 11,
+  "TARGET_PLAYER": 11,
+  "DONATE_TROOPS": 10,
+  "EMBARGO_ALL_ON": 10,
+  "CANCEL_BOAT": 10,
+  "EMBARGO_ON": 10,
+  "MOVE_WARSHIPS": 8,
+  "ALLY_REJECT": 8,
+  "DONATE_GOLD": 7,
+  "BUILD_SAM Launcher": 7,
+  "DELETE_UNIT": 7,
+  "NUKE_Hydrogen Bomb": 6,
+  "ALLY_BREAK": 6,
+  "CANCEL_ATTACK": 6,
+  "ALLY_EXTEND": 5,
+  "EMBARGO_ALL_OFF": 4,
+  "EMBARGO_OFF": 4,
+  "NUKE_MIRV": 4,
+  "BUILD_Warship": 3
+ },
+ "parties": [
+  {
+   "cfg": {
+    "map": "Onion",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000005",
+    "_id": 5
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0107216641732564,
+   "steps": 284,
+   "tick": 5862
+  },
+  {
+   "cfg": {
+    "map": "Onion",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000004",
+    "_id": 4
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0039013882240306,
+   "steps": 329,
+   "tick": 6762
+  },
+  {
+   "cfg": {
+    "map": "Onion",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000006",
+    "_id": 6
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0020481584384127,
+   "steps": 387,
+   "tick": 7922
+  },
+  {
+   "cfg": {
+    "map": "Onion",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000002",
+    "_id": 2
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.003259243428083,
+   "steps": 411,
+   "tick": 8402
+  },
+  {
+   "cfg": {
+    "map": "Onion",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000003",
+    "_id": 3
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.23272422882382277,
+   "steps": 605,
+   "tick": 12282
+  },
+  {
+   "cfg": {
+    "map": "Onion",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000007",
+    "_id": 7
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0014936492954574,
+   "steps": 402,
+   "tick": 8222
+  },
+  {
+   "cfg": {
+    "map": "Onion",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000008",
+    "_id": 8
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0130586838256235,
+   "steps": 382,
+   "tick": 7822
+  },
+  {
+   "cfg": {
+    "map": "Pangaea",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000010",
+    "_id": 10
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0142505382611489,
+   "steps": 406,
+   "tick": 8302
+  },
+  {
+   "cfg": {
+    "map": "Pangaea",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000011",
+    "_id": 11
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.037487208776564,
+   "steps": 386,
+   "tick": 7902
+  },
+  {
+   "cfg": {
+    "map": "Pangaea",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000014",
+    "_id": 14
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.03969155554498198,
+   "steps": 405,
+   "tick": 8282
+  },
+  {
+   "cfg": {
+    "map": "Pangaea",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000012",
+    "_id": 12
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.22853456005511308,
+   "steps": 581,
+   "tick": 11802
+  },
+  {
+   "cfg": {
+    "map": "Pangaea",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000015",
+    "_id": 15
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0095438518433466,
+   "steps": 363,
+   "tick": 7442
+  },
+  {
+   "cfg": {
+    "map": "Pangaea",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000013",
+    "_id": 13
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.17756670274899783,
+   "steps": 658,
+   "tick": 13342
+  },
+  {
+   "cfg": {
+    "map": "Pangaea",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000016",
+    "_id": 16
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 231,
+   "tick": 4802
+  },
+  {
+   "cfg": {
+    "map": "Onion",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000001",
+    "_id": 1
+   },
+   "end": "timeout",
+   "win": false,
+   "progress": 0.7807601451340627,
+   "steps": 1500,
+   "tick": 30182
+  },
+  {
+   "cfg": {
+    "map": "Pangaea",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000009",
+    "_id": 9
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0386271941565643,
+   "steps": 1143,
+   "tick": 23042
+  },
+  {
+   "cfg": {
+    "map": "Caucasus",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000018",
+    "_id": 18
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 187,
+   "tick": 3922
+  },
+  {
+   "cfg": {
+    "map": "Caucasus",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000022",
+    "_id": 22
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 185,
+   "tick": 3882
+  },
+  {
+   "cfg": {
+    "map": "Caucasus",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000019",
+    "_id": 19
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.14549749450445554,
+   "steps": 423,
+   "tick": 8642
+  },
+  {
+   "cfg": {
+    "map": "Caucasus",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000017",
+    "_id": 17
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.006597607960857541,
+   "steps": 616,
+   "tick": 12502
+  },
+  {
+   "cfg": {
+    "map": "Caucasus",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000021",
+    "_id": 21
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0165662201537886,
+   "steps": 397,
+   "tick": 8122
+  },
+  {
+   "cfg": {
+    "map": "Caucasus",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000020",
+    "_id": 20
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 609,
+   "tick": 12362
+  },
+  {
+   "cfg": {
+    "map": "Caucasus",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000024",
+    "_id": 24
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 406,
+   "tick": 8302
+  },
+  {
+   "cfg": {
+    "map": "BosphorusStraits",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000025",
+    "_id": 25
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.054577566094389,
+   "steps": 379,
+   "tick": 7762
+  },
+  {
+   "cfg": {
+    "map": "Caucasus",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000023",
+    "_id": 23
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 708,
+   "tick": 14342
+  },
+  {
+   "cfg": {
+    "map": "BosphorusStraits",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000026",
+    "_id": 26
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0772796236694855,
+   "steps": 438,
+   "tick": 8942
+  },
+  {
+   "cfg": {
+    "map": "BosphorusStraits",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000027",
+    "_id": 27
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.22331703859472915,
+   "steps": 506,
+   "tick": 10302
+  },
+  {
+   "cfg": {
+    "map": "BosphorusStraits",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000030",
+    "_id": 30
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 270,
+   "tick": 5582
+  },
+  {
+   "cfg": {
+    "map": "BosphorusStraits",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000029",
+    "_id": 29
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0015643799486158,
+   "steps": 338,
+   "tick": 6942
+  },
+  {
+   "cfg": {
+    "map": "BosphorusStraits",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000028",
+    "_id": 28
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0919599981168198,
+   "steps": 437,
+   "tick": 8922
+  },
+  {
+   "cfg": {
+    "map": "BosphorusStraits",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000031",
+    "_id": 31
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0161898761744759,
+   "steps": 438,
+   "tick": 8942
+  },
+  {
+   "cfg": {
+    "map": "Iceland",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000034",
+    "_id": 34
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0321741530716795,
+   "steps": 381,
+   "tick": 7802
+  },
+  {
+   "cfg": {
+    "map": "BosphorusStraits",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000032",
+    "_id": 32
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.23854268018371466,
+   "steps": 521,
+   "tick": 10602
+  },
+  {
+   "cfg": {
+    "map": "Iceland",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000036",
+    "_id": 36
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0320652056274509,
+   "steps": 345,
+   "tick": 7082
+  },
+  {
+   "cfg": {
+    "map": "Iceland",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000033",
+    "_id": 33
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.09125746947259028,
+   "steps": 450,
+   "tick": 9182
+  },
+  {
+   "cfg": {
+    "map": "Iceland",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000037",
+    "_id": 37
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0165203660230562,
+   "steps": 265,
+   "tick": 5482
+  },
+  {
+   "cfg": {
+    "map": "Iceland",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000035",
+    "_id": 35
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0871270374750501,
+   "steps": 645,
+   "tick": 13082
+  },
+  {
+   "cfg": {
+    "map": "BeringStrait",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000041",
+    "_id": 41
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.24072750517165878,
+   "steps": 283,
+   "tick": 5842
+  },
+  {
+   "cfg": {
+    "map": "Iceland",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000040",
+    "_id": 40
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0252139728601546,
+   "steps": 347,
+   "tick": 7122
+  },
+  {
+   "cfg": {
+    "map": "Iceland",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000039",
+    "_id": 39
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0254286982897032,
+   "steps": 372,
+   "tick": 7622
+  },
+  {
+   "cfg": {
+    "map": "Iceland",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000038",
+    "_id": 38
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0251029547186217,
+   "steps": 437,
+   "tick": 8922
+  },
+  {
+   "cfg": {
+    "map": "BeringStrait",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000044",
+    "_id": 44
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.05493996178089615,
+   "steps": 250,
+   "tick": 5182
+  },
+  {
+   "cfg": {
+    "map": "BeringStrait",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000046",
+    "_id": 46
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0025782795363374,
+   "steps": 251,
+   "tick": 5202
+  },
+  {
+   "cfg": {
+    "map": "BeringStrait",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000047",
+    "_id": 47
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.17780355917501764,
+   "steps": 248,
+   "tick": 5142
+  },
+  {
+   "cfg": {
+    "map": "BeringStrait",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000045",
+    "_id": 45
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.21265248633893533,
+   "steps": 389,
+   "tick": 7962
+  },
+  {
+   "cfg": {
+    "map": "BeringStrait",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000043",
+    "_id": 43
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.24188095705467946,
+   "steps": 506,
+   "tick": 10302
+  },
+  {
+   "cfg": {
+    "map": "BeringStrait",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000042",
+    "_id": 42
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0344135515077084,
+   "steps": 735,
+   "tick": 14882
+  },
+  {
+   "cfg": {
+    "map": "DanishStraits",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000049",
+    "_id": 49
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 241,
+   "tick": 5002
+  },
+  {
+   "cfg": {
+    "map": "BeringStrait",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000048",
+    "_id": 48
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.24260029159263602,
+   "steps": 326,
+   "tick": 6702
+  },
+  {
+   "cfg": {
+    "map": "DanishStraits",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000055",
+    "_id": 55
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 253,
+   "tick": 5242
+  },
+  {
+   "cfg": {
+    "map": "DanishStraits",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000053",
+    "_id": 53
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 341,
+   "tick": 7002
+  },
+  {
+   "cfg": {
+    "map": "DanishStraits",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000050",
+    "_id": 50
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.0016027251009312405,
+   "steps": 636,
+   "tick": 12902
+  },
+  {
+   "cfg": {
+    "map": "DanishStraits",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000051",
+    "_id": 51
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.2147466198023424,
+   "steps": 707,
+   "tick": 14322
+  },
+  {
+   "cfg": {
+    "map": "DanishStraits",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000052",
+    "_id": 52
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0003832168070375,
+   "steps": 818,
+   "tick": 16542
+  },
+  {
+   "cfg": {
+    "map": "BlackSea",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000057",
+    "_id": 57
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0060229803030876,
+   "steps": 479,
+   "tick": 9762
+  },
+  {
+   "cfg": {
+    "map": "DanishStraits",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000054",
+    "_id": 54
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 8.517162081594413e-05,
+   "steps": 810,
+   "tick": 16382
+  },
+  {
+   "cfg": {
+    "map": "DanishStraits",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000056",
+    "_id": 56
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.21850620567375886,
+   "steps": 645,
+   "tick": 13082
+  },
+  {
+   "cfg": {
+    "map": "BlackSea",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000058",
+    "_id": 58
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0035259137398058,
+   "steps": 511,
+   "tick": 10402
+  },
+  {
+   "cfg": {
+    "map": "BlackSea",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000059",
+    "_id": 59
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.003491634487219,
+   "steps": 634,
+   "tick": 12862
+  },
+  {
+   "cfg": {
+    "map": "BlackSea",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000061",
+    "_id": 61
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.0003190894149735986,
+   "steps": 487,
+   "tick": 9922
+  },
+  {
+   "cfg": {
+    "map": "BlackSea",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000060",
+    "_id": 60
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.23814659978659677,
+   "steps": 622,
+   "tick": 12622
+  },
+  {
+   "cfg": {
+    "map": "BlackSea",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000064",
+    "_id": 64
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 500,
+   "tick": 10182
+  },
+  {
+   "cfg": {
+    "map": "Africa",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000066",
+    "_id": 66
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 302,
+   "tick": 6222
+  },
+  {
+   "cfg": {
+    "map": "BlackSea",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000063",
+    "_id": 63
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.22512076776091203,
+   "steps": 786,
+   "tick": 15902
+  },
+  {
+   "cfg": {
+    "map": "BlackSea",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000062",
+    "_id": 62
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0023902296680285,
+   "steps": 884,
+   "tick": 17862
+  },
+  {
+   "cfg": {
+    "map": "Africa",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000065",
+    "_id": 65
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 501,
+   "tick": 10202
+  },
+  {
+   "cfg": {
+    "map": "Africa",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000067",
+    "_id": 67
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 436,
+   "tick": 8902
+  },
+  {
+   "cfg": {
+    "map": "Africa",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000069",
+    "_id": 69
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 312,
+   "tick": 6422
+  },
+  {
+   "cfg": {
+    "map": "Africa",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000071",
+    "_id": 71
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 208,
+   "tick": 4342
+  },
+  {
+   "cfg": {
+    "map": "Africa",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000072",
+    "_id": 72
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 340,
+   "tick": 6982
+  },
+  {
+   "cfg": {
+    "map": "Africa",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000068",
+    "_id": 68
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.022197801536860736,
+   "steps": 663,
+   "tick": 13442
+  },
+  {
+   "cfg": {
+    "map": "Africa",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000070",
+    "_id": 70
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 462,
+   "tick": 9422
+  },
+  {
+   "cfg": {
+    "map": "Oceania",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000075",
+    "_id": 75
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 414,
+   "tick": 8462
+  },
+  {
+   "cfg": {
+    "map": "Oceania",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000074",
+    "_id": 74
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.2256666138190615,
+   "steps": 484,
+   "tick": 9862
+  },
+  {
+   "cfg": {
+    "map": "Oceania",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000076",
+    "_id": 76
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.00868832238920651,
+   "steps": 560,
+   "tick": 11382
+  },
+  {
+   "cfg": {
+    "map": "Oceania",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000073",
+    "_id": 73
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.001541353763429992,
+   "steps": 882,
+   "tick": 17822
+  },
+  {
+   "cfg": {
+    "map": "Oceania",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000079",
+    "_id": 79
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.11042198458043286,
+   "steps": 420,
+   "tick": 8582
+  },
+  {
+   "cfg": {
+    "map": "Oceania",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000080",
+    "_id": 80
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.10257691242093596,
+   "steps": 386,
+   "tick": 7902
+  },
+  {
+   "cfg": {
+    "map": "Oceania",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000078",
+    "_id": 78
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.19355992075925568,
+   "steps": 627,
+   "tick": 12722
+  },
+  {
+   "cfg": {
+    "map": "MississippiRiver",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000081",
+    "_id": 81
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0059369303584944,
+   "steps": 566,
+   "tick": 11502
+  },
+  {
+   "cfg": {
+    "map": "MississippiRiver",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000083",
+    "_id": 83
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.009309075345328576,
+   "steps": 495,
+   "tick": 10082
+  },
+  {
+   "cfg": {
+    "map": "Oceania",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000077",
+    "_id": 77
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.0004680605594462211,
+   "steps": 1150,
+   "tick": 23182
+  },
+  {
+   "cfg": {
+    "map": "MississippiRiver",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000085",
+    "_id": 85
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0136279234934815,
+   "steps": 519,
+   "tick": 10562
+  },
+  {
+   "cfg": {
+    "map": "MississippiRiver",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000082",
+    "_id": 82
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0460267005297998,
+   "steps": 919,
+   "tick": 18562
+  },
+  {
+   "cfg": {
+    "map": "MississippiRiver",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000088",
+    "_id": 88
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 410,
+   "tick": 8382
+  },
+  {
+   "cfg": {
+    "map": "MississippiRiver",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000084",
+    "_id": 84
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0019835010701916,
+   "steps": 950,
+   "tick": 19182
+  },
+  {
+   "cfg": {
+    "map": "MississippiRiver",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000086",
+    "_id": 86
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.036122315186063146,
+   "steps": 640,
+   "tick": 12982
+  },
+  {
+   "cfg": {
+    "map": "MississippiRiver",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000087",
+    "_id": 87
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 642,
+   "tick": 13022
+  },
+  {
+   "cfg": {
+    "map": "AmazonRiver",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000089",
+    "_id": 89
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.24751503059994662,
+   "steps": 712,
+   "tick": 14422
+  },
+  {
+   "cfg": {
+    "map": "AmazonRiver",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000091",
+    "_id": 91
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 523,
+   "tick": 10642
+  },
+  {
+   "cfg": {
+    "map": "AmazonRiver",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000092",
+    "_id": 92
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 592,
+   "tick": 12022
+  },
+  {
+   "cfg": {
+    "map": "AmazonRiver",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000093",
+    "_id": 93
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.04924770705977937,
+   "steps": 553,
+   "tick": 11242
+  },
+  {
+   "cfg": {
+    "map": "AmazonRiver",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000090",
+    "_id": 90
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0002266104551067,
+   "steps": 846,
+   "tick": 17102
+  },
+  {
+   "cfg": {
+    "map": "AmazonRiver",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000094",
+    "_id": 94
+   },
+   "end": "win",
+   "win": true,
+   "progress": 1.0053926812122496,
+   "steps": 737,
+   "tick": 14922
+  },
+  {
+   "cfg": {
+    "map": "AmazonRiver",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000095",
+    "_id": 95
+   },
+   "end": "loss_winner_other",
+   "win": false,
+   "progress": 0.2471206342083614,
+   "steps": 633,
+   "tick": 12842
+  },
+  {
+   "cfg": {
+    "map": "AmazonRiver",
+    "difficulty": "Medium",
+    "bots": 12,
+    "_seed": "e05000096",
+    "_id": 96
+   },
+   "end": "dead",
+   "win": false,
+   "progress": 0.0,
+   "steps": 609,
+   "tick": 12362
+  }
+ ]
+}
