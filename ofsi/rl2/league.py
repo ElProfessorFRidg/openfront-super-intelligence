@@ -30,8 +30,9 @@ class TeacherAgent:
 
 class NeuralAgent:
     _cache = {}
-    def __init__(self, ckpt, device=None):
+    def __init__(self, ckpt, device=None, sample=True, seed=0):
         import torch
+        torch.manual_seed(seed); self.sample = sample          # ECHANTILLONNE par defaut : le decodage glouton fausse les politiques PPO (cf. journal 2026-11-26)
         device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         from ofsi.rl2.model import PolicyV2, collate
         from ofsi.rl2 import ckpt as C
@@ -41,7 +42,7 @@ class NeuralAgent:
         self.m = NeuralAgent._cache[ckpt]
     def act(self, obs, st, costs, cands):
         T = self.torch
-        with T.no_grad(), T.autocast(device_type="cuda", dtype=T.bfloat16, enabled=(self.dev == "cuda")): out = self.m.act(self.collate([obs], self.dev), greedy=True)
+        with T.no_grad(), T.autocast(device_type="cuda", dtype=T.bfloat16, enabled=(self.dev == "cuda")): out = self.m.act(self.collate([obs], self.dev), greedy=not self.sample)
         A = []
         for k in range(S.M_SUB):
             t = int(out["types"][0, k])
@@ -53,6 +54,7 @@ class NeuralAgent:
 def make_agent(spec, seed=0):
     if spec == "random": return RandomAgent(seed)
     if spec == "teacher2": return TeacherAgent(TeacherV2, seed, ally_mode="none")
+    if spec == "teacher_threats": return TeacherAgent(TeacherV2, seed, ally_mode="threats")
     if spec == "teacher3": return TeacherAgent(TeacherV3, seed)
     return NeuralAgent(spec)
 
@@ -67,7 +69,7 @@ def play(specs, cfg, seed, max_steps=1500):
             obs, info = ms.step(acts)
             if info["done"]: break
         st = info["status"]; fail = any(s["tiles"] == 0 and s["end"] != "win" and ms.views[i].last["state"].get("self", {}).get("spawned", True) is False for i, s in enumerate(st))
-        return {"specs": specs, "cfg": cfg, "seed": seed, "tick": info["tick"], "timeout": info["timeout"], "status": st, "spawn_failed": bool(any("self" not in v.last["state"] for v in ms.views))}
+        return {"specs": specs, "cfg": cfg, "seed": seed, "tick": info["tick"], "timeout": info["timeout"], "status": st, "spawn_failed": bool(ms.spawn_missing), "spawn_missing": list(ms.spawn_missing)}   # PAS « un agent est mort » (defaut corrige le 2026-11-27 : excluait les parties decisives)
     finally:
         ms.close()
 
