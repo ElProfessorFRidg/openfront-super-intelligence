@@ -218,6 +218,7 @@ def main():
 
     os.environ["OFSI_NODE"] = str(ROOT / "node/node.exe")
     os.environ["OFSI_STDERR"] = "1"
+    os.environ["TSX_DISABLE_CACHE"] = "1"
     os.environ["TORCH_FORCE_WEIGHTS_ONLY_LOAD"] = "1"
     for key in ("NODE_PATH", "NODE_OPTIONS", "TSX_TSCONFIG_PATH", "ESBUILD_BINARY_PATH"):
         os.environ.pop(key, None)

@@ -8,6 +8,9 @@ $env:Path = "$env:SystemRoot\System32;$env:SystemRoot"
 $env:OFSI_NONINTERACTIVE = "1"
 $env:PYTHONHOME = "C:\Python-externe-inexistant"
 $env:PYTHONPATH = "C:\Python-externe-inexistant"
+$env:TEMP = (New-Item -ItemType Directory -Force -Path (Join-Path $root "temp")).FullName
+$env:TMP = $env:TEMP
+$identity = [Security.Principal.WindowsIdentity]::GetCurrent().Name
 $command = "$env:SystemRoot\System32\cmd.exe"
 $dashboardProcess = $null
 
@@ -23,7 +26,7 @@ function Invoke-Launcher([string]$name, [string]$arguments) {
 
 $result = "FAIL"
 try {
-    "Utilisateur : $env:USERNAME | PATH système uniquement | dossier relocalisé avec espaces" |
+    "Utilisateur Windows : $identity | PATH système uniquement | dossier relocalisé avec espaces" |
         Set-Content -LiteralPath $log
     $runtime = Join-Path $distribution "python/python.exe"
     # A socket check proves the executable cannot reach a public service.
