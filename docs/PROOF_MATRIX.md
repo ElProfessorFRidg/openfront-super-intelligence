@@ -37,8 +37,8 @@ Règle : un statut ne monte que sur une MESURE reproductible citée ; « le code
 | 39 | Arène manuelle, UX un clic | PARTIEL | `play.py` (32 lignes), `OpenFront-SI.ps1` | `train/stop/setup/benchmark/evaluate/skills` non validés de bout en bout |
 | 40 | Persistance, robustesse, diagnostic | PARTIEL | checkpoints SHA-256, STOP/PAUSE, reprise `--resume`, bruit stdout toléré | pas de test de reprise après crash prouvé |
 | 41 | Protocole scientifique | PARTIEL | IC de Wilson, McNemar, protocole écrit avant résultat | 1 graine par bras ; 24 parties/difficulté |
-| 42 | Champion, plateaux | PARTIEL | `stagnation.py`, règle de promotion testée | aucun champion entraîné qui dépasse le professeur |
-| 43 | Orchestration autonome | PARTIEL | scripts `run_pipeline_v3*.sh` | séquencement manuel, pas d'orchestrateur autonome |
+| 42 | Champion, plateaux | PARTIEL | registre `runs/_orch/champion.json` + historique, promotion par McNemar apparié (testée), `notify` détecte plateaux/régressions | aucun champion entraîné ne dépasse le professeur |
+| 43 | Orchestration autonome | PARTIEL | `ofsi/orchestrator.py` + `./ofsi.sh orchestrate` : cycles entraîner-candidat-ancré → évaluer échantillonné → promotion McNemar → notification ; `test_orchestrator.py` 5/5 (promotion, non-promotion, candidat pire, reprise, STOP) ; 1 cycle miniature RÉEL (1 MAJ, 4 parties) | aucun cycle à budget réel exécuté par l'orchestrateur ; une seule stratégie d'entraînement (PPO ancré) ; pas de self-play ni d'ajustement automatique de la difficulté |
 | 44 | Critères de maturité | voir ci-dessous | — | — |
 | 45 | Notifications, rapport | PARTIEL | `ofsi/notify.py` + `ofsi/test_notify.py` (15/15 PASS : plateau, régression, record de débit, divergence, disque, dédup, bannière jamais « VALIDÉE » sans `docs/validation.json` all_pass) ; intégré au tableau de bord (`/api/status`, `/api/notifications`), testé sur données réelles ; `report.py` | « nouveau champion » et toast Windows non testés (Linux) ; rapport automatique complet non vérifié |
 | 46 | Livrables | PARTIEL | README, DEVELOPER, JOURNAL | voir lignes ci-dessus |
@@ -52,6 +52,6 @@ Règle : un statut ne monte que sur une MESURE reproductible citée ; « le code
 ## Priorités déduites de la matrice (ordre de travail)
 1. Jalon 6 : obtenir un apprentissage RL qui DÉPASSE le professeur (PPO ancré = parité ; prochaine étape : entraînement sur Medium depuis `arm_B_anchor`).
 2. §24 : brancher le modèle d'adversaires sur la politique et mesurer le gain de jeu ; §25 : gain de la recherche non démontré (essai à faible puissance).
-3. §34/§35/§43 : autotune, ordonnanceur, orchestrateur autonome.
+3. §35 : ordonnanceur de ressources (CPU/GPU/RAM) ; §43 : exécuter de vrais cycles d'orchestration ; §33 : évolution/découverte stratégique (aucun code).
 4. §45 : (fait en partie) ajouter la détection de nouveau champion et tester le toast Windows.
 5. §7 : audit de performance du plan.

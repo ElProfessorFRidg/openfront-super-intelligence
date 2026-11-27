@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # OpenFront Super Intelligence — lanceur local Linux/macOS (equivalent de OpenFront-SI.ps1). Aucune cle API, aucun compte, aucun service permanent.
-# Usage : ./ofsi.sh <setup|doctor|repair|dashboard|train|stop|evaluate|skills|autotune|notify>
+# Usage : ./ofsi.sh <setup|doctor|repair|dashboard|train|stop|evaluate|skills|autotune|orchestrate|notify>
 set -u
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"; cd "$ROOT"
 ENGINE_URL="https://github.com/openfrontio/openfrontio"; ENGINE_COMMIT="db8bf7c4195bd3e2e4fb7936889dc406b42fe44a"
@@ -45,10 +45,11 @@ cmd_stop() { for d in runs/*/; do [ -f "$d/metrics.jsonl" ] && touch "$d/STOP" &
 cmd_evaluate() { use_env; [ $# -ge 1 ] || { say "usage : ./ofsi.sh evaluate <checkpoint.pt> [sortie.json]"; return 2; }; sync_adapter; "$PY" ofsi/rl2/eval2.py --agent "$1" --per 2 --difficulties Easy,Medium --envs "${OFSI_ENVS:-6}" --out "${2:-benchmarks/eval_$(basename "$(dirname "$1")").json}"; }
 cmd_skills() { use_env; sync_adapter; "$PY" ofsi/run_skills.py --out "${1:-benchmarks/skills_$(date +%Y%m%d).json}"; }
 cmd_autotune() { use_env; sync_adapter; "$PY" ofsi/autotune.py "$@"; }
+cmd_orchestrate() { use_env; sync_adapter; nohup "$PY" ofsi/orchestrator.py "$@" > runs_orchestrator.log 2>&1 & say "orchestrateur lance (PID $!) ; arret propre : touch runs/_orch/STOP ; journal : runs/_orch/cycles.jsonl"; }
 cmd_notify() { "$PY" ofsi/notify.py; }
 
 case "${1:-help}" in
   setup) cmd_setup;; doctor) cmd_doctor;; repair) sync_adapter; cmd_doctor;; dashboard) cmd_dashboard;; train) shift; cmd_train "$@";; stop) cmd_stop;;
-  autotune) shift; cmd_autotune "$@";; evaluate) shift; cmd_evaluate "$@";; skills) shift; cmd_skills "$@";; notify) cmd_notify;;
+  orchestrate) shift; cmd_orchestrate "$@";; autotune) shift; cmd_autotune "$@";; evaluate) shift; cmd_evaluate "$@";; skills) shift; cmd_skills "$@";; notify) cmd_notify;;
   *) sed -n 2,3p "$0";;
 esac
