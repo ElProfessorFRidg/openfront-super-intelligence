@@ -1,0 +1,116 @@
+name: OpenFront SI Windows portable
+
+on:
+  push:
+    branches: [windows-portable-pr1]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'adapter/**'
+      - 'ofsi/**'
+      - 'portable-windows/**'
+      - 'OpenFront-SI.ps1'
+      - 'ofsi.sh'
+      - '.github/workflows/windows-portable.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-dashboard:
+    name: Dashboard on native Linux checkout
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24.22.3'
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13.13'
+      - name: Install the native runtime
+        run: |
+          npm install -g npm@12.2.3 --no-audit --no-fund
+          bash ./ofsi.sh setup
+      - name: Run a local replay through the dashboard
+        run: .venv/bin/python portable-windows/test_dashboard.py
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: verification-native-linux
+          path: reports/
+  build-validate:
+    name: Build and smoke test (${{ matrix.variant }})
+    runs-on: windows-2025
+    timeout-minutes: 55
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: [cpu, cuda]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13.13'
+          architecture: x64
+      - name: Assemble portable ZIP
+        env:
+          OFSI_PR_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        shell: pwsh
+        run: ./portable-windows/build.ps1 -Variant '${{ matrix.variant }}' -Output ./dist
+      - name: Run extracted ZIP as a fresh Windows standard user
+        shell: pwsh
+        run: ./portable-windows/validate.ps1 -Zip './dist/OpenFront-SI-PR1-Windows-x64-${{ matrix.variant }}.zip'
+      - uses: actions/upload-artifact@v7
+        with:
+          archive: false
+          path: dist/OpenFront-SI-PR1-Windows-x64-${{ matrix.variant }}.zip
+          if-no-files-found: error
+      - name: Publish hashes and validation reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: verification-${{ matrix.variant }}
+          path: |
+            dist/*.zip.sha256
+            dist/validation.log
+            dist/validation-reports/
+
+  validate-nvidia:
+    name: Validate CUDA on NVIDIA hardware
+    needs: build-validate
+    if: github.event_name != 'pull_request' && vars.OFSI_WINDOWS_GPU_RUNNER != ''
+    runs-on: ${{ vars.OFSI_WINDOWS_GPU_RUNNER }}
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v8
+        with:
+          name: OpenFront-SI-PR1-Windows-x64-cuda.zip
+          path: dist
+          skip-decompress: true
+      - uses: actions/download-artifact@v8
+        with:
+          name: verification-cuda
+          path: dist
+      - name: Validate extracted ZIP on NVIDIA
+        shell: pwsh
+        run: ./portable-windows/validate.ps1 -Zip ./dist/OpenFront-SI-PR1-Windows-x64-cuda.zip -RequireCuda
+      - name: Publish NVIDIA validation reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: verification-nvidia
+          path: |
+            dist/validation.log
+            dist/validation-reports/

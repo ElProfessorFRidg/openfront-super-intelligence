@@ -64,6 +64,62 @@ rl.on("line", (line) => { chain = chain.then(async () => {
         let ok = true; const n = req.ticks ?? 1; for (let i = 0; i < n && ok; i++) ok = env.stepTick(i === 0 ? (req.intents ?? []) : []);
         const w = env.game.getWinner(); const wid = w && typeof (w as any).id === "function" ? (w as any).id() : (w ? String((w as any).name ?? "team") : null);
         out({ id: req.id, ok, tick: env.tick, error: env.error ?? null, winner: wid, state: state2(env, req.agent ?? 0, { maxPlayers: req.maxPlayers }), costs: costs2(env, req.agent ?? 0) }); break; }
+      case "replay_view": {
+        const g = env.game, map = g.map(), width = map.width(), height = map.height();
+        const size = Math.max(40, Math.min(240, Number(req.size) || 160));
+        const block = Math.ceil(Math.max(width, height) / size);
+        const gw = Math.ceil(width / block), gh = Math.ceil(height / block);
+        const buildings = new Set(["City", "Port", "Defense Post", "Factory", "SAM Launcher", "Missile Silo", "Warship", "Transport", "Trade Ship", "Train", "Atom Bomb", "Hydrogen Bomb", "MIRV", "MIRV Warhead", "SAMMissile", "Shell"]);
+        const players = [], units = [], stats = [], counts = new Map<number, number>();
+        let self = null;
+        const replayPlayers = g.players();
+        const viewer = replayPlayers.find(p => p.clientID() === agentId(req.agent ?? 0));
+        for (const p of replayPlayers) {
+          const code = p.smallID() + 2;
+          players.push([code, p.name()]);
+          stats.push([code, p.name(), p.numTilesOwned(), Math.round(p.troops()), Number(p.gold()),
+                      p.isAlive(), Boolean(viewer && viewer !== p && viewer.isAlliedWith(p)), p.id()]);
+          if (p.clientID() === agentId(req.agent ?? 0)) self = code;
+          for (const unit of p.units()) {
+            if (!unit.isActive() || !buildings.has(unit.type())) continue;
+            units.push([code, unit.type(), map.x(unit.tile()), map.y(unit.tile()), unit.level()]);
+          }
+        }
+        const runs = Buffer.allocUnsafe(gw * gh * 4);
+        let last = -1, length = 0, offset = 0;
+        function flush() {
+          if (!length) return;
+          runs.writeUInt16LE(length, offset);
+          runs.writeUInt16LE(last, offset + 2);
+          offset += 4;
+        }
+        for (let by = 0; by < gh; by++) {
+          for (let bx = 0; bx < gw; bx++) {
+            counts.clear();
+            let samples = 0, land = 0, owner = 1, high = 0;
+            for (let y = by * block; y < Math.min(height, (by + 1) * block); y += 2) {
+              for (let x = bx * block; x < Math.min(width, (bx + 1) * block); x += 2) {
+                samples++;
+                const tile = map.ref(x, y);
+                if (!map.isLand(tile)) continue;
+                land++;
+                if (!map.hasOwner(tile)) continue;
+                const code = map.ownerID(tile) + 2;
+                const count = (counts.get(code) ?? 0) + 1;
+                counts.set(code, count);
+                if (count > high) { high = count; owner = code; }
+              }
+            }
+            const code = high > 0 && high * 4 >= land ? owner : land * 4 >= samples ? 1 : 0;
+            if (code === last && length < 65535) length++;
+            else { flush(); last = code; length = 1; }
+          }
+        }
+        flush();
+        out({ id: req.id, ok: true, gw, gh, width, height, self, players, units, stats,
+              owners: runs.subarray(0, offset).toString("base64") });
+        break;
+      }
       case "grid2": { // vue geographique grossiere (<=32x32) : par cellule, fractions terre / moi / allie / ennemi (echantillon 1/2)
         const me = (await import("./observe.mts")).playerOf(env, req.agent ?? 0); const m = env.game.map(), W = m.width(), H = m.height();
         const blk = Math.max(1, Math.ceil(Math.max(W, H) / (req.size ?? 32))), gw = Math.ceil(W / blk), gh = Math.ceil(H / blk);
