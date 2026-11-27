@@ -5,7 +5,7 @@ param(
 $ErrorActionPreference = "Stop"
 $PSNativeCommandUseErrorActionPreference = $true
 $repo = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
-$python = (Get-Command python -CommandType Application).Source
+$python = (Get-Command python -CommandType Application | Select-Object -First 1).Source
 $engineCommit = "db8bf7c4195bd3e2e4fb7936889dc406b42fe44a"
 $expectedChampion = "32654699e326ee8ee7ec35affb9387c878f4b9a2d59b65f95686184b7691da7b"
 $champion = "runs/arm_C_medium/ckpt_latest.pt"
@@ -26,6 +26,7 @@ function Assert-Hash($file, $expected) {
 }
 
 try {
+    Write-Host "Preparing OpenFront engine at $engineCommit"
     $engine = Join-Path $stage "vendor/openfront-engine"
     New-Item -ItemType Directory -Path $engine -Force | Out-Null
     $env:GIT_LFS_SKIP_SMUDGE = "1"
@@ -70,6 +71,7 @@ try {
         cuda = @{ tag = "cu132"; sha = "7b54774dedca2a1147f1ae47451d9a8a7e88b80665fc505bf6a4f1f427d21e97" }
     }[$Variant]
     $torch = "torch @ https://download-r2.pytorch.org/whl/$($wheel.tag)/torch-$torchVersion%2B$($wheel.tag)-cp313-cp313-win_amd64.whl#sha256=$($wheel.sha)"
+    Write-Host "Bundling PyTorch $torchVersion+$($wheel.tag)"
     $requirements = Join-Path $build "requirements.txt"
     ((Get-Content -LiteralPath (Join-Path $repo "requirements-lock.txt") | Where-Object { $_ -notmatch '^torch==' }) + $torch) |
         Set-Content -LiteralPath $requirements -Encoding ascii
@@ -109,6 +111,7 @@ try {
         python = $pythonVersion
         torch = "$torchVersion+$($wheel.tag)"
     } | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $stage "distribution.json") -Encoding utf8
+    Write-Host "Creating $zip"
     $sevenZip = Join-Path $env:ProgramFiles "7-Zip/7z.exe"
     Push-Location $stage
     try {
