@@ -5,7 +5,7 @@ Règle : un statut ne monte que sur une MESURE reproductible citée ; « le code
 
 | § | Exigence | Statut | Preuve / commande | Limites |
 |---|---|---|---|---|
-| 3 | Installation et matériel | PARTIEL | Windows : `OpenFront-SI.ps1 doctor/repair` testés. Linux : Node 24.22.3 local + venv CPU reconstruits, `docs/JOURNAL.md` 2026-11-26 | `setup` non testé de bout en bout ; Linux sans GPU |
+| 3 | Installation et matériel | PARTIEL (Linux : PASS reproductible) | Windows : `OpenFront-SI.ps1 doctor/repair` testés. Linux : `./ofsi.sh setup` depuis un CLONE VIERGE en 2 min, puis 30/30 scénarios PASS (même commit moteur `db8bf7c`) | `setup` non testé de bout en bout ; Linux sans GPU |
 | 4 | Produit et structure | PARTIEL | arborescence du README | pas d'installateur testé |
 | 5 | Sources et recherche | PARTIEL | moteur officiel épinglé `db8bf7c4` ; djmango/openfront-ai étudié non exécuté (licence absente) ; OpenFront_Agents non exécutable (LLM/compte) | pas de comparaison exécutée avec un agent public |
 | 6 | Moteur headless | PASS | `selftest_snapshot.mts` : hash identique ; 30/30 scénarios sur Windows ET Linux | — |
@@ -29,7 +29,7 @@ Règle : un statut ne monte que sur une MESURE reproductible citée ; « le code
 | 31 | Mémoire et données | PARTIEL | démonstrations `data/demos_v3` (60 056 décisions) | pas de mémoire de parties/replay buffer prioritaire |
 | 32 | Analyse des défaites | PARTIEL | 1 analyse contrefactuelle, ablation du professeur v3 | échantillon minuscule |
 | 33 | Découverte stratégique, évolution | NON FAIT | — | — |
-| 34 | Optimisation automatique des modèles | NON FAIT | — | `autotune` seulement planifié |
+| 34 | Optimisation automatique des modèles | PARTIEL | `ofsi/autotune.py` + `./ofsi.sh autotune` : mesure le débit pour N moteurs, empreinte matérielle, `config/autotune.json` (4 cœurs : 2→21, 4→36, 8→55, 12→62, 16→68 déc/s, professeur scripté) | optimise seulement le NOMBRE DE MOTEURS (pas l'architecture, lr, batch) ; mesuré avec professeur scripté, pas avec réseau ; optimum à la borne testée (16) |
 | 35 | Ordonnanceur de ressources | PARTIEL | `memguard.py` (garde-fou RAM) | pas d'ordonnanceur CPU/GPU |
 | 36 | GPT facultatif | PASS (absent par choix) | aucune dépendance LLM | — |
 | 37 | Tableau de bord, données réelles | PARTIEL | `dashboard.py`, testé Windows | non testé ici ; pas de test UI automatisé |
