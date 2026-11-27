@@ -11,14 +11,28 @@ use_env() { export PATH="$NODE_BIN:$PATH"; }
 sync_adapter() { rm -rf vendor/openfront-engine/osi && cp -r adapter vendor/openfront-engine/osi; }
 
 cmd_setup() {   # idempotent : ne refait que ce qui manque ; ne touche jamais aux checkpoints
-  if [ ! -x "$NODE_BIN/node" ]; then say "Node 24 + npm 12 (paquets npm 'node@24', 'npm@12') dans tools/node24"; mkdir -p tools/node24 && (cd tools/node24 && npm init -y >/dev/null && npm i node@24 npm@12 >/dev/null) || { say "ECHEC installation Node"; return 1; }; fi
+  if [ ! -x "$NODE_BIN/node" ] || [ ! -x "$NODE_BIN/npm" ]; then
+    say "Node 24.22.3 + npm 12.2.3 dans tools/node24"
+    mkdir -p tools/node24 && (
+      cd tools/node24 &&
+      { [ -f package.json ] || npm init -y >/dev/null; } &&
+      # npm 12 blocks lifecycle scripts by default. Only the pinned Node
+      # package needs its preinstall script to fetch the platform binary.
+      npm pkg set --json 'allowScripts.node=true' &&
+      npm install --save-exact node@24.22.3 npm@12.2.3 --no-audit --no-fund &&
+      { [ -x node_modules/.bin/node ] || npm rebuild node; } &&
+      test -x node_modules/.bin/node && test -x node_modules/.bin/npm
+    ) || { say "ECHEC installation Node/npm portable"; return 1; }
+  fi
   use_env
   if [ ! -d vendor/openfront-engine/.git ] || [ "$(git -C vendor/openfront-engine rev-parse HEAD 2>/dev/null)" != "$ENGINE_COMMIT" ]; then
     say "Moteur officiel au commit epingle $ENGINE_COMMIT"; mkdir -p vendor/openfront-engine; (cd vendor/openfront-engine && { [ -d .git ] || git init -q; } && { git remote add origin "$ENGINE_URL" 2>/dev/null; true; } \
       && GIT_LFS_SKIP_SMUDGE=1 git fetch --depth=1 origin "$ENGINE_COMMIT" && git checkout -q FETCH_HEAD) || { say "ECHEC recuperation du moteur"; return 1; }; fi
   [ -d vendor/openfront-engine/node_modules ] || (cd vendor/openfront-engine && npm ci --ignore-scripts) || { say "ECHEC npm ci"; return 1; }
   if [ ! -x "$PY" ]; then say "venv Python (numpy + torch CPU ; pour un GPU CUDA installer le torch adapte dans .venv)"; python3 -m venv .venv && .venv/bin/pip install -q numpy && .venv/bin/pip install -q torch --index-url https://download.pytorch.org/whl/cpu || return 1; fi
-  sync_adapter; say "Smoke test moteur (snapshot/restore)"; (cd vendor/openfront-engine && ENGINE_COMMIT="$ENGINE_COMMIT" node node_modules/tsx/dist/cli.mjs osi/scripts/selftest_snapshot.mts 2>/dev/null | tail -1)
+  sync_adapter || return 1
+  say "Smoke test moteur (snapshot/restore)"
+  (set -o pipefail; cd vendor/openfront-engine && ENGINE_COMMIT="$ENGINE_COMMIT" node node_modules/tsx/dist/cli.mjs osi/scripts/selftest_snapshot.mts | tail -1) || { say "ECHEC smoke test moteur"; return 1; }
   cmd_doctor
 }
 
