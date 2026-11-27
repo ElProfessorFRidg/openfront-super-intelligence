@@ -32,8 +32,8 @@ Règle : un statut ne monte que sur une MESURE reproductible citée ; « le code
 | 34 | Optimisation automatique des modèles | PARTIEL | `ofsi/autotune.py` + `./ofsi.sh autotune` : mesure le débit pour N moteurs, empreinte matérielle, `config/autotune.json` (4 cœurs : 2→21, 4→36, 8→55, 12→62, 16→68 déc/s, professeur scripté) | optimise seulement le NOMBRE DE MOTEURS (pas l'architecture, lr, batch) ; mesuré avec professeur scripté, pas avec réseau ; optimum à la borne testée (16) |
 | 35 | Ordonnanceur de ressources | PARTIEL | `memguard.py` (garde-fou RAM) | pas d'ordonnanceur CPU/GPU |
 | 36 | GPT facultatif | PASS (absent par choix) | aucune dépendance LLM | — |
-| 37 | Tableau de bord, données réelles | PARTIEL | `dashboard.py`, testé Windows | non testé ici ; pas de test UI automatisé |
-| 38 | Observer, rejouer | PARTIEL | rejeu déterministe (`test_client.py`, contrefactuel) | pas de visualiseur |
+| 37 | Tableau de bord, données réelles | PARTIEL | `dashboard.py` ; test UI automatisé Chromium headless `ofsi/test_dashboard_ui.js` 8/8 (bannière jamais « validée » sans preuve, rejeu, canvas, 0 erreur JS) ; capture visuelle relue | pas de tests des boutons stop/pause en UI ; températures/GPU non mesurés ici |
+| 38 | Observer, rejouer | PARTIEL | `ofsi/replay.py` (enregistrement décision par décision depuis le moteur) + visualiseur du tableau de bord (liste, lecture/pause, curseur, tuiles/troupes/or/actions par image) ; rejeu déterministe | rendu grossier (grille 40×40, 5 classes), pas de rejeu tick par tick ni de vue des unités ; un seul rejeu de démonstration enregistré |
 | 39 | Arène manuelle, UX un clic | PARTIEL | `play.py` (32 lignes), `OpenFront-SI.ps1` | `train/stop/setup/benchmark/evaluate/skills` non validés de bout en bout |
 | 40 | Persistance, robustesse, diagnostic | PARTIEL | checkpoints SHA-256, STOP/PAUSE, reprise `--resume`, bruit stdout toléré | pas de test de reprise après crash prouvé |
 | 41 | Protocole scientifique | PARTIEL | IC de Wilson, McNemar, protocole écrit avant résultat | 1 graine par bras ; 24 parties/difficulté |

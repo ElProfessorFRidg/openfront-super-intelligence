@@ -36,12 +36,16 @@ button:hover{background:#38506a} canvas{width:100%;height:150px;background:#1016
 <div class="card"><h2>Curriculum (etape courante)</h2><canvas id="c_stage"></canvas><div id="cur" class="na"></div></div>
 <div class="card"><h2>Distribution des actions (derniere mise a jour)</h2><div id="acts"></div></div>
 <div class="card"><h2>Benchmarks mesures</h2><div id="bench" class="na">aucun</div></div>
+<div class="card" style="grid-column:1/-1"><h2>Visualiseur de parties (rejeu enregistre)</h2>
+<div><select id="rp"></select> <button id="rpPlay">Lecture</button> <input id="rpSlider" type="range" min="0" max="0" value="0" style="width:40%"> <span id="rpInfo" class="na">aucun rejeu</span></div>
+<canvas id="rpCanvas" width="480" height="480" style="width:480px;height:480px;image-rendering:pixelated;margin-top:6px"></canvas>
+<div class="na" id="rpLegend">gris fonce = mer · gris = terre neutre · <span style="color:#4ade80">vert = moi</span> · <span style="color:#60a5fa">bleu = allie</span> · <span style="color:#f87171">rouge = ennemi</span></div></div>
 <div class="card"><h2>Notifications</h2><div id="notifs" class="na">aucune</div></div>
 <div class="card"><h2>Materiel</h2><div class="kv" id="hw"></div></div>
 </main>
 <script>
 const $=id=>document.getElementById(id); let run=null;
-const ACT2=["STOP","Attaque terre neutre","Attaque joueur","Bateau (invasion)","Build City","Build Port","Build Defense Post","Build Factory","Build SAM","Build Silo","Upgrade","Bombe atomique","Bombe H","MIRV","Build Warship","Deplacer warships","Annuler attaque","Annuler bateau","Supprimer unite","Alliance: demande","Alliance: rejet","Alliance: prolongation","Alliance: rupture","Cibler joueur","Don d'or","Don de troupes","Embargo ON","Embargo OFF","Embargo global ON","Embargo global OFF","Spawn"];
+const ACT2=["STOP","Attaque terre neutre","Attaque joueur","Bateau (invasion)","Build City","Build Port","Build Defense Post","Build Factory","Build SAM","Build Silo","Upgrade","Bombe atomique","Bombe H","MIRV","Build Warship","Deplacer warships","Annuler attaque","Annuler bateau","Supprimer unite","Alliance: demande","Alliance: rejet","Alliance: prolongation","Alliance: rupture","Cibler joueur","Don d'or","Don de troupes","Embargo ON","Embargo OFF","Embargo global ON","Embargo global OFF","Spawn","Emoji"];
 const ACT=["noop","expand",...[0,1,2,3,4,5].map(i=>"attaque v"+i),"build City","build Port","build DefensePost","build Factory","build SAM","build Warship",...[0,1,2,3,4,5].map(i=>"alliance v"+i)];
 function draw(id,xs,ys,color){const c=$(id),d=c.getContext('2d');c.width=c.clientWidth*2;c.height=300;d.clearRect(0,0,c.width,c.height);
  const v=ys.map((y,i)=>[xs[i],y]).filter(p=>p[1]!==null&&p[1]!==undefined);if(v.length<2){d.fillStyle='#7b8794';d.font='22px sans-serif';d.fillText('pas encore de donnees',20,60);return}
@@ -62,7 +66,14 @@ async function refresh(){
  const st=await (await fetch('/api/status')).json(); const bn=$('banner'); bn.textContent=st.banner; bn.style.color=st.level==='success'?'#4ade80':st.level==='warning'?'#f0b429':'#60a5fa';
  const nt=await (await fetch('/api/notifications')).json(); $('notifs').innerHTML=nt.length?nt.map(n=>`<div class="${n.level==='error'||n.level==='warning'?'warn':''}"><b>${n.t}</b> ${n.title}<br><span class="na">${n.detail}</span></div>`).join(''):'aucune';
  const h=await (await fetch('/api/hardware')).json(); $('hw').innerHTML=Object.entries(h).map(([k,v])=>`<b>${k}</b><span class="${String(v).startsWith('non')?'warn':''}">${v}</span>`).join('');}
-refresh();setInterval(refresh,3000);$('run').onchange=e=>{run=e.target.value;refresh()};
+let RP=null,rpTimer=null;const COL={'0':'#0b1d2e','1':'#4b5563','2':'#4ade80','3':'#60a5fa','4':'#f87171'};
+function rpDraw(i){if(!RP)return;const f=RP.frames[i],c=$('rpCanvas'),d=c.getContext('2d'),w=RP.gw,h=RP.gh,cw=c.width/w,ch=c.height/h;for(let y=0;y<h;y++)for(let x=0;x<w;x++){d.fillStyle=COL[f.grid[y*w+x]]||'#000';d.fillRect(Math.floor(x*cw),Math.floor(y*ch),Math.ceil(cw),Math.ceil(ch))}
+ $('rpInfo').textContent=`image ${i+1}/${RP.frames.length} · tick ${f.tick} · tuiles ${f.tiles} · troupes ${f.troops} · or ${f.gold} · adversaires vivants ${f.others} · actions : ${f.actions.join(', ')||'-'} · issue : ${RP.end}`}
+async function rpLoad(n){if(!n)return;RP=await (await fetch('/api/replay?name='+encodeURIComponent(n))).json();const sl=$('rpSlider');sl.max=RP.frames.length-1;sl.value=0;rpDraw(0)}
+async function rpList(){const l=await (await fetch('/api/replays')).json();const sel=$('rp');if(sel.options.length!==l.length){sel.innerHTML=l.map(r=>`<option>${r.name}</option>`).join('');if(l.length)rpLoad(sel.value)}}
+$('rp').onchange=e=>rpLoad(e.target.value);$('rpSlider').oninput=e=>rpDraw(+e.target.value);
+$('rpPlay').onclick=()=>{if(rpTimer){clearInterval(rpTimer);rpTimer=null;$('rpPlay').textContent='Lecture';return}$('rpPlay').textContent='Pause';rpTimer=setInterval(()=>{const sl=$('rpSlider');if(!RP||+sl.value>=+sl.max){clearInterval(rpTimer);rpTimer=null;$('rpPlay').textContent='Lecture';return}sl.value=+sl.value+1;rpDraw(+sl.value)},80)};
+rpList();refresh();setInterval(refresh,3000);$('run').onchange=e=>{run=e.target.value;refresh()};
 </script></html>"""
 
 
@@ -94,7 +105,7 @@ class H(BaseHTTPRequestHandler):
         from urllib.parse import urlparse, parse_qs
         u = urlparse(self.path); q = parse_qs(u.query)
         if u.path == "/": return self._send(200, PAGE, "text/html")
-        if u.path == "/api/runs": return self._send(200, json.dumps(sorted(p.name for p in RUNS.iterdir() if p.is_dir() and not p.name.startswith("_") and ((p / "metrics.jsonl").exists() or (p / "ckpt_latest.pt").exists())) if RUNS.exists() else []))
+        if u.path == "/api/runs": return self._send(200, json.dumps([p.name for p in sorted((p for p in RUNS.iterdir() if p.is_dir() and not p.name.startswith("_") and ((p / "metrics.jsonl").exists() or (p / "ckpt_latest.pt").exists())), key=lambda p: -max((f.stat().st_mtime for f in (p / "metrics.jsonl", p / "ckpt_latest.pt") if f.exists()), default=0))] if RUNS.exists() else []))
         if u.path == "/api/metrics":
             run = q.get("run", [""])[0]
             if not NAME_RE.match(run): return self._send(400, '{"error":"nom invalide"}')
@@ -115,6 +126,16 @@ class H(BaseHTTPRequestHandler):
                     out.append({"file": f.name, "summary": s})
                 except Exception: out.append({"file": f.name, "summary": "illisible"})
             return self._send(200, json.dumps(out))
+        if u.path == "/api/replays":
+            d = RUNS / "_replays"; out = []
+            for f in sorted(d.glob("*.json")) if d.exists() else []:
+                try: j = json.loads(f.read_text(encoding="utf-8")); out.append({"name": f.stem, "end": j["end"], "frames": len(j["frames"]), "agent": j["agent"], "map": j["cfg"]["map"]})
+                except Exception: pass
+            return self._send(200, json.dumps(out))
+        if u.path == "/api/replay":
+            name = q.get("name", [""])[0]
+            if not NAME_RE.match(name) or not (RUNS / "_replays" / f"{name}.json").exists(): return self._send(404, '{"error":"rejeu introuvable"}')
+            return self._send(200, (RUNS / "_replays" / f"{name}.json").read_text(encoding="utf-8"))
         if u.path == "/api/status":
             from ofsi import notify; notify.scan(); return self._send(200, json.dumps(notify.status(), ensure_ascii=False))
         if u.path == "/api/notifications":
