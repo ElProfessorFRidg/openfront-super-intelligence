@@ -65,6 +65,14 @@ try {
         Pop-Location
     }
     & $python "$PSScriptRoot/materialize.py" $engine
+    $env:ENGINE_COMMIT = $engineCommit
+    $env:TSX_DISABLE_CACHE = "1"
+    Push-Location $engine
+    try {
+        & "$node/node.exe" --import tsx osi/scripts/selftest_snapshot.mts
+    } finally {
+        Pop-Location
+    }
 
     $wheel = @{
         cpu = @{ tag = "cpu"; sha = "086f79c78c941b428410dc15f898ce2420a4580ae6983ea314692d71ce76c619" }
