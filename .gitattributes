@@ -1,0 +1,9 @@
+# Portabilite Windows <-> Linux : ne JAMAIS convertir les fins de ligne des binaires ni des sommes de controle (sinon SHA-256 invalide apres clonage).
+*.pt binary
+*.npz binary
+*.sha256 -text
+*.jsonl -text
+*.sh text eol=lf
+*.py text eol=lf
+*.mts text eol=lf
+*.ps1 text eol=crlf

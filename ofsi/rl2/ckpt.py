@@ -11,7 +11,16 @@ def sha(path):
     return h.hexdigest()
 
 
+def meta():
+    """Provenance du checkpoint (portabilite cloud <-> PC : savoir ou, avec quoi et quand il a ete produit)."""
+    import platform, time, subprocess
+    try: commit = subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True, timeout=5).stdout.strip()
+    except Exception: commit = ""
+    return {"torch": torch.__version__, "cuda": bool(torch.cuda.is_available()), "device": torch.cuda.get_device_name(0) if torch.cuda.is_available() else "cpu", "platform": platform.platform()[:60], "cpus": __import__("os").cpu_count(), "git": commit, "saved": time.strftime("%Y-%m-%d %H:%M:%S")}
+
+
 def save(path, payload, keep=3):
+    payload = {**payload, "meta": meta()} if "meta" not in payload else payload
     tmp = path + ".tmp"
     torch.save(payload, tmp)
     digest = sha(tmp)
