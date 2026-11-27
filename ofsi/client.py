@@ -18,7 +18,7 @@ class OFEnvProc:
     def __init__(self):
         env = dict(os.environ)
         self.p = subprocess.Popen([str(NODE), str(TSX), "osi/daemon.mts"], cwd=ENGINE, stdin=subprocess.PIPE,
-                                  stdout=subprocess.PIPE, stderr=(None if os.environ.get('OFSI_STDERR') else subprocess.DEVNULL), text=True, bufsize=1, env=env)
+                                  stdout=subprocess.PIPE, stderr=(None if os.environ.get('OFSI_STDERR') else subprocess.DEVNULL), text=True, encoding="utf-8", bufsize=1, env=env)
         self._id = 0
 
     def call(self, cmd, **kw):
@@ -66,3 +66,4 @@ class OFEnvProc:
         try: self.call("close")
         except Exception: pass
         self.p.kill()
+        self.p.wait()
