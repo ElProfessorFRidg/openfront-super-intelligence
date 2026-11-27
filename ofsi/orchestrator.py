@@ -37,7 +37,7 @@ def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--init", help="checkpoint du champion initial (ignore si un champion existe deja)"); ap.add_argument("--cycles", type=int, default=1)
     ap.add_argument("--budget", type=int, default=60000, help="decisions d'entrainement par candidat"); ap.add_argument("--envs", type=int, default=6); ap.add_argument("--stage0", type=int, default=2)
     ap.add_argument("--difficulties", default="Easy,Medium"); ap.add_argument("--eval-maps", default="train+heldout"); ap.add_argument("--eval-per", type=int, default=2); ap.add_argument("--alpha", type=float, default=0.05)
-    ap.add_argument("--lr", default="3e-5"); ap.add_argument("--kl-ref", default="1.0"); ap.add_argument("--bc-coef", default="0.5")
+    ap.add_argument("--tag", default="", help="suffixe du nom des candidats (distingue des ablations qui partent du meme champion)"); ap.add_argument("--seed0", type=int, default=100); ap.add_argument("--lr", default="3e-5"); ap.add_argument("--kl-ref", default="1.0"); ap.add_argument("--bc-coef", default="0.5")
     a = ap.parse_args(); ORCH.mkdir(parents=True, exist_ok=True); tag = f"{a.difficulties.replace(',', '+')}_{a.eval_maps.replace('+', '')}_per{a.eval_per}"
     if CHAMP.exists(): champ = json.loads(CHAMP.read_text(encoding="utf-8"))
     elif a.init: champ = {"ckpt": a.init, "sha": sha8(a.init), "history": [{"event": "init", "ckpt": a.init, "t": time.strftime("%Y-%m-%d %H:%M:%S")}]}; CHAMP.write_text(json.dumps(champ, indent=1), encoding="utf-8")
@@ -45,9 +45,9 @@ def main():
     done = sum(1 for _ in open(CYCLES)) if CYCLES.exists() else 0
     for cyc in range(a.cycles):
         if stop_requested(): log({"event": "stop"}); break
-        cid = f"orch_c{sha8(champ['ckpt'])}_s{cyc}"; rd = ROOT / "runs" / cid; cand = rd / "ckpt_latest.pt"
+        cid = f"orch_c{sha8(champ['ckpt'])}_s{cyc}{a.tag}"; rd = ROOT / "runs" / cid; cand = rd / "ckpt_latest.pt"
         if not cand.exists() or not (rd / "metrics.jsonl").exists():
-            cmd = [sys.executable, "ofsi/rl2/ppo2.py", "--name", cid, "--init", champ["ckpt"], "--envs", str(a.envs), "--T", "64", "--max-decisions", str(a.budget), "--seed", str(100 + cyc), "--ckpt-every", "5",
+            cmd = [sys.executable, "ofsi/rl2/ppo2.py", "--name", cid, "--init", champ["ckpt"], "--envs", str(a.envs), "--T", "64", "--max-decisions", str(a.budget), "--seed", str(a.seed0 + cyc), "--ckpt-every", "5",
                    "--lr", a.lr, "--ent", "0.005", "--value-warmup", "8", "--kl-ref", a.kl_ref, "--bc-coef", a.bc_coef, "--stage0", str(a.stage0)]
             if (rd / "ckpt_latest.pt").exists(): cmd.append("--resume")
             rc = run(cmd, ORCH / f"{cid}.log")
