@@ -12,7 +12,10 @@ def check(path):
     def bad(m): out["ok"] = False; out["problemes"].append(m)
     try: c = ckpt.load(path, "cpu")
     except Exception as e: bad(f"chargement/SHA : {e}"); return out
-    ref = PolicyV2().state_dict(); sd = c["model"]
+    sd = c["model"]
+    try: m = ckpt.build_model(c, "cpu"); out["architecture"] = c.get("arch") or "deduite des formes : " + str(ckpt.arch_from_state(sd))
+    except Exception as e: bad(f"architecture/chargement : {e}"); return out
+    ref = m.state_dict()
     if set(sd) != set(ref): bad(f"cles differentes : manquantes {sorted(set(ref) - set(sd))[:3]} en trop {sorted(set(sd) - set(ref))[:3]}")
     else:
         for k, v in sd.items():

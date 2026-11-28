@@ -39,7 +39,7 @@ def evaluate(agent, specs, envs=12, max_steps=1500, device=None, agent_params=""
         lock[0] += 1; return dict(filler, _seed=f"f{lock[0]:08d}")
     model = None
     if agent not in ("teacher", "teacher3", "random"):
-        model = PolicyV2().to(device); model.load_state_dict(ckpt.load(agent, device)["model"]); model.eval()
+        model = ckpt.build_model(ckpt.load(agent, device), device); model.eval()
     wait_ram(0.45 * envs + 2.0, tag=" eval2")
     bf16 = device == "cuda" and torch.cuda.is_bf16_supported(including_emulation=False)
     env = VecEnv2(envs, cfg, max_steps=max_steps); tparams = json.loads(agent_params) if agent_params else {}; TCls = TeacherV3 if agent == "teacher3" else TeacherV2; tea = [TCls(seed=i, **tparams) for i in range(envs)]; rng = random.Random(0)

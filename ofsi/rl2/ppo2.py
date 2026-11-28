@@ -51,13 +51,21 @@ def main():
     ap.add_argument("--epochs", type=int, default=3); ap.add_argument("--mb", type=int, default=192); ap.add_argument("--gamma", type=float, default=0.997); ap.add_argument("--lam", type=float, default=0.95)
     ap.add_argument("--init", default="random"); ap.add_argument("--value-warmup", type=int, default=0, help="N premieres mises a jour : on n'entraine QUE la tete de valeur (politique gelee) pour ne pas detruire une initialisation pre-entrainee"); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--resume", action="store_true"); ap.add_argument("--ckpt-every", type=int, default=10)
     ap.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu"); ap.add_argument("--max-steps", type=int, default=1500); ap.add_argument("--stage0", type=int, default=0)
+    ap.add_argument("--d-model", type=int, default=0); ap.add_argument("--layers", type=int, default=0); ap.add_argument("--heads", type=int, default=0); ap.add_argument("--ff", type=int, default=0)
     ap.add_argument("--kl-ref", type=float, default=0.0, help="coefficient de la penalite KL vers la politique INITIALE gelee (ancrage ; 0 = desactive)")
     ap.add_argument("--bc-coef", type=float, default=0.0, help="coefficient de la perte d'imitation auxiliaire sur les demonstrations gagnantes (0 = desactive)"); ap.add_argument("--bc-data", default="data/demos_v3/shard_*.npz"); ap.add_argument("--bc-bs", type=int, default=64)
     a = ap.parse_args(); dev = a.device
     torch.manual_seed(a.seed); np.random.seed(a.seed); rng = random.Random(a.seed)
     if dev == "cuda": torch.backends.cuda.matmul.allow_tf32 = True; torch.backends.cudnn.allow_tf32 = True
     rd = pathlib.Path("runs") / a.name; rd.mkdir(parents=True, exist_ok=True); latest = str(rd / "ckpt_latest.pt")
-    model = PolicyV2().to(dev); opt = torch.optim.AdamW(model.parameters(), lr=a.lr, weight_decay=1e-4, eps=1e-6)
+    arch = dict(ckpt.DEFAULT_ARCH); want = {k: v for k, v in (("d", a.d_model), ("layers", a.layers), ("heads", a.heads), ("ff", a.ff)) if v}
+    src = latest if (a.resume and os.path.exists(latest)) else (a.init if a.init != "random" else None)
+    if src:                                                               # l'architecture d'un checkpoint existant fait foi ; un desaccord explicite est une ERREUR (pas de chargement partiel silencieux)
+        pl = ckpt.load(src, "cpu"); arch = pl.get("arch") or ckpt.arch_from_state(pl["model"]); bad = {k: (v, arch[k]) for k, v in want.items() if arch[k] != v}
+        if bad: sys.exit(f"architecture demandee {bad} (demande, checkpoint) incompatible avec {src} : utiliser un autre --name ou retirer les options")
+    else: arch.update(want)
+    print("architecture :", arch, flush=True)
+    model = PolicyV2(**arch).to(dev); opt = torch.optim.AdamW(model.parameters(), lr=a.lr, weight_decay=1e-4, eps=1e-6)
     cur = Curriculum(); cur.stage = a.stage0; upd0, steps_total, t_total = 0, 0, 0.0
     if a.resume and os.path.exists(latest):
         c = ckpt.load(latest, dev); model.load_state_dict(c["model"]); opt.load_state_dict(c["opt"]); upd0, steps_total, t_total = c["update"], c["env_steps"], c["t_total"]; cur.stage, cur.log = c["stage"], c["cur_log"]
@@ -128,8 +136,8 @@ def main():
         if upd % 3 == 0: print({k: rec[k] for k in ("update", "env_steps", "decisions_per_s", "stage", "recent200_winrate", "recent200_progress", "recent200_mean_return", "entropy")}, flush=True)
         if not np.isfinite(rec["pg_loss"]) or not np.isfinite(rec["v_loss"]): print("DIVERGENCE (NaN) : arret, dernier checkpoint conserve", flush=True); break
         if upd % a.ckpt_every == 0:
-            ckpt.save(latest, {"model": model.state_dict(), "opt": opt.state_dict(), "update": upd, "env_steps": steps_total, "t_total": t_total, "stage": cur.stage, "cur_log": cur.log})
-    ckpt.save(latest, {"model": model.state_dict(), "opt": opt.state_dict(), "update": upd, "env_steps": steps_total, "t_total": t_total, "stage": cur.stage, "cur_log": cur.log})
+            ckpt.save(latest, {"model": model.state_dict(), "arch": model.arch, "opt": opt.state_dict(), "update": upd, "env_steps": steps_total, "t_total": t_total, "stage": cur.stage, "cur_log": cur.log})
+    ckpt.save(latest, {"model": model.state_dict(), "arch": model.arch, "opt": opt.state_dict(), "update": upd, "env_steps": steps_total, "t_total": t_total, "stage": cur.stage, "cur_log": cur.log})
     env.close(); print("arret propre, checkpoint sauvegarde", flush=True)
 
 

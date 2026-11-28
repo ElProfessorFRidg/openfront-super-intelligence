@@ -40,7 +40,7 @@ class NeuralAgent:
         self.bf16 = device == "cuda" and torch.cuda.is_bf16_supported(including_emulation=False)
         key = (ckpt, device)
         if key not in NeuralAgent._cache:
-            m = PolicyV2().to(device); m.load_state_dict(C.load(ckpt, device)["model"]); m.eval(); NeuralAgent._cache[key] = m
+            m = C.build_model(C.load(ckpt, device), device); m.eval(); NeuralAgent._cache[key] = m
         self.m = NeuralAgent._cache[key]
     def act(self, obs, st, costs, cands):
         T = self.torch

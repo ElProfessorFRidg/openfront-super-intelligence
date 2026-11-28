@@ -38,3 +38,16 @@ Limites des chiffres : débits PC mesurés avec un plafond de fréquence CPU var
 - Conserver ≈ 4–6 Go pour Windows : `memguard` (0,45 Go/moteur + 3,5 Go) autorisera ≈ 40 moteurs sur 32 Go, mais la CPU sature vers 16 moteurs (532 t/s mesuré à 16, 503 à 22) : viser 12–16 moteurs ; `./ofsi.sh autotune` (à porter en PowerShell) re-mesure sur place.
 - Entraînement sur CUDA en bf16 autocast + TF32 (déjà le défaut de `ppo2.py` quand `cuda` est disponible).
 - Re-vérifier le champion de référence sur la nouvelle machine (règle du § 2).
+
+## 5. Montée en taille du réseau (§21) : architecture configurable et auto-décrite
+- Chaque checkpoint contient désormais `arch` (`d`, `layers`, `heads`, `ff`) ; `ckpt.build_model()` reconstruit le bon réseau, y compris pour les anciens checkpoints (architecture déduite des formes ; `heads` non déductible → 4, valeur de tous les anciens). Vérifié : sortie **identique au bit près** (écart 0,0) pour `init_bc` et `arm_C_medium` ; `ofsi/rl2/test_arch.py` 7/7 (autre architecture, entraînement réel + reprise, refus explicite d'un désaccord d'architecture).
+- `ppo2.py` / `pretrain.py` : `--d-model --layers --heads --ff` pour un NOUVEAU run ; avec `--init`/`--resume` l'architecture du checkpoint fait foi (désaccord = erreur). `OFSI_ARCH` dans `./ofsi.sh train`.
+- Coût MESURÉ sur le cloud (4 cœurs libres, CPU, lot 64) :
+| architecture | paramètres | pas d'entraînement CPU | inférence 6 états |
+|---|---|---|---|
+| d=128, 4 couches (actuel) | 1,41 M | 0,36 s | 18 ms |
+| d=256, 6 couches, 8 têtes | 6,80 M | 1,38 s (×3,8) | 44 ms (×2,4) |
+| d=384, 8 couches, 8 têtes | 18,56 M | 3,10 s (×8,6) | 86 ms (×4,8) |
+| d=512, 12 couches, 8 têtes | 45,34 M | 8,90 s (×25) | 223 ms (×12) |
+  Lecture : ≤ 7 M reste praticable sur le cloud ; au-delà l'entraînement devient prohibitif sur CPU (45 M : ≈ 27 s par minibatch de 192) → c'est le déclencheur n°1 du passage au PC. Les rapports CPU/GPU pour ces tailles n'ont PAS été mesurés (seul l'encodeur à attention de `gpu_vs_cpu.json`, ×15,8 à l'entraînement) ; ne pas les extrapoler.
+- Rappel (cf. § 2) : ne pas comparer deux agents évalués sur des machines différentes.

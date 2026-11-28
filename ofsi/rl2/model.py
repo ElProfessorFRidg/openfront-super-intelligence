@@ -11,7 +11,7 @@ NEG = -1e9
 class PolicyV2(nn.Module):
     def __init__(self, d=128, layers=4, heads=4, ff=512):
         super().__init__()
-        self.d = d
+        self.d = d; self.arch = {"d": d, "layers": layers, "heads": heads, "ff": ff}      # recopie dans chaque checkpoint (portabilite : un reseau plus gros doit se recharger partout)
         mlp = lambda i: nn.Sequential(nn.Linear(i, d), nn.GELU(), nn.Linear(d, d))
         self.e_self, self.e_pl, self.e_un, self.e_at = mlp(S.S_DIM), mlp(S.FP), mlp(S.FU), mlp(S.FA)
         self.kind = nn.Embedding(5, d)                                  # self / joueur / unite / attaque / grille

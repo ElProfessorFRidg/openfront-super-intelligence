@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # OpenFront Super Intelligence — lanceur local Linux/macOS (equivalent de OpenFront-SI.ps1). Aucune cle API, aucun compte, aucun service permanent.
+# Reseau plus gros (nouveau run) : OFSI_ARCH='--d-model 256 --layers 6 --heads 8 --ff 1024' ./ofsi.sh train nom   (pas d'option si on part d'un checkpoint : son architecture fait foi)
 # Usage : ./ofsi.sh <setup|doctor|repair|dashboard|train|stop|evaluate|skills|autotune|orchestrate|notify>
 set -u
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"; cd "$ROOT"
@@ -52,7 +53,7 @@ cmd_dashboard() { sync_adapter; pgrep -f "ofsi/dashboard.py" >/dev/null && say "
 cmd_train() {   # train [nom] [checkpoint_init] ; recette ANCREE (voir docs/JOURNAL.md)
   use_env; sync_adapter; local name="${1:-run_$(date +%Y%m%d_%H%M)}" init="${2:-}"; local extra=()
   [ -n "$init" ] && extra=(--init "$init" --value-warmup 8 --lr 3e-5 --ent 0.005 --kl-ref 1.0 --bc-coef 0.5)
-  nohup "$PY" ofsi/rl2/ppo2.py --name "$name" --envs "$(( $(nproc) > 8 ? 8 : $(nproc) ))" --T 64 "${extra[@]}" > "runs_$name.log" 2>&1 &
+  nohup "$PY" ofsi/rl2/ppo2.py --name "$name" --envs "$(( $(nproc) > 8 ? 8 : $(nproc) ))" --T 64 "${extra[@]}" ${OFSI_ARCH:-} > "runs_$name.log" 2>&1 &
   say "entrainement '$name' lance (PID $!) ; arret propre : ./ofsi.sh stop"
 }
 cmd_stop() { for d in runs/*/; do [ -f "$d/metrics.jsonl" ] && touch "$d/STOP" && say "STOP demande pour $(basename "$d") (checkpoint sauvegarde a la fin de la mise a jour)"; done; }
