@@ -450,3 +450,15 @@ Victoires /48 (échantillonné, torch seed 0) : professeur `threats` 32 · PPO a
 - Bras (mêmes données `data/demos_v3`, 2 400 pas, lot 256, lr 3e-4, graine 0, `--method bc`, CPU fp32 du cloud) : (A) {d=128, 4 couches, 1,41 M} réentraîné ICI (la référence `init_bc` avait été entraînée sur GPU bf16 : val_bc 0,650, meilleure époque 20) ; (B) {d=256, 6 couches, 8 têtes, ff=1024, 6,80 M}.
 - Critère : on rapporte val_bc à la meilleure époque (sélection par validation, identique pour A et B) ET train_bc ; B « imite mieux » si val_bc(B) < val_bc(A) d'au moins 0,02 (ordre de grandeur de la variation entre époques voisines observée sur `init_bc`). Un val_bc plus bas qui s'accompagne d'un train_bc bien plus bas serait du SURAPPRENTISSAGE (148 épisodes seulement), rapporté comme tel.
 - Suite conditionnelle (si B améliore val_bc) : évaluation échantillonnée de B et de A sur 96 parties Medium neuves (mêmes parties, seed0 7 000 000). Sinon : arrêt, la capacité n'aide pas l'imitation à cette quantité de données.
+
+## 2026-11-29 — Capacité du réseau vs imitation : résultat NÉGATIF (la capacité n'aide pas à cette quantité de données)
+(`benchmarks/capacity_{A_1m4,B_6m8}.json`, mêmes données `demos_v3`, 2 400 pas, lot 256, lr 3e-4, graine 0, split par épisode 126/22, CPU fp32)
+| réseau | paramètres | meilleure val_bc | train_bc | durée |
+|---|---|---|---|---|
+| A {d=128, 4 couches} réentraîné ici | 1,41 M | **0,6484** (époque 25) | 0,976 | 6 603 s (CPU cloud) |
+| B {d=256, 6 couches, 8 têtes} | 6,80 M | **0,6456** (époque 22) | 0,935 | 33 309 s (CPU cloud, ×5) |
+| référence `init_bc` entraînée sur GPU bf16 (PC) | 1,41 M | 0,6504 (époque 20) | 0,999 | 1 678 s (GPU PC) |
+- Critère pré-enregistré : B « imite mieux » si val_bc(B) < val_bc(A) − 0,02. Écart observé : −0,003 → **NON**. La perte d'entraînement de B est plus basse (0,935 contre 0,976) sans gain en validation : début de sur-apprentissage (148 épisodes). Suite conditionnelle (évaluation en parties) NON déclenchée, par protocole.
+- Contrôle de reproductibilité : le même petit réseau entraîné sur CPU cloud fp32 (0,6484) retrouve la valeur obtenue sur GPU bf16 (0,6504) : l'entraînement se transporte entre machines (écart 0,002, inférieur à la variation entre époques voisines, ≈ 0,02).
+- Mesure de débit utile à la décision cloud/PC : le MÊME entraînement de 1,41 M prend 6 603 s sur le cloud et 1 678 s sur le GPU du PC (**3,9×**) ; le réseau de 6,8 M prend 33 309 s sur le cloud (×5 par rapport à 1,41 M sur le même CPU).
+- Conclusion : à 60 000 décisions de démonstration d'un seul professeur, agrandir le réseau ne réduit pas l'erreur d'imitation ; le facteur limitant est la DONNÉE (quantité et diversité), pas la capacité. Un réseau plus grand n'aurait d'intérêt qu'avec beaucoup plus de données (autre professeur, parties de ligue, trajectoires de recherche) ou pour le RL. Ceci réoriente le travail vers la génération de données (plus variées et plus nombreuses) plutôt que vers la taille du modèle.
