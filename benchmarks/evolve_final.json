@@ -1,0 +1,32 @@
+{
+ "n": 48,
+ "defaut": 24,
+ "evolue": 22,
+ "evolue_seul": 10,
+ "defaut_seul": 12,
+ "p": 0.8318119049072266,
+ "params_defaut": {
+  "ratio": 1.5,
+  "reserve": 0.3,
+  "send": 3,
+  "expand": 2,
+  "defend": 0.5,
+  "ally_ratio": 0.6,
+  "city_per_tiles": 3500,
+  "ally_mode": "threats"
+ },
+ "params_evolue": {
+  "ratio": 1.773,
+  "reserve": 0.292,
+  "send": 3,
+  "expand": 2,
+  "defend": 0.511,
+  "ally_ratio": 0.554,
+  "city_per_tiles": 1500,
+  "ally_mode": "threats"
+ },
+ "morts": [
+  6,
+  9
+ ]
+}

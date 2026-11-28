@@ -30,17 +30,21 @@ class TeacherAgent:
 
 class NeuralAgent:
     _cache = {}
-    def __init__(self, ckpt, device="cuda"):
+    def __init__(self, ckpt, device=None, sample=True, seed=0):
         import torch
+        torch.manual_seed(seed); self.sample = sample          # ECHANTILLONNE par defaut : le decodage glouton fausse les politiques PPO (cf. journal 2026-11-26)
+        device = device or ("cuda" if torch.cuda.is_available() else "cpu")
         from ofsi.rl2.model import PolicyV2, collate
         from ofsi.rl2 import ckpt as C
         self.torch, self.collate, self.dev = torch, collate, device
-        if ckpt not in NeuralAgent._cache:
-            m = PolicyV2().to(device); m.load_state_dict(C.load(ckpt, device)["model"]); m.eval(); NeuralAgent._cache[ckpt] = m
-        self.m = NeuralAgent._cache[ckpt]
+        self.bf16 = device == "cuda" and torch.cuda.is_bf16_supported(including_emulation=False)
+        key = (ckpt, device)
+        if key not in NeuralAgent._cache:
+            m = C.build_model(C.load(ckpt, device), device); m.eval(); NeuralAgent._cache[key] = m
+        self.m = NeuralAgent._cache[key]
     def act(self, obs, st, costs, cands):
         T = self.torch
-        with T.no_grad(), T.autocast(device_type="cuda", dtype=T.bfloat16, enabled=(self.dev == "cuda")): out = self.m.act(self.collate([obs], self.dev), greedy=True)
+        with T.no_grad(), T.autocast(device_type="cuda", dtype=T.bfloat16, enabled=self.bf16): out = self.m.act(self.collate([obs], self.dev), greedy=not self.sample)
         A = []
         for k in range(S.M_SUB):
             t = int(out["types"][0, k])
@@ -49,11 +53,12 @@ class NeuralAgent:
         return A
 
 
-def make_agent(spec, seed=0):
+def make_agent(spec, seed=0, *, device=None):
     if spec == "random": return RandomAgent(seed)
     if spec == "teacher2": return TeacherAgent(TeacherV2, seed, ally_mode="none")
+    if spec == "teacher_threats": return TeacherAgent(TeacherV2, seed, ally_mode="threats")
     if spec == "teacher3": return TeacherAgent(TeacherV3, seed)
-    return NeuralAgent(spec)
+    return NeuralAgent(spec, device=device)
 
 
 def play(specs, cfg, seed, max_steps=1500):
@@ -66,7 +71,7 @@ def play(specs, cfg, seed, max_steps=1500):
             obs, info = ms.step(acts)
             if info["done"]: break
         st = info["status"]; fail = any(s["tiles"] == 0 and s["end"] != "win" and ms.views[i].last["state"].get("self", {}).get("spawned", True) is False for i, s in enumerate(st))
-        return {"specs": specs, "cfg": cfg, "seed": seed, "tick": info["tick"], "timeout": info["timeout"], "status": st, "spawn_failed": bool(any("self" not in v.last["state"] for v in ms.views))}
+        return {"specs": specs, "cfg": cfg, "seed": seed, "tick": info["tick"], "timeout": info["timeout"], "status": st, "spawn_failed": bool(ms.spawn_missing), "spawn_missing": list(ms.spawn_missing)}   # PAS « un agent est mort » (defaut corrige le 2026-11-27 : excluait les parties decisives)
     finally:
         ms.close()
 

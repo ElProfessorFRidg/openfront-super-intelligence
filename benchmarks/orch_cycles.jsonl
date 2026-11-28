@@ -1,0 +1,7 @@
+{"t": "2026-11-27 16:29:06", "event": "cycle", "cycle": "orch_c32654699_s0", "candidat": 13, "n": 48, "champion": 17, "cand_seul": 7, "champ_seul": 11, "p": 0.480682373046875, "promu": false, "alpha": 0.05}
+{"t": "2026-11-27 18:52:45", "event": "cycle", "cycle": "orch_c32654699_s1", "candidat": 13, "n": 48, "champion": 17, "cand_seul": 7, "champ_seul": 11, "p": 0.480682373046875, "promu": false, "alpha": 0.05}
+{"t": "2026-11-27 18:52:45", "event": "fin", "champion": "runs/arm_C_medium/ckpt_latest.pt"}
+{"t": "2026-11-27 21:30:59", "event": "cycle", "cycle": "orch_c32654699_s0_weak", "candidat": 23, "n": 48, "champion": 17, "cand_seul": 12, "champ_seul": 6, "p": 0.237884521484375, "promu": false, "alpha": 0.05}
+{"t": "2026-11-27 21:30:59", "event": "fin", "champion": "runs/arm_C_medium/ckpt_latest.pt"}
+{"t": "2026-11-28 02:36:58", "event": "cycle", "cycle": "orch_c32654699_s0_hard", "candidat": 5, "n": 96, "champion": 1, "cand_seul": 5, "champ_seul": 1, "p": 0.21875, "promu": false, "alpha": 0.05}
+{"t": "2026-11-28 02:36:58", "event": "fin", "champion": "runs/arm_C_medium/ckpt_latest.pt"}

@@ -6,6 +6,20 @@ mesure leur niveau de facon reproductible et entraine un reseau neuronal par app
 > **Etat honnete** : voir `docs/JOURNAL.md` (journal date, avec toutes les mesures) et `reports/` (rapport automatique). A ce jour, **aucun agent entraine ne depasse son professeur** ;
 > la comparaison des initialisations est en cours ; ligue et self-play ne sont que testes. Ne rien lire dans ce README comme une promesse de niveau.
 
+## Dashboard interactif
+
+Le dashboard pilote une partie locale depuis le navigateur. Il affiche la carte en direct, les territoires par joueur, les bâtiments et les unités présentes aux instants capturés. Survole un territoire pour l'inspecter, clique dessus pour sélectionner son propriétaire et utilise **Mon IA** pour revenir au champion. À la fin, le rejeu s'ouvre automatiquement.
+
+| Environnement | Commande depuis le dossier du projet |
+| --- | --- |
+| ZIP Windows extrait | Double-clique sur `DASHBOARD.bat`. |
+| Checkout Windows PowerShell | Lance `.\OpenFront-SI.ps1 setup` une fois, puis `.\.venv-gpu\Scripts\python.exe portable-windows/portable.py dashboard`. |
+| Checkout Linux | Lance `bash ./ofsi.sh setup` une fois, puis `./.venv/bin/python portable-windows/portable.py dashboard`. |
+
+Adresse locale par défaut `http://127.0.0.1:8765`. Choisis la carte, la difficulté, le nombre de bots et les nations. **Relancer après une défaite** génère une nouvelle graine jusqu'à une victoire confirmée ou un arrêt manuel. Le dashboard enregistre les rejeux dans `runs/_replays/` et les rapports dans `reports/`.
+
+Si le port est déjà pris, ajoute `--port 8766` à la commande. Dans le ZIP, ouvre un terminal dans le dossier et tape `.\DASHBOARD.bat --port 8766`. Si le navigateur ne s'ouvre pas, ouvre l'adresse affichée dans la console. Si les cartes sont introuvables, vérifie que le ZIP est entièrement extrait. Depuis un checkout, relance la préparation du moteur et de Node. Si CUDA est indisponible, le mode **Automatique** utilise le CPU. Le mode CUDA nécessite un runtime PyTorch CUDA et un pilote NVIDIA compatible.
+
 ## Demarrage (Windows 11, PowerShell, depuis ce dossier)
 
 ```powershell
@@ -18,6 +32,17 @@ mesure leur niveau de facon reproductible et entraine un reseau neuronal par app
 
 Valide de bout en bout : `doctor`, `repair`, `dashboard`. **Non valides de bout en bout** : `setup`, `train`, `stop`, `benchmark`, `evaluate`, `skills` (voir `docs/JOURNAL.md`).
 Fermer le navigateur ou le terminal n'interrompt pas un entrainement lance ; il s'arrete par `stop` (fichier `runs/<nom>/STOP`) ou se met en pause (`PAUSE`).
+
+## Demarrage Linux / macOS
+
+```bash
+./ofsi.sh setup      # idempotent : Node 24 local, moteur epingle, venv Python (torch CPU), smoke test
+./ofsi.sh doctor     # diagnostic en lecture seule (SHA-256 des checkpoints inclus)
+./ofsi.sh dashboard  # http://127.0.0.1:8765
+./ofsi.sh train mon_run runs/arm_B_anchor/ckpt_latest.pt   # PPO ancre (recette validee : voir docs/JOURNAL.md)
+./ofsi.sh evaluate runs/arm_C_medium/ckpt_latest.pt        # eval 48 parties ; ajouter OFSI_ENVS=N pour le parallelisme
+```
+Important : evaluer une politique PPO en mode **echantillonne** (`eval2.py --sample`) ; le decodage glouton la fausse (voir journal 2026-11-26). Matrice de preuves par exigence : `docs/PROOF_MATRIX.md`.
 
 ## Materiel
 

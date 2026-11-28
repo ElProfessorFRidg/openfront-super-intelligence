@@ -1,0 +1,46 @@
+{
+ "fingerprint": {
+  "cpus": 4,
+  "ram_gb": 15,
+  "platform": "Linux-6.18.44-fc-v880-x86_64-with-glibc2",
+  "machine": "x86_64"
+ },
+ "mesures": [
+  {
+   "envs": 2,
+   "decisions_per_s": 21.2,
+   "step_p50_ms": 60,
+   "step_p95_ms": 358
+  },
+  {
+   "envs": 4,
+   "decisions_per_s": 36.3,
+   "step_p50_ms": 77,
+   "step_p95_ms": 369
+  },
+  {
+   "envs": 8,
+   "decisions_per_s": 55.4,
+   "step_p50_ms": 121,
+   "step_p95_ms": 315
+  },
+  {
+   "envs": 12,
+   "decisions_per_s": 61.9,
+   "step_p50_ms": 174,
+   "step_p95_ms": 354
+  },
+  {
+   "envs": 16,
+   "decisions_per_s": 68.1,
+   "step_p50_ms": 211,
+   "step_p95_ms": 460
+  }
+ ],
+ "meilleur_brut": 16,
+ "choisi_envs": 16,
+ "regle": "moins de moteurs parmi ceux a >=95 % du meilleur debit",
+ "date": "2026-11-27 07:42",
+ "seconds_par_mesure": 40,
+ "politique": "professeur scripte (sans reseau) : le debit avec reseau neuronal CPU est plus bas et peut changer l'optimum"
+}

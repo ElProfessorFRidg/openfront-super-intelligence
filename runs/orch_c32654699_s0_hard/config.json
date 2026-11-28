@@ -1,0 +1,31 @@
+{
+ "args": {
+  "name": "orch_c32654699_s0_hard",
+  "envs": 6,
+  "T": 64,
+  "updates": 100000,
+  "max_decisions": 120000,
+  "lr": 3e-05,
+  "ent": 0.005,
+  "clip": 0.2,
+  "epochs": 3,
+  "mb": 192,
+  "gamma": 0.997,
+  "lam": 0.95,
+  "init": "runs/arm_C_medium/ckpt_latest.pt",
+  "value_warmup": 8,
+  "seed": 300,
+  "resume": false,
+  "ckpt_every": 5,
+  "device": "cpu",
+  "max_steps": 1500,
+  "stage0": 4,
+  "kl_ref": 0.1,
+  "bc_coef": 0.1,
+  "bc_data": "data/demos_v3/shard_*.npz",
+  "bc_bs": 64
+ },
+ "init": "runs/arm_C_medium/ckpt_latest.pt",
+ "torch": "2.15.0+cpu",
+ "device": "cpu"
+}

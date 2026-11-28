@@ -1,0 +1,143 @@
+{
+ "avec_historique": {
+  "regression": {
+   "h5_feat0": {
+    "mse": 0.002233478706330061,
+    "mse_persistance": 0.0028896392323076725,
+    "gain_vs_persistance": 0.227073510991059
+   },
+   "h5_feat1": {
+    "mse": 0.0014671843964606524,
+    "mse_persistance": 0.001526452018879354,
+    "gain_vs_persistance": 0.03882704578045826
+   },
+   "h5_feat3": {
+    "mse": 0.008948537521064281,
+    "mse_persistance": 0.010465016588568687,
+    "gain_vs_persistance": 0.14490938018778776
+   },
+   "h20_feat0": {
+    "mse": 0.004473571665585041,
+    "mse_persistance": 0.007739385589957237,
+    "gain_vs_persistance": 0.42197328023169867
+   },
+   "h20_feat1": {
+    "mse": 0.0023784919176250696,
+    "mse_persistance": 0.0032609673216938972,
+    "gain_vs_persistance": 0.2706176778277033
+   },
+   "h20_feat3": {
+    "mse": 0.02020358294248581,
+    "mse_persistance": 0.025746924802660942,
+    "gain_vs_persistance": 0.215301124412428
+   }
+  },
+  "evenements": {
+   "h5_elimination": {
+    "taux_base": 0.013013359159231186,
+    "positifs": 1129,
+    "auc": 0.946229204804286
+   },
+   "h5_devient_allie": {
+    "taux_base": 0.06510721147060394,
+    "positifs": 5575,
+    "auc": 0.9063094433121913
+   },
+   "h5_devient_traitre": {
+    "taux_base": 0.002615966834127903,
+    "positifs": 224,
+    "auc": 0.8260232249074985
+   },
+   "h20_elimination": {
+    "taux_base": 0.05146558955311775,
+    "positifs": 4465,
+    "auc": 0.9156836246792551
+   },
+   "h20_devient_allie": {
+    "taux_base": 0.11656054109334946,
+    "positifs": 9592,
+    "auc": 0.9010285250317492
+   },
+   "h20_devient_traitre": {
+    "taux_base": 0.0047392211854457855,
+    "positifs": 390,
+    "auc": 0.8046678989085768
+   }
+  },
+  "n_val": 86757,
+  "best_val_loss": 0.5449491739273071
+ },
+ "sans_historique": {
+  "regression": {
+   "h5_feat0": {
+    "mse": 0.0023038231302052736,
+    "mse_persistance": 0.0028896392323076725,
+    "gain_vs_persistance": 0.20272984099629798
+   },
+   "h5_feat1": {
+    "mse": 0.0015238980995491147,
+    "mse_persistance": 0.001526452018879354,
+    "gain_vs_persistance": 0.001673108161050707
+   },
+   "h5_feat3": {
+    "mse": 0.009041029028594494,
+    "mse_persistance": 0.010465016588568687,
+    "gain_vs_persistance": 0.1360712186094063
+   },
+   "h20_feat0": {
+    "mse": 0.004554369021207094,
+    "mse_persistance": 0.007739385589957237,
+    "gain_vs_persistance": 0.41153351667645
+   },
+   "h20_feat1": {
+    "mse": 0.002519871573895216,
+    "mse_persistance": 0.0032609673216938972,
+    "gain_vs_persistance": 0.22726254963319348
+   },
+   "h20_feat3": {
+    "mse": 0.02062535472214222,
+    "mse_persistance": 0.025746924802660942,
+    "gain_vs_persistance": 0.19891968146772265
+   }
+  },
+  "evenements": {
+   "h5_elimination": {
+    "taux_base": 0.013013359159231186,
+    "positifs": 1129,
+    "auc": 0.9451919405186163
+   },
+   "h5_devient_allie": {
+    "taux_base": 0.06510721147060394,
+    "positifs": 5575,
+    "auc": 0.9011632416842228
+   },
+   "h5_devient_traitre": {
+    "taux_base": 0.002615966834127903,
+    "positifs": 224,
+    "auc": 0.8295962112012151
+   },
+   "h20_elimination": {
+    "taux_base": 0.05146558955311775,
+    "positifs": 4465,
+    "auc": 0.916401774491175
+   },
+   "h20_devient_allie": {
+    "taux_base": 0.11656054109334946,
+    "positifs": 9592,
+    "auc": 0.9010060044018801
+   },
+   "h20_devient_traitre": {
+    "taux_base": 0.0047392211854457855,
+    "positifs": 390,
+    "auc": 0.8147840070277862
+   }
+  },
+  "n_val": 86757,
+  "best_val_loss": 0.5433893799781799
+ },
+ "secondes": 36,
+ "episodes_train_val": [
+  119,
+  29
+ ]
+}

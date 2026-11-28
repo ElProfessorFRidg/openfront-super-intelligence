@@ -1,0 +1,2071 @@
+{
+ "agents": [
+  "teacher_threats",
+  "runs/arm_C_medium/ckpt_latest.pt",
+  "runs/init_bc/ckpt_latest.pt",
+  "runs/arm_B_bc/ckpt_latest.pt",
+  "random"
+ ],
+ "matches": [
+  {
+   "specs": [
+    "teacher_threats",
+    "runs/arm_C_medium/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000001",
+   "tick": 7162,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 40779,
+     "progress": 0.24209232742038897
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 169776,
+     "progress": 1.007907672579611
+    }
+   ],
+   "spawn_failed": false
+  },
+  {
+   "specs": [
+    "runs/arm_C_medium/ckpt_latest.pt",
+    "teacher_threats"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000002",
+   "tick": 12622,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 168892,
+     "progress": 1.0026596376243737
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "teacher_threats",
+    "runs/arm_C_medium/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000003",
+   "tick": 30182,
+   "timeout": true,
+   "status": [
+    {
+     "agent": 0,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": null,
+     "win": false,
+     "alive": true,
+     "tiles": 218272,
+     "progress": 0.6662027371839481
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_C_medium/ckpt_latest.pt",
+    "teacher_threats"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000004",
+   "tick": 16042,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 70067,
+     "progress": 0.23043261489565464
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "teacher_threats",
+    "runs/arm_C_medium/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000005",
+   "tick": 7502,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 684231,
+     "progress": 1.01530967767975
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_C_medium/ckpt_latest.pt",
+    "teacher_threats"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000006",
+   "tick": 7482,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 164453,
+     "progress": 0.2434537379718727
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "teacher_threats",
+    "runs/init_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000007",
+   "tick": 15722,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 171272,
+     "progress": 1.0167889625038589
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 39283,
+     "progress": 0.23321103749614114
+    }
+   ],
+   "spawn_failed": false
+  },
+  {
+   "specs": [
+    "runs/init_bc/ckpt_latest.pt",
+    "teacher_threats"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000008",
+   "tick": 30182,
+   "timeout": true,
+   "status": [
+    {
+     "agent": 0,
+     "end": null,
+     "win": false,
+     "alive": true,
+     "tiles": 109795,
+     "progress": 0.6518190021609556
+    },
+    {
+     "agent": 1,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "teacher_threats",
+    "runs/init_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000009",
+   "tick": 10802,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 337860,
+     "progress": 1.0071687664999678
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/init_bc/ckpt_latest.pt",
+    "teacher_threats"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000010",
+   "tick": 10342,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 371775,
+     "progress": 1.1055913735472898
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 47319,
+     "progress": 0.14071811769184103
+    }
+   ],
+   "spawn_failed": false
+  },
+  {
+   "specs": [
+    "teacher_threats",
+    "runs/init_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000011",
+   "tick": 11182,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 684536,
+     "progress": 1.0112629115749168
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/init_bc/ckpt_latest.pt",
+    "teacher_threats"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000012",
+   "tick": 8142,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 706742,
+     "progress": 1.0487317436254786
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "teacher_threats",
+    "runs/arm_B_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000013",
+   "tick": 7802,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 169130,
+     "progress": 1.004072570112322
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 41425,
+     "progress": 0.2459274298876778
+    }
+   ],
+   "spawn_failed": false
+  },
+  {
+   "specs": [
+    "runs/arm_B_bc/ckpt_latest.pt",
+    "teacher_threats"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000014",
+   "tick": 13182,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 39116,
+     "progress": 0.23221961007812686
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 171439,
+     "progress": 1.0177803899218731
+    }
+   ],
+   "spawn_failed": false
+  },
+  {
+   "specs": [
+    "teacher_threats",
+    "runs/arm_B_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000015",
+   "tick": 10242,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_B_bc/ckpt_latest.pt",
+    "teacher_threats"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000016",
+   "tick": 23722,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "teacher_threats",
+    "runs/arm_B_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000017",
+   "tick": 13322,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 134247,
+     "progress": 0.22460298339657492
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_B_bc/ckpt_latest.pt",
+    "teacher_threats"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000018",
+   "tick": 13162,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 698192,
+     "progress": 1.0314368780580045
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "teacher_threats",
+    "random"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000019",
+   "tick": 6842,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 169006,
+     "progress": 1.0033364204127189
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "random",
+    "teacher_threats"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000020",
+   "tick": 16922,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 170441,
+     "progress": 1.0118555721782907
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "teacher_threats",
+    "random"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000021",
+   "tick": 20122,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 402,
+     "progress": 0.0012127165091140775
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "random",
+    "teacher_threats"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000022",
+   "tick": 7402,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "teacher_threats",
+    "random"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000023",
+   "tick": 10122,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 672398,
+     "progress": 1.0159979353603388
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "random",
+    "teacher_threats"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000024",
+   "tick": 11582,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 10350,
+     "progress": 0.015502812374929
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_C_medium/ckpt_latest.pt",
+    "runs/init_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000025",
+   "tick": 11422,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 40971,
+     "progress": 0.24323217211654913
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 169584,
+     "progress": 1.0067678278834509
+    }
+   ],
+   "spawn_failed": false
+  },
+  {
+   "specs": [
+    "runs/init_bc/ckpt_latest.pt",
+    "runs/arm_C_medium/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000026",
+   "tick": 18482,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 167282,
+     "progress": 1.0007442078613236
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_C_medium/ckpt_latest.pt",
+    "runs/init_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000027",
+   "tick": 9442,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 354584,
+     "progress": 1.054603943552052
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 1227,
+     "progress": 0.00364934412928493
+    }
+   ],
+   "spawn_failed": false
+  },
+  {
+   "specs": [
+    "runs/init_bc/ckpt_latest.pt",
+    "runs/arm_C_medium/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000028",
+   "tick": 10522,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 363428,
+     "progress": 1.0807689105118536
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_C_medium/ckpt_latest.pt",
+    "runs/init_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000029",
+   "tick": 8462,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 655818,
+     "progress": 1.0110151065375332
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/init_bc/ckpt_latest.pt",
+    "runs/arm_C_medium/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000030",
+   "tick": 8122,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 688769,
+     "progress": 1.0175163093577895
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_C_medium/ckpt_latest.pt",
+    "runs/arm_B_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000031",
+   "tick": 7582,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 168419,
+     "progress": 1.0045030537265007
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_B_bc/ckpt_latest.pt",
+    "runs/arm_C_medium/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000032",
+   "tick": 7962,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 40440,
+     "progress": 0.2400797891287312
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 170115,
+     "progress": 1.0099202108712688
+    }
+   ],
+   "spawn_failed": false
+  },
+  {
+   "specs": [
+    "runs/arm_C_medium/ckpt_latest.pt",
+    "runs/arm_B_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000033",
+   "tick": 16242,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 340677,
+     "progress": 1.0131115657749177
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_B_bc/ckpt_latest.pt",
+    "runs/arm_C_medium/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000034",
+   "tick": 9262,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 67291,
+     "progress": 0.20433614968273556
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_C_medium/ckpt_latest.pt",
+    "runs/arm_B_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000035",
+   "tick": 7962,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 689721,
+     "progress": 1.0262764603720849
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_B_bc/ckpt_latest.pt",
+    "runs/arm_C_medium/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000036",
+   "tick": 15402,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_C_medium/ckpt_latest.pt",
+    "random"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000037",
+   "tick": 8322,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 168492,
+     "progress": 1.00028496117404
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "random",
+    "runs/arm_C_medium/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000038",
+   "tick": 7602,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 167844,
+     "progress": 1.0060997539957703
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_C_medium/ckpt_latest.pt",
+    "random"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000039",
+   "tick": 14322,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 73537,
+     "progress": 0.21868569117489622
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "random",
+    "runs/arm_C_medium/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000040",
+   "tick": 9222,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 356401,
+     "progress": 1.0598718878989377
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_C_medium/ckpt_latest.pt",
+    "random"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000041",
+   "tick": 7502,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "random",
+    "runs/arm_C_medium/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000042",
+   "tick": 10902,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 53571,
+     "progress": 0.08874660393612087
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/init_bc/ckpt_latest.pt",
+    "runs/arm_B_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000043",
+   "tick": 18302,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 41455,
+     "progress": 0.24849780365226729
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_B_bc/ckpt_latest.pt",
+    "runs/init_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000044",
+   "tick": 9242,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 34630,
+     "progress": 0.20558761368763506
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 168605,
+     "progress": 1.0009558072712592
+    }
+   ],
+   "spawn_failed": false
+  },
+  {
+   "specs": [
+    "runs/init_bc/ckpt_latest.pt",
+    "runs/arm_B_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000045",
+   "tick": 7622,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 333176,
+     "progress": 1.0570519198359356
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_B_bc/ckpt_latest.pt",
+    "runs/init_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000046",
+   "tick": 11402,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/init_bc/ckpt_latest.pt",
+    "runs/arm_B_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000047",
+   "tick": 11262,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 733506,
+     "progress": 1.083606140827759
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_B_bc/ckpt_latest.pt",
+    "runs/init_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000048",
+   "tick": 8622,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 293,
+     "progress": 0.00043570172662794817
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 673530,
+     "progress": 1.0015637676987097
+    }
+   ],
+   "spawn_failed": false
+  },
+  {
+   "specs": [
+    "runs/init_bc/ckpt_latest.pt",
+    "random"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000049",
+   "tick": 9562,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 170094,
+     "progress": 1.0097955403576262
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "random",
+    "runs/init_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000050",
+   "tick": 16382,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 168597,
+     "progress": 1.0009083137422525
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/init_bc/ckpt_latest.pt",
+    "random"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000051",
+   "tick": 15222,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 332503,
+     "progress": 1.0302426951029675
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "random",
+    "runs/init_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000052",
+   "tick": 7762,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 322291,
+     "progress": 1.026579696406775
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/init_bc/ckpt_latest.pt",
+    "random"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000053",
+   "tick": 10742,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 704623,
+     "progress": 1.0409373744297634
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "random",
+    "runs/init_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000054",
+   "tick": 8402,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "win",
+     "win": true,
+     "alive": true,
+     "tiles": 667384,
+     "progress": 1.0230302287080753
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_B_bc/ckpt_latest.pt",
+    "random"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000055",
+   "tick": 21082,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 24592,
+     "progress": 0.14599510816651232
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "random",
+    "runs/arm_B_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Onion",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000056",
+   "tick": 11342,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "loss_winner_other",
+     "win": false,
+     "alive": true,
+     "tiles": 16645,
+     "progress": 0.09881622378950868
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_B_bc/ckpt_latest.pt",
+    "random"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000057",
+   "tick": 5302,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "random",
+    "runs/arm_B_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Pangaea",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000058",
+   "tick": 6482,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "runs/arm_B_bc/ckpt_latest.pt",
+    "random"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000059",
+   "tick": 6942,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  },
+  {
+   "specs": [
+    "random",
+    "runs/arm_B_bc/ckpt_latest.pt"
+   ],
+   "cfg": {
+    "map": "Caucasus",
+    "bots": 6,
+    "difficulty": "Medium"
+   },
+   "seed": "lg00000060",
+   "tick": 13662,
+   "timeout": false,
+   "status": [
+    {
+     "agent": 0,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    },
+    {
+     "agent": 1,
+     "end": "dead",
+     "win": false,
+     "alive": false,
+     "tiles": 0,
+     "progress": 0.0
+    }
+   ],
+   "spawn_failed": true
+  }
+ ],
+ "table": [
+  {
+   "agent": "teacher_threats",
+   "force_BT": 34.7,
+   "ic95": [
+    -121.1,
+    213.4
+   ]
+  },
+  {
+   "agent": "runs/arm_C_medium/ckpt_latest.pt",
+   "force_BT": 122.5,
+   "ic95": [
+    -76.5,
+    277.0
+   ]
+  },
+  {
+   "agent": "runs/init_bc/ckpt_latest.pt",
+   "force_BT": 82.2,
+   "ic95": [
+    -64.8,
+    251.8
+   ]
+  },
+  {
+   "agent": "runs/arm_B_bc/ckpt_latest.pt",
+   "force_BT": -245.6,
+   "ic95": [
+    -314.0,
+    -141.3
+   ]
+  },
+  {
+   "agent": "random",
+   "force_BT": 6.2,
+   "ic95": [
+    -5.3,
+    10.2
+   ]
+  }
+ ],
+ "matrice": [
+  [
+   null,
+   0.0,
+   0.5,
+   1.0,
+   null
+  ],
+  [
+   1.0,
+   null,
+   0.5,
+   1.0,
+   null
+  ],
+  [
+   0.5,
+   0.5,
+   null,
+   1.0,
+   null
+  ],
+  [
+   0.0,
+   0.0,
+   0.0,
+   null,
+   null
+  ],
+  [
+   null,
+   null,
+   null,
+   null,
+   null
+  ]
+ ],
+ "secondes": 3284
+}

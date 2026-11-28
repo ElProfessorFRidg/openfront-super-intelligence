@@ -27,8 +27,9 @@ def make_specs(maps, diffs, bots, per, seed0):
     return specs
 
 
-def evaluate(agent, specs, envs=12, max_steps=1500, device="cuda", agent_params=""):
+def evaluate(agent, specs, envs=12, max_steps=1500, device=None, agent_params="", sample=False, torch_seed=0):
     import torch
+    device = device or ("cuda" if torch.cuda.is_available() else "cpu"); torch.manual_seed(torch_seed)
     from ofsi.rl2.model import PolicyV2, collate
     from ofsi.rl2 import ckpt
     queue = list(specs); lock = [0]; filler = {"map": "Onion", "difficulty": "Easy", "bots": 4, "_filler": True, "_seed": "f00000000", "_id": -1}
@@ -38,42 +39,47 @@ def evaluate(agent, specs, envs=12, max_steps=1500, device="cuda", agent_params=
         lock[0] += 1; return dict(filler, _seed=f"f{lock[0]:08d}")
     model = None
     if agent not in ("teacher", "teacher3", "random"):
-        model = PolicyV2().to(device); model.load_state_dict(ckpt.load(agent, device)["model"]); model.eval()
+        model = ckpt.build_model(ckpt.load(agent, device), device); model.eval()
     wait_ram(0.45 * envs + 2.0, tag=" eval2")
+    bf16 = device == "cuda" and torch.cuda.is_bf16_supported(including_emulation=False)
     env = VecEnv2(envs, cfg, max_steps=max_steps); tparams = json.loads(agent_params) if agent_params else {}; TCls = TeacherV3 if agent == "teacher3" else TeacherV2; tea = [TCls(seed=i, **tparams) for i in range(envs)]; rng = random.Random(0)
     done_ids = {}; usage = collections.Counter(); todo = {s["_id"] for s in specs}; t0 = time.time()
-    while todo - set(done_ids):
-        acts = [None] * envs
-        if model is not None:
-            idx = [i for i in range(envs) if env.obs[i] is not None]
-            with torch.no_grad(), torch.autocast(device_type="cuda", dtype=torch.bfloat16, enabled=(device == "cuda")): out = model.act(collate([env.obs[i] for i in idx], device), greedy=True)
-            for r, i in enumerate(idx):
-                A = []
-                for k in range(S.M_SUB):
-                    t = int(out["types"][r, k])
-                    if t == S.T["STOP"]: break
-                    A.append((t, int(out["ptrs"][r, k]), int(out["params"][r, k])))
-                acts[i] = A
-        for i in range(envs):
-            o = env.obs[i]
-            if o is None: acts[i] = []; continue
-            if agent in ("teacher", "teacher3"): st, costs, cands = env.sess[i].cur; acts[i] = tea[i].act(o, st, costs, cands)
-            elif agent == "random":
-                A = []
-                if env.sess[i].last["state"].get("spawnPhase"):
-                    pl = np.flatnonzero(o["ptr_mask"][S.T["SPAWN"]]); acts[i] = [(S.T["SPAWN"], int(rng.choice(list(pl))), 0)] if len(pl) else []; continue
-                for _ in range(rng.randint(0, 2)):
-                    tl = np.flatnonzero(o["type_mask"]); tl = [t for t in tl if t != S.T["STOP"]]
-                    if not tl: break
-                    t = rng.choice(tl); pl = np.flatnonzero(o["ptr_mask"][t]); A.append((t, int(rng.choice(list(pl))) if len(pl) else 0, rng.randrange(len(S.FRACS))))
-                acts[i] = A
-            for t, _, _ in acts[i]: usage[S.TYPES[t]] += 1
-        rew, done, info = env.step(acts)
-        for i, inf in enumerate(info):
-            if inf and not inf["cfg"].get("_filler") and inf["cfg"]["_id"] not in done_ids:
-                done_ids[inf["cfg"]["_id"]] = {"cfg": {k: v for k, v in inf["cfg"].items()}, "end": inf["end"], "win": bool(inf["win"]), "progress": inf["progress"], "steps": inf["steps"], "tick": inf["tick"]}
-            if inf and agent in ("teacher", "teacher3"): tea[i] = TCls(seed=len(done_ids) + 50, **tparams)
-    env.close(); return list(done_ids.values()), usage, round(time.time() - t0)
+    try:
+        while todo - set(done_ids):
+            acts = [None] * envs
+            if model is not None:
+                idx = [i for i in range(envs) if env.obs[i] is not None]
+                if idx:
+                    with torch.no_grad(), torch.autocast(device_type="cuda", dtype=torch.bfloat16, enabled=bf16): out = model.act(collate([env.obs[i] for i in idx], device), greedy=not sample)
+                for r, i in enumerate(idx):
+                    A = []
+                    for k in range(S.M_SUB):
+                        t = int(out["types"][r, k])
+                        if t == S.T["STOP"]: break
+                        A.append((t, int(out["ptrs"][r, k]), int(out["params"][r, k])))
+                    acts[i] = A
+            for i in range(envs):
+                o = env.obs[i]
+                if o is None: acts[i] = []; continue
+                if agent in ("teacher", "teacher3"): st, costs, cands = env.sess[i].cur; acts[i] = tea[i].act(o, st, costs, cands)
+                elif agent == "random":
+                    A = []
+                    if env.sess[i].last["state"].get("spawnPhase"):
+                        pl = np.flatnonzero(o["ptr_mask"][S.T["SPAWN"]]); acts[i] = [(S.T["SPAWN"], int(rng.choice(list(pl))), 0)] if len(pl) else []; continue
+                    for _ in range(rng.randint(0, 2)):
+                        tl = np.flatnonzero(o["type_mask"]); tl = [t for t in tl if t != S.T["STOP"]]
+                        if not tl: break
+                        t = rng.choice(tl); pl = np.flatnonzero(o["ptr_mask"][t]); A.append((t, int(rng.choice(list(pl))) if len(pl) else 0, rng.randrange(len(S.FRACS))))
+                    acts[i] = A
+                for t, _, _ in acts[i]: usage[S.TYPES[t]] += 1
+            rew, done, info = env.step(acts)
+            for i, inf in enumerate(info):
+                if inf and not inf["cfg"].get("_filler") and inf["cfg"]["_id"] not in done_ids:
+                    done_ids[inf["cfg"]["_id"]] = {"cfg": {k: v for k, v in inf["cfg"].items()}, "end": inf["end"], "win": bool(inf["win"]), "progress": inf["progress"], "steps": inf["steps"], "tick": inf["tick"]}
+                if inf and agent in ("teacher", "teacher3"): tea[i] = TCls(seed=len(done_ids) + 50, **tparams)
+    finally:
+        env.close()
+    return list(done_ids.values()), usage, round(time.time() - t0)
 
 
 def summarize(res):
@@ -90,10 +96,10 @@ def summarize(res):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(); ap.add_argument("--agent", required=True); ap.add_argument("--per", type=int, default=2, help="parties par (carte, difficulte)")
     ap.add_argument("--difficulties", default="Easy,Medium"); ap.add_argument("--maps", default="train+heldout"); ap.add_argument("--bots", default="8,12"); ap.add_argument("--envs", type=int, default=12)
-    ap.add_argument("--seed0", type=int, default=1000000); ap.add_argument("--out", default=""); ap.add_argument("--max-steps", type=int, default=1500); ap.add_argument("--agent-params", default=""); ap.add_argument("--only", default="", help="ne jouer que cette difficulte, EN CONSERVANT les memes identifiants/seeds de parties")
+    ap.add_argument("--seed0", type=int, default=1000000); ap.add_argument("--out", default=""); ap.add_argument("--max-steps", type=int, default=1500); ap.add_argument("--agent-params", default=""); ap.add_argument("--sample", action="store_true", help="politique ECHANTILLONNEE (graine torch fixe) au lieu de gloutonne"); ap.add_argument("--only", default="", help="ne jouer que cette difficulte, EN CONSERVANT les memes identifiants/seeds de parties")
     a = ap.parse_args(); maps = (TRAIN_MAPS if "train" in a.maps else []) + (HELDOUT_MAPS if "heldout" in a.maps else []); specs = make_specs(maps, a.difficulties.split(","), [int(x) for x in a.bots.split(",")], a.per, a.seed0)
     if a.only: specs = [x for x in specs if x["difficulty"] == a.only]
-    res, usage, secs = evaluate(a.agent, specs, a.envs, a.max_steps, agent_params=a.agent_params); summ = summarize(res)
+    res, usage, secs = evaluate(a.agent, specs, a.envs, a.max_steps, agent_params=a.agent_params, sample=a.sample); summ = summarize(res)
     rep = {"agent": a.agent, "specs": len(specs), "secondes": secs, "resume": summ, "usage_types": dict(usage.most_common()), "parties": res}
     out = a.out or f"benchmarks/eval2_{pathlib.Path(a.agent).parent.name if a.agent not in ('teacher', 'random') else a.agent}.json"; pathlib.Path(out).write_text(json.dumps(rep, indent=1), encoding="utf-8")
     for grp, g in summ.items():

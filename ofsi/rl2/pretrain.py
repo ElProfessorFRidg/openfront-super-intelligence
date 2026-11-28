@@ -55,7 +55,7 @@ class WorldHead(nn.Module):
 def run(a):
     dev = "cuda" if torch.cuda.is_available() else "cpu"; torch.manual_seed(a.seed); np.random.seed(a.seed); t0 = time.time()
     data = Data(a.data, seed=a.seed); print(f"donnees: {data.n} decisions, episodes train/val = {data.eps_tr}/{data.eps_va} ; victoires dans l'ensemble: {int((data.D['last'] == 1).sum() and data.D['win'][data.D['last'] == 1].sum())} / {int((data.D['last'] == 1).sum())} episodes", flush=True)
-    model = PolicyV2().to(dev); wh = WorldHead(model.d).to(dev); params = list(model.parameters()) + (list(wh.parameters()) if a.method in ("ssl", "both") else [])
+    arch = {k: v for k, v in (('d', a.d_model), ('layers', a.layers), ('heads', a.heads), ('ff', a.ff)) if v}; model = PolicyV2(**arch).to(dev); wh = WorldHead(model.d).to(dev); params = list(model.parameters()) + (list(wh.parameters()) if a.method in ("ssl", "both") else [])
     opt = torch.optim.AdamW(params, lr=a.lr, weight_decay=1e-4); amp = dict(device_type="cuda", dtype=torch.bfloat16, enabled=(dev == "cuda"))
     w_ep = np.where(data.D["win"] == 1, 1.0, a.loser_weight).astype(np.float32)               # poids par decision (filtrage)
     tr = data.tr if a.method in ("ssl", "both") else data.tr[w_ep[data.tr] > 0]             # bc seul : on retire les decisions de poids nul ; "both" : TOUTES les trajectoires (le terme BC est pondere par w, le modele du monde apprend aussi des defaites)
@@ -92,11 +92,11 @@ def run(a):
         if a.steps and steps_done >= a.steps: break
     out = pathlib.Path(a.out); out.mkdir(parents=True, exist_ok=True)
     if best["state"] is not None: model.load_state_dict(best["state"]); print(f"checkpoint retenu = MEILLEURE validation : epoque {best['epoch']} (val_total={best['val']:.4f}) ; derniere epoque={ep}", flush=True)
-    ckpt.save(str(out / "ckpt_latest.pt"), {"model": model.state_dict(), "update": 0, "env_steps": 0, "t_total": time.time() - t0, "stage": 0, "cur_log": [], "pretrain": {"method": a.method, "best_epoch": best["epoch"], "best_val": best["val"], "hist": hist, "n_train": int(len(tr)), "loser_weight": a.loser_weight}}, keep=0)
+    ckpt.save(str(out / "ckpt_latest.pt"), {"model": model.state_dict(), "arch": model.arch, "update": 0, "env_steps": 0, "t_total": time.time() - t0, "stage": 0, "cur_log": [], "pretrain": {"method": a.method, "best_epoch": best["epoch"], "best_val": best["val"], "hist": hist, "n_train": int(len(tr)), "loser_weight": a.loser_weight}}, keep=0)
     json.dump({"method": a.method, "hist": hist, "seconds": round(time.time() - t0), "data": a.data, "n_train_decisions": int(len(tr))}, open(out / "pretrain_report.json", "w"), indent=1); print("checkpoint:", out / "ckpt_latest.pt")
 
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(); ap.add_argument("--method", choices=["bc", "ssl", "both"], required=True); ap.add_argument("--data", default="data/demos_v2/shard_*.npz"); ap.add_argument("--out", required=True)
-    ap.add_argument("--epochs", type=int, default=8); ap.add_argument("--bs", type=int, default=256); ap.add_argument("--lr", type=float, default=3e-4); ap.add_argument("--loser-weight", type=float, default=0.0); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--select", choices=["total", "bc", "dyn"], default="total"); ap.add_argument("--wm-win-weight", type=float, default=1.0); ap.add_argument("--steps", type=int, default=0, help="nombre TOTAL de pas d'optimisation (comparaison a budget identique)")
+    ap.add_argument("--epochs", type=int, default=8); ap.add_argument("--bs", type=int, default=256); ap.add_argument("--lr", type=float, default=3e-4); ap.add_argument("--loser-weight", type=float, default=0.0); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--select", choices=["total", "bc", "dyn"], default="total"); ap.add_argument("--d-model", type=int, default=0); ap.add_argument("--layers", type=int, default=0); ap.add_argument("--heads", type=int, default=0); ap.add_argument("--ff", type=int, default=0); ap.add_argument("--wm-win-weight", type=float, default=1.0); ap.add_argument("--steps", type=int, default=0, help="nombre TOTAL de pas d'optimisation (comparaison a budget identique)")
     run(ap.parse_args())

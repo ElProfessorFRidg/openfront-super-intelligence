@@ -23,7 +23,7 @@ class MultiSession:
         for i, v in enumerate(self.views):
             v.e = _Proxy(self.e, i); v.de, v.max_steps = decide_every, max_steps; v.cid = None; v.cfg = None; v.step_i = 0; v.cache = {}; v.grid = np.zeros((4, S.G, S.G), np.float32); v.grid_at = -99
             v.land_total = 1; v.n_start = 1; v.spawn_cands = []; v.last = None; v.pot = 0.0; v.invalid_exec = 0; v.exec_n = 0; v.W = v.H = 0
-        self.steps = 0; self.tick = 0; self.winner = None
+        self.steps = 0; self.tick = 0; self.winner = None; self.spawn_missing = []
 
     def start(self, cfg, seed):
         e = self.e; r = e.reset(map=cfg["map"], seed=seed, agents=self.k, bots=cfg["bots"], difficulty=cfg["difficulty"], nations=cfg.get("nations", "default")); self.cids = r["agentIds"]
@@ -35,7 +35,7 @@ class MultiSession:
         for i, v in enumerate(self.views):
             v.cid, v.cfg, v.land_total, v.spawn_cands, v.W, v.H = self.cids[i], cfg, land, sp, W, r["mapH"]; v.step_i = 0; v.cache = {}; v.grid_at = -99
             v.last = s0 if i == 0 else {**s0, **{k2: e.state2(i)[k2] for k2 in ("state", "costs")}}
-        self.steps = 0; self.winner = None; self.tick = s0["tick"]
+        self.steps = 0; self.winner = None; self.spawn_missing = []; self.tick = s0["tick"]
         return [v.observe() for v in self.views]
 
     def step(self, actions):
@@ -56,6 +56,7 @@ class MultiSession:
             r0 = e.step_state(0, agent=0); self.tick = r0["tick"]
         for i, v in enumerate(self.views):
             v.last = r0 if i == 0 else {**r0, **{k2: e.state2(i)[k2] for k2 in ("state", "costs")}}; v.step_i += 1
+        if spawn_phase: self.spawn_missing = [i for i, v in enumerate(self.views) if "self" not in v.last["state"] or v.last["state"]["self"].get("tiles", 0) == 0]     # VRAI echec d'apparition : agent absent/sans tuile a la FIN de la phase de spawn
         w = r0.get("winner"); self.winner = w
         status = []
         for i, v in enumerate(self.views):

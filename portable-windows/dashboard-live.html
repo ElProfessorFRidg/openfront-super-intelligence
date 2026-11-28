@@ -1,0 +1,77 @@
+<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenFront SI</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0e151b;color:#e6eef2;font:15px system-ui,sans-serif}
+main{max-width:1720px;margin:auto;padding:18px;display:grid;gap:14px}
+h1,h2{margin:0;color:#f2f6f8} h1{font-size:25px} h2{font-size:17px}
+.card{padding:16px;background:#17232b;border:1px solid #2a3a43;border-radius:12px}
+form,.toolbar{display:flex;align-items:end;flex-wrap:wrap;gap:12px;margin-top:12px}
+label{display:grid;gap:5px;color:#bacbd2} .flag{display:flex;gap:6px;align-items:center;padding-bottom:5px}
+input,select,button{background:#0e181f;color:inherit;border:1px solid #3d5662;border-radius:6px;padding:7px 10px;font:inherit}
+input[type=number]{width:78px} input[type=text]{width:128px} input[type=range]{min-width:130px;flex:1;padding:0}
+input[type=checkbox]{accent-color:#53c7a8}
+button{cursor:pointer} button:disabled{opacity:.55;cursor:default}
+#start{background:#53c7a8;color:#102621;border-color:#53c7a8;font-weight:700}
+#statusLine,#rpInfo{margin:10px 0 0;color:#bfd4dd;overflow-wrap:anywhere}
+progress{width:min(100%,460px);height:10px;display:block;margin-top:8px}
+[hidden]{display:none!important}
+#mapViewport{max-height:74vh;overflow:auto;background:#101920;margin-top:10px;cursor:grab}
+#mapViewport.dragging{cursor:grabbing}
+#rpCanvas{display:block;width:100%;height:auto;background:#101920;touch-action:none}
+#liveBadge{background:#215346;color:#bdf2da;border-radius:5px;padding:3px 8px;font-size:.85em}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:14px;margin-top:12px}
+.meta table{width:100%;border-collapse:collapse} .meta th,.meta td{padding:5px;text-align:right}
+.meta th:first-child,.meta td:first-child{text-align:left}
+.scroll{max-height:240px;overflow:auto}
+#mapTip{position:fixed;z-index:3;pointer-events:none;padding:8px 10px;max-width:min(300px,90vw);border-radius:7px;background:#080f15;color:#f4fbff;border:1px solid #43616d;white-space:pre-line}
+.player-name{border:0;background:transparent;color:inherit;padding:0;text-align:left;cursor:pointer}
+#playerFocus{font-weight:600;margin-top:12px;color:#d3eee5}
+tr.picked{background:#254439} ul{margin:6px 0;padding-left:1.2rem}
+#rpZoom{min-width:75px;max-width:130px} #rpSpeed{padding:5px}
+#rpOwners{display:flex;flex-wrap:wrap;gap:5px;max-height:8rem;overflow:auto;padding-top:6px}
+#rpOwners span{padding:2px 5px;background:#101920;border-radius:4px}
+details{margin-top:8px;line-height:1.5} summary{cursor:pointer;color:#c9dae0}
+.card:fullscreen{overflow:auto} .card:fullscreen #mapViewport{max-height:calc(100vh - 185px)}
+</style>
+<main>
+<h1>OpenFront SI</h1>
+<section class="card"><h2>Nouvelle partie</h2>
+<form id="gameForm">
+<label>Carte <select name="map" id="gameMap" required></select></label>
+<label>Difficulté <select name="difficulty"><option value="Easy">Facile</option><option value="Medium">Moyen</option><option value="Hard">Difficile</option><option value="Impossible">Impossible</option></select></label>
+<label>Bots <input name="bots" type="number" min="0" max="60" value="24" required></label>
+<label class="flag"><input name="nations" type="checkbox" checked> Nations de la carte</label>
+<label>Graine <input name="seed" type="text" pattern="[A-Za-z0-9]{8,10}" maxlength="10" placeholder="Aléatoire"></label>
+<label>Calcul <select name="device"><option value="auto">Automatique</option><option value="cpu">CPU</option><option value="cuda" id="deviceCuda">CUDA NVIDIA</option></select></label>
+<label class="flag"><input name="retry" type="checkbox"> Relancer après une défaite</label>
+<button id="start" type="submit" disabled>Lancer la partie</button>
+<button id="stop" type="button" hidden>Arrêter</button>
+</form>
+<p id="statusLine" aria-live="polite">Chargement des cartes…</p>
+<progress id="jobProgress" hidden></progress>
+</section>
+<section class="card"><h2>Carte de la partie <span id="liveBadge" hidden>EN DIRECT</span></h2>
+<div class="toolbar"><select aria-label="Rejeu" id="rp"></select><button id="rpLive" type="button" hidden>Voir le direct</button><button id="rpPlay" type="button">Lecture</button><button id="rpFull" type="button">Plein écran</button>
+<label>Vitesse <select id="rpSpeed"><option value="0.5">×0,5</option><option value="1" selected>×1</option><option value="2">×2</option><option value="4">×4</option></select></label>
+<button id="rpSelf" type="button">Mon IA</button><button id="rpFit" type="button">Carte entière</button>
+<label>Zoom <input id="rpZoom" type="range" min="100" max="400" step="25" value="100"></label>
+<input aria-label="Position dans le rejeu" id="rpSlider" type="range" min="0" max="0" value="0">
+<label class="flag"><input id="rpBuildings" type="checkbox" checked>Bâtiments</label>
+<label class="flag"><input id="rpShips" type="checkbox" checked>Bateaux et trains</label>
+<label class="flag"><input id="rpWeapons" type="checkbox" checked>Bombes et missiles</label></div>
+<p id="rpInfo">Sélectionne un rejeu ou lance une partie.</p>
+<div id="mapViewport"><canvas id="rpCanvas" width="960" height="480"></canvas></div>
+<div id="mapTip" hidden></div><p id="playerFocus"></p>
+<div class="meta">
+<details open><summary>Joueurs</summary><div class="scroll"><table><thead><tr><th>Nom</th><th>Territoire</th><th>Troupes</th><th>Or</th></tr></thead><tbody id="playerRows"></tbody></table></div></details>
+<details open><summary>Actions et combats de l’IA</summary><p id="battleSummary"></p><ul id="actionHistory"></ul></details>
+</div>
+<details id="rpLegend" hidden><summary>Joueurs et symboles</summary>
+<div>Cercles : V ville · P port · D défense · U usine · S lanceur SAM · M silo<br>
+Carrés : G navire de guerre · T transport · C commerce · R train<br>
+Losanges : A bombe atomique · H bombe H · M MIRV · S missile SAM · O obus</div><div id="rpOwners"></div></details>
+</section>
+<section class="card"><details><summary>Matériel et rapports JSON</summary>
+<p id="runtimeInfo"></p><ul id="reportsList"></ul></details></section>
+</main>

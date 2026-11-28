@@ -8,6 +8,10 @@ class _MS(ctypes.Structure):
 
 
 def free_gb():
+    if not hasattr(ctypes, "windll"):                      # Linux : MemAvailable de /proc/meminfo (meme sens que ullAvailPhys)
+        for l in open("/proc/meminfo"):
+            if l.startswith("MemAvailable:"): return int(l.split()[1]) / 2**20
+        return float("inf")
     m = _MS(); m.dwLength = ctypes.sizeof(m); ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(m)); return m.ullAvailPhys / 2**30
 
 
