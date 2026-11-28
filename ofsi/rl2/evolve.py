@@ -41,21 +41,25 @@ def search(a):
     rng = random.Random(a.seed); gl = ED / "gens.jsonl"; hist = [json.loads(l) for l in open(gl)] if gl.exists() else []; parent = hist[-1]["parent_after"] if hist else dict(BASE)
     for g in range(len(hist), a.gens):
         if (ED / "STOP").exists(): print("STOP"); break
-        specs = make_specs(TRAIN_MAPS + HELDOUT_MAPS, ["Medium"], [8, 12], 2, 2_000_000 + 1000 * g); kids = [mutate(parent, rng) for _ in range(a.lam)]; cands = [parent] + kids; t0 = time.time()
+        specs = make_specs(TRAIN_MAPS + HELDOUT_MAPS, ["Medium"], [8, 12], a.per, a.seed0 + 1000 * g); kids = [mutate(parent, rng) for _ in range(a.lam)]; cands = [parent] + kids; t0 = time.time()
         res = evaluate(cands, specs, a.workers); fits = [fitness(res[i]) for i in range(len(cands))]; wins = [sum(r["win"] for r in res[i]) for i in range(len(cands))]
-        best = max(range(len(cands)), key=lambda i: (fits[i], -i)); new_parent = cands[best] if fits[best] > fits[0] else parent
-        rec = {"gen": g, "parent_before": parent, "fits": [round(f, 3) for f in fits], "wins": wins, "best_idx": best, "replaced": new_parent is not parent, "parent_after": new_parent, "secondes": round(time.time() - t0)}
+        best = max(range(len(cands)), key=lambda i: (fits[i], -i)); new_parent = cands[best] if fits[best] > fits[0] else parent; conf = None
+        if a.confirm and new_parent is not parent:                 # CONFIRMATION : le meilleur enfant doit battre le parent sur des parties NEUVES (strictement plus de victoires), sinon on garde le parent
+            cspecs = make_specs(TRAIN_MAPS + HELDOUT_MAPS, ["Medium"], [8, 12], a.per, a.confirm_seed0 + 1000 * g); cr = evaluate([parent, new_parent], cspecs, a.workers)
+            cw = [sum(r["win"] for r in cr[i]) for i in (0, 1)]; conf = {"parent": cw[0], "enfant": cw[1]}
+            if not cw[1] > cw[0]: new_parent = parent
+        rec = {"gen": g, "confirmation": conf, "parent_before": parent, "fits": [round(f, 3) for f in fits], "wins": wins, "best_idx": best, "replaced": new_parent is not parent, "enfant_candidat": cands[best], "parent_after": new_parent, "secondes": round(time.time() - t0)}
         open(gl, "a", encoding="utf-8").write(json.dumps(rec) + "\n"); print(f"gen {g}: victoires {wins} fitness {rec['fits']} -> {'REMPLACE' if rec['replaced'] else 'parent conserve'} ({rec['secondes']} s)", flush=True); parent = new_parent
     return parent
 
 
 def final(a):
-    gl = ED / "gens.jsonl"; best = [json.loads(l) for l in open(gl)][-1]["parent_after"]; specs = make_specs(TRAIN_MAPS + HELDOUT_MAPS, ["Medium"], [8, 12], 4, 3_000_000)
+    gl = ED / "gens.jsonl"; best = [json.loads(l) for l in open(gl)][-1]["parent_after"]; specs = make_specs(TRAIN_MAPS + HELDOUT_MAPS, ["Medium"], [8, 12], a.final_per, a.final_seed0)
     res = evaluate([dict(BASE), best], specs, a.workers); W = [{r["cfg"]["_id"]: bool(r["win"]) for r in res[i]} for i in (0, 1)]; ids = sorted(W[0]); b = sum(1 for i in ids if W[1][i] and not W[0][i]); c = sum(1 for i in ids if W[0][i] and not W[1][i])
     rep = {"n": len(ids), "defaut": sum(W[0].values()), "evolue": sum(W[1].values()), "evolue_seul": b, "defaut_seul": c, "p": mcnemar(b, c), "params_defaut": BASE, "params_evolue": best, "morts": [sum(r["end"] == "dead" for r in res[i]) for i in (0, 1)]}
-    (ED / "final.json").write_text(json.dumps(rep, indent=1), encoding="utf-8"); (ROOT / "benchmarks" / "evolve_final.json").write_text(json.dumps(rep, indent=1), encoding="utf-8"); print(json.dumps(rep, indent=1)); return rep
+    (ED / "final.json").write_text(json.dumps(rep, indent=1), encoding="utf-8"); (ROOT / "benchmarks" / f"{a.out_name}.json").write_text(json.dumps(rep, indent=1), encoding="utf-8"); print(json.dumps(rep, indent=1)); return rep
 
 
 if __name__ == "__main__":
-    ap = argparse.ArgumentParser(); ap.add_argument("--gens", type=int, default=6); ap.add_argument("--lam", type=int, default=5); ap.add_argument("--workers", type=int, default=4); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--final", action="store_true"); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("--gens", type=int, default=6); ap.add_argument("--lam", type=int, default=5); ap.add_argument("--workers", type=int, default=4); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--final", action="store_true"); ap.add_argument("--per", type=int, default=2); ap.add_argument("--seed0", type=int, default=2_000_000); ap.add_argument("--confirm", action="store_true"); ap.add_argument("--confirm-seed0", type=int, default=30_000_000); ap.add_argument("--final-per", type=int, default=4); ap.add_argument("--final-seed0", type=int, default=3_000_000); ap.add_argument("--out-name", default="evolve_final"); a = ap.parse_args()
     final(a) if a.final else search(a)
