@@ -474,3 +474,14 @@ Victoires /48 (échantillonné, torch seed 0) : professeur `threats` 32 · PPO a
 - `data/demos_v4` : 4 variantes × ≈ 15 200 décisions ; avec v3 : 121 933 décisions, 284 épisodes, 117 victoires ; 46 672 décisions d'imitation (victoires seulement) contre 23 535 avant.
 - Victoires par variante (épisodes tirés au hasard, mélange de difficultés NON contrôlé) : « all » 11/36, « évolué » 8/31, « agressif » 16/36, « prudent » (ratio 2,5, defend 0,8) 23/33. Cet écart brut est un ARTEFACT de composition : le prudent a tiré 5 épisodes Hard contre 11-19 pour les autres. À difficulté égale : Easy 9/9, 7/7, 14/15, 17/17 ; Hard 0/19, 1/16, 0/11, 1/5 ; **Medium 2/8, 0/8, 2/10, 5/11**. Medium prudent 5/11 contre 4/26 pour les trois autres réunis : suggestif, NON démontré (observation après coup, petits effectifs, aucun test).
 - PROTOCOLE de confirmation (fixé avant résultats, parties jamais vues) : professeur scripté, 96 parties Medium (`seed0 8 000 000`, 12 cartes × 8), appariées : (a) `threats` par défaut ; (b) `{"ally_mode":"threats","ratio":2.5,"defend":0.8}`. McNemar exact ; « prudent meilleur » seulement si victoires(b) > victoires(a) ET p<0,05. Exécuté après le pipeline de diversité pour ne pas disputer le CPU.
+
+## 2026-11-30 — Diversité des données d'imitation : résultat NÉGATIF (96 parties Medium neuves, seed0 7 000 000, échantillonné)
+(`benchmarks/div_{teacher,A,C}.json` ; un redémarrage du worker a interrompu l'évaluation de A, relancée à l'identique ; pas de donnée perdue)
+| agent | victoires /96 | morts |
+|---|---|---|
+| professeur `threats` | 35 | 22 |
+| A : imitation sur v3 seul (23 535 déc. gagnantes, 1,41 M, 2 400 pas) | 29 | 31 |
+| C : imitation sur v3 + v4 (46 672 déc. gagnantes, même réseau/pas/graine) | 23 | 45 |
+- Appariés (McNemar exact) : C vs A 9 / 15, **p=0,31** ; C vs professeur 11 / 23, **p=0,058** ; A vs professeur 13 / 19, p=0,38. Critère pré-enregistré (C > A ET p<0,05) : **NON atteint ; le sens est même défavorable** (C a le plus de morts : 45).
+- Lecture : doubler les démonstrations en y mêlant 4 variantes du professeur n'améliore pas l'agent imité, il tend à le dégrader. Explication NON testée : les variantes (alliance « all », individu évolué, agressif) sont des démonstrateurs de force inférieure ou de styles incompatibles ; l'imitation d'un mélange de styles produit une politique incohérente (ni l'un ni l'autre). La diversité n'est donc pas, en soi, un gain ; la QUALITÉ du démonstrateur compte. Hypothèse suivante possible : n'imiter que des démonstrateurs MEILLEURS que le professeur (si on en trouve).
+- Bilan « donnée vs capacité » : ni la capacité (6,8 M) ni la diversité naïve ne font mieux que le professeur seul à 1,41 M ; le plafond semble être celui du démonstrateur.
